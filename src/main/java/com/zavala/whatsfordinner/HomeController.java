@@ -1,5 +1,6 @@
 package com.zavala.whatsfordinner;
 
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -32,6 +33,9 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		
+		URL urlObj;
+		String url = "http://food2fork.com/api/search?key=" + "" + "&q=shredded%20chicken";
 		
 		return "home";
 	}
