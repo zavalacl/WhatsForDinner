@@ -1,8 +1,7 @@
 package com.zavala.whatsfordinner;
 
-
-import java.text.DateFormat;
-import java.util.Date;
+//import java.text.DateFormat;
+//import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -32,20 +31,17 @@ public class HomeController {
 
 	SecretInfoForAPI authInfo = new SecretInfoForAPI();
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-		
-		
-
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
 
-	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
+
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 
 		logger.info("Welcome back, ninja!");
 
-		String url = "https://api.edamam.com/search?q=chicken&app_id=" + id + "&app_key=" + key + "&from=0&to=10&calories=gte%20591,%20lte%20722&health=alcohol-free";
+		String url = "https://api.edamam.com/search?q=chicken&app_id=" + id + "&app_key=" + key
+				+ "&from=0&to=10&calories=gte%20591,%20lte%20722&health=alcohol-free";
 
 		try {
 			URL urlObj = new URL(url);
@@ -71,7 +67,7 @@ public class HomeController {
 				// model.addAttribute("WhatIsTheLabel",
 				// recipesReturned.getHits().get(i).getRecipe().getLabel());
 
-					model.addAttribute("WhatIsTheLabel", recipesReturned.getHits().get(0).getRecipe().getLabel());
+				model.addAttribute("WhatIsTheLabel", recipesReturned.getHits().get(0).getRecipe().getLabel());
 
 			} else {
 				System.out.println("error: " + connectCode);
@@ -82,8 +78,9 @@ public class HomeController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		return "home";
 	}
+
 	Ingredients ing = new Ingredients();
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -92,4 +89,4 @@ public class HomeController {
 		model.addAttribute("ing", ing);
 		return "home";
 	}
-}}
+}
