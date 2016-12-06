@@ -4,13 +4,15 @@
 <%@ page import="com.zavala.whatsfordinner.Ingredients"%>
 <%@page import="java.util.*"%>
 <html>
+
 <head>
-	<title>Home</title>
+<title>Dinner Ninja</title>
 </head>
 <body>
 <h1>
-	Hello world!  
+	Welcome to the Dinner Ninja App
 </h1>
+
 
 <form name="login" action="login" onSubmit="return val()"method="GET">
 <br>Email:<input type="text" name="email">
@@ -77,5 +79,9 @@
         return re.test(x);
     }
     </script>
+
+<p> -The label(s) for this recipe search:<br> ${WhatIsTheLabel} </p>
+
+
 </body>
 </html>
