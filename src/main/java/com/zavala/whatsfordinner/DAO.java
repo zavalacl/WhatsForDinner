@@ -1,5 +1,6 @@
 package com.zavala.whatsfordinner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -49,5 +50,22 @@ public class DAO {
 		hibernateSession.close();
 		return customers;
 
+	}
+	public static List<String> buildGroceryList(){
+		List<String> recipeIngredients = new ArrayList<String>();
+		recipeIngredients.add("chicken");
+		recipeIngredients.add("flour");
+		recipeIngredients.add("butter");
+		recipeIngredients.add("seasoning");
+		
+		return recipeIngredients;
+	}
+	
+	public static List<String> addIngredient(String a){
+		List<String> groceryList = new ArrayList<String>();
+		groceryList.add(a);
+		
+		return groceryList;
+				
 	}
 }
