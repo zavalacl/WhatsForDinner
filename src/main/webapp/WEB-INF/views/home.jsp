@@ -13,6 +13,7 @@
 	Welcome to the Dinner Ninja App
 </h1>
 
+<!--  This is an update for Taher -->
 
 <form name="login" action="login" onSubmit="return val()"method="GET">
 <br>Email:<input type="text" name="email">
