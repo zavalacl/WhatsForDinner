@@ -126,6 +126,22 @@ public class HomeController {
 		return "home";
 
 	}
+	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
+	public String findCustomer(Model model, HttpServletRequest request) {
+		List<Customer> customers = DAO.getAllCustomers();
+		Customer custo = new Customer();
+		for(Customer c : customers){
+			if (c.getEmail().equalsIgnoreCase(request.getParameter("eml")) && c.getPassword().equalsIgnoreCase(request.getParameter("pass"))){
+				custo = c;
+			}
+		}
+		if (custo.getFirstName() == null){
+			return "signIn";
+		}
+		String name = custo.getFirstName();
+		model.addAttribute("name", name);
+		return "listtd";
+	}
 
 	/*
 	 * @RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
@@ -144,7 +160,7 @@ public class HomeController {
 	 * try { URL urlObj = new URL(url);
 	 * 
 	 * HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
-	 * connect.setRequestMethod("GET"); int connectCode =
+	 * connect.setRequestMethod("GET"); int connectCode 
 	 * connect.getResponseCode(); if (connectCode == 200) { BufferedReader in =
 	 * new BufferedReader(new InputStreamReader(connect.getInputStream()));
 	 * String inputLine; StringBuffer response = new StringBuffer();

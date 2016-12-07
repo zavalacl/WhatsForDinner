@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>Welcome :${name }</h1>
 <table border="1">
 	<tr>
 		<th>Customer ID</th>
@@ -26,6 +27,8 @@
 		<td>${customer.password }</td>
 	</tr>
 </c:forEach>
+
+
 </table>
 </body>
 </html>
