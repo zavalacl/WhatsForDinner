@@ -44,6 +44,21 @@ public class HomeController {
 		//model.addAttribute("addedIng", DAO.addIngredient(add));	
 		return "added";
 	}
+	
+	@RequestMapping(value ="/login", method = RequestMethod.GET)
+	public String addCustomer(Model model, HttpServletRequest request){
+		Customer cust = new Customer();
+		cust.setFirstName(request.getParameter("firstName"));
+		cust.setLastName(request.getParameter("lastName"));
+		cust.setEmail(request.getParameter("email"));
+		cust.setPassword(request.getParameter("pwd1"));
+		int customerID = DAO.addCustomer(cust);
+		
+		List<Customer> customers = DAO.getAllCustomers();
+		model.addAttribute("customers",customers);
+		
+		return "listtd";
+	}
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
