@@ -1,5 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import="com.zavala.whatsfordinner.Ingredients"%>
 <%@page import="java.util.*"%>
+
 <html>
 
 <head>
@@ -25,10 +29,10 @@
 </form>
 
 
-<P>Ingredients: <c:forEach items="${ing.display() }" var="item">
+<p>Ingredients: <c:forEach items="${ing.display() }" var="item">
    <li> ${item}</li>
 </c:forEach>
-    </P>
+    </p>
     <script type="text/javascript">
     function val(){
     	 var email = document.forms["login"]["email"].value;

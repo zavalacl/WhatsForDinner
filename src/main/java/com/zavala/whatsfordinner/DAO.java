@@ -32,7 +32,6 @@ public class DAO {
 			setupFactory();
 		Session hibernateSession = factory.openSession();
 		hibernateSession.getTransaction().begin();
-
 		int i = (Integer) hibernateSession.save(c);
 		hibernateSession.getTransaction().commit();
 		hibernateSession.close();

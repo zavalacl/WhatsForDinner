@@ -1,20 +1,12 @@
 package com.zavala.whatsfordinner;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
 //import java.text.DateFormat;
 //import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 //import org.springframework.asm.commons.GeneratorAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,29 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import com.google.gson.Gson;
 
 @Controller
 public class HomeController {
-	
-	
-	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
-	public String list(Model model){
-		List<String> recipeIngredients = DAO.buildGroceryList();
-		model.addAttribute("recipeIng", recipeIngredients);
-		return "groceryList";
-	}
-	
-	@RequestMapping(value = "/added", method = RequestMethod.GET)
-	//	public String added(Model model, HttpServletRequest request, @RequestParam(value="add") String add){
-	public String added(Model model, HttpServletRequest request){
-		
-		String[] groceryList = request.getParameterValues("missingIngredient");
-		model.addAttribute("addedIng", groceryList);
-		//model.addAttribute("addedIng", DAO.addIngredient(add));	
-		return "added";
-	}
-	
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
