@@ -3,11 +3,11 @@ package com.zavala.whatsfordinner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ingredients {
+public class IngredientsToBuy {
 	List<String> list = new ArrayList<String>();
 
 	
-	public Ingredients() {
+	public IngredientsToBuy() {
 		super();
 		
 	}

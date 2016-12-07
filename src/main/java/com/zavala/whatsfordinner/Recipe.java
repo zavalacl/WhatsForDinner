@@ -15,7 +15,7 @@ public class Recipe {
 //	private String healthLabels;
 //	private String cautions;
 //	private String ingredientLines;
-//	private Ingredients ingredients;
+//	private IngredientsToBuy ingredients;
 //	private String calories;
 //	private String totalNutrients;
 
