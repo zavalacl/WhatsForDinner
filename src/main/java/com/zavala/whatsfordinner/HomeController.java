@@ -1,5 +1,6 @@
 package com.zavala.whatsfordinner;
 
+import java.util.List;
 //import java.text.DateFormat;
 //import java.util.Date;
 import java.util.Locale;
@@ -26,6 +27,23 @@ import com.google.gson.Gson;
 
 @Controller
 public class HomeController {
+	
+	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
+	public String list(Model model){
+		List<String> recipeIngredients = DAO.buildGroceryList();
+		model.addAttribute("recipeIng", recipeIngredients);
+		return "groceryList";
+	}
+	
+	@RequestMapping(value = "/added", method = RequestMethod.GET)
+	//	public String added(Model model, HttpServletRequest request, @RequestParam(value="add") String add){
+	public String added(Model model, HttpServletRequest request){
+		
+		String[] groceryList = request.getParameterValues("missingIngredient");
+		model.addAttribute("addedIng", groceryList);
+		//model.addAttribute("addedIng", DAO.addIngredient(add));	
+		return "added";
+	}
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
