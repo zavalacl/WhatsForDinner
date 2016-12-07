@@ -54,7 +54,6 @@ public class HomeController {
 	String key = authInfo.getApiKey();
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
-
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 
 		logger.info("Welcome back, ninja!");
