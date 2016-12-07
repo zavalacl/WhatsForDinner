@@ -17,15 +17,15 @@
 	<form name="login" action="login" onSubmit="return val()" method="GET">
 		<br>Email:<input type="text" name="email"> <br>Password:<input
 			type="password" name="pwd1"> <br>Re-Enter Password:<input
-			type="password" name="pwd2"> <br>
-		<input type="submit" value="submit">
+			type="password" name="pwd2"> <br> <input type="submit"
+			value="submit">
 	</form>
 
 
 	<form name="ingredients" action="list" method="GET">
-		<br>Enter an ingredient you want to use:
-		<br><input type="text"
-			name="food"> <br> <input type="submit" value="Add">
+		<br>Enter an ingredient you want to use: <br>
+		<input type="text" name="food"> <br> <input type="submit"
+			value="Add">
 	</form>
 
 	<p>
@@ -36,7 +36,8 @@
 	</p>
 
 	<script type="text/javascript">
-		function val() {
+		
+	function val() {
 			var email = document.forms["login"]["email"].value;
 			var pwd1 = document.forms["login"]["pass"].value;
 			if (validateEmail(em) == false) {
@@ -86,10 +87,32 @@
 	</script>
 
 	<p>
-		Here are the the recipes that match your search: 
-		<br> ${WhatIsTheLabel0} 
-		<br> ${WhatIsTheLabel1} 
-		<br> ${WhatIsTheLabel2}
+		Here are the the recipes that match your search:
+
+		<!-- 
+		// use a for loop
+		int numberOfRecipesFound = hits().length();
+		for (int i = 0, i =< numberOfRecipesFound, i++)
+		
+			run the method(i);
+			
+					end the loop
+			
+			//
+		
+		
+		
+		
+		
+		
+		-->
+
+
+
+
+
+		<br> ${WhatIsTheLabel0} <br> ${WhatIsTheLabel1} <br>
+		${WhatIsTheLabel2}
 	</p>
 
 
