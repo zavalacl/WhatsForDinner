@@ -114,11 +114,12 @@ public class HomeController {
 				
 				for (int i = 0; i < recipesReturned.getHits().size(); i++) {
 
-				counterHelper = i;
+				counterHelper = i; 
+				
 				model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().getLabel());
-				model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().getImage());
-				model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().getSource());
-				model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
+				model.addAttribute("WhatIsTheImage"+i, recipesReturned.getHits().get(i).getRecipe().getImage());
+				model.addAttribute("WhatIsTheSource"+i, recipesReturned.getHits().get(i).getRecipe().getSource());
+//				model.addAttribute("WhatIsTheIngs"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
 
 				}
 

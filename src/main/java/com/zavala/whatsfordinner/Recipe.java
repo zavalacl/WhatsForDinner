@@ -1,8 +1,9 @@
 package com.zavala.whatsfordinner;
 
-//import java.util.ArrayList;
-//import java.util.List;
+import java.util.List;
 
+
+//import java.util.List;
 //import java.util.List;
 
 public class Recipe {
@@ -13,49 +14,60 @@ public class Recipe {
 	private String source;
 	private String url;
 	private int yield;
-	private String dietLabels;
-	private String healthLabels;
-	private String cautions;
-	private String ingredientLines;
-	private String ingredients;
-	private String calories;
-	private String totalNutrients;
+//	private String dietLabels;
+//	private String healthLabels;
+//	private String cautions;
+//	private String ingredientLines;
+//	private Ingredients ingredients;
+//	private String calories;
+//	private String totalNutrients;
 	
 	public String getImage() {
-		return image;
+		String im = image.toString();
+		return im;
 	}
 	public String getSource() {
-		return source;
+		String s = source.toString();
+		return s;
 	}
 	public String getUrl() {
-		return url;
+		String u = url.toString();
+		return u;
 	}
 	public int getYield() {
 		return yield;
 	}
-	public String getDietLabels() {
-		return dietLabels;
-	}
-	public String getHealthLabels() {
-		return healthLabels;
-	}
-	public String getCautions() {
-		return cautions;
-	}
-	public String getIngredientLines() {
-		return ingredientLines;
-	}
-	public String getIngredients() {
-		return ingredients;
-	}
-	public String getCalories() {
-		return calories;
+//	public String getDietLabels() {
+//		String dl = dietLabels.toString();
+//		return dl;
+//	}
+//	public String getHealthLabels() {
+//		String hl = healthLabels.toString();
+//		return hl;
+//	}
+//	public String getCautions() {
+//		String c = cautions.toString();
+//		return c;
+//	}
+//	public String getIngredientLines() {
+//		String il = ingredientLines.toString();
+//		return il;
+//	}
+/*	public String getIngredients() {
+
+		String returnIngredients = "";
+		for (int i = 0; i <= ingredients.list.size(); i++) {
+			returnIngredients += ingredients
+		}
+		return returnIngredients;
+	}*/
+/*	public String getCalories() {
+		return calories.toString();
 	}
 	public String getTotalNutrients() {
-		return totalNutrients;
-	}
+		return totalNutrients.toString();
+	}*/
 	
-
 	public String getUri() {
 		return uri;
 	}
@@ -64,13 +76,13 @@ public class Recipe {
 		return label;
 	}	
 	
-	public void setUri(String uri) {
-		this.uri = uri;
+/*	public void setUri(String uri) {
+		this.uri = uri.toString();
 	}
 
 	public void setLabel(String label) {
-		this.label = label;
-	}
+		this.label = label.toString();
+	}*/
 	
 	/*public List<String> GetAllInfoForRecipeCJ(int i){
 		List<String> recipeResult = new ArrayList<String>();
