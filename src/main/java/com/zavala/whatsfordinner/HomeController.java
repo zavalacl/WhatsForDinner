@@ -53,45 +53,13 @@ public class HomeController {
 	Ingredients ing = new Ingredients();
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
+	String userInput = "";
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 
 		logger.info("Welcome back, ninja!");
 
-		String url = "https://api.edamam.com/search?q=" + "cheese" + "&app_id=" + id + "&app_key=" + key
-				+ "&from=0&to=10&calories=gte%20591,%20lte%20722&health=alcohol-free";
-
-		try {
-			URL urlObj = new URL(url);
-
-			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
-			connect.setRequestMethod("GET");
-			int connectCode = connect.getResponseCode();
-			if (connectCode == 200) {
-				BufferedReader in = new BufferedReader(new InputStreamReader(connect.getInputStream()));
-				String inputLine;
-				StringBuffer response = new StringBuffer();
-
-				while ((inputLine = in.readLine()) != null) {
-					response.append(inputLine);
-				}
-
-				in.close();
-
-				Gson gson = new Gson();
-				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
-				model.addAttribute("WhatIsTheLabel", recipesReturned.getHits().get(0).getRecipe().getLabel());
-
-			} else {
-				System.out.println("error: " + connectCode);
-			}
-
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return "home";
 	}
 
@@ -100,8 +68,9 @@ public class HomeController {
 
 		ing.addFood(food);
 		model.addAttribute("ing", ing);
+		userInput += food +",";
 
-		String url = "https://api.edamam.com/search?q=" + food + "&app_id=" + id + "&app_key=" + key
+		String url = "https://api.edamam.com/search?q=" + userInput + "&app_id=" + id + "&app_key=" + key
 				+ "&from=0&to=10&calories=gte%20591,%20lte%20722&health=alcohol-free";
 
 		try {
