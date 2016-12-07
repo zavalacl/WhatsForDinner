@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RecipesReturned {
 
-	private 	List<Hits> hits;
+	private List<Hits> hits;
 
 	private RecipesReturned() {
 

@@ -1,9 +1,7 @@
 package com.zavala.whatsfordinner;
 
-//import java.util.ArrayList;
-//import java.util.List;
-
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe {
 
@@ -13,11 +11,11 @@ public class Recipe {
 	private String source;
 	private String url;
 	private int yield;
+	private String ingredients;
 	private String dietLabels;
 	private String healthLabels;
 	private String cautions;
 	private String ingredientLines;
-	private String ingredients;
 	private String calories;
 	private String totalNutrients;
 	
@@ -33,6 +31,18 @@ public class Recipe {
 	public int getYield() {
 		return yield;
 	}
+	
+	public String getUri() {
+		return uri;
+	}
+	
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+	public String getIngredients() {
+		return ingredients;
+	}
+
 	public String getDietLabels() {
 		return dietLabels;
 	}
@@ -45,9 +55,7 @@ public class Recipe {
 	public String getIngredientLines() {
 		return ingredientLines;
 	}
-	public String getIngredients() {
-		return ingredients;
-	}
+	
 	public String getCalories() {
 		return calories;
 	}
@@ -55,33 +63,25 @@ public class Recipe {
 		return totalNutrients;
 	}
 	
-
-	public String getUri() {
-		return uri;
-	}
-
 	public String getLabel() {
 		return label;
 	}	
-	
-	public void setUri(String uri) {
-		this.uri = uri;
-	}
 
 	public void setLabel(String label) {
 		this.label = label;
 	}
 	
-	/*public List<String> GetAllInfoForRecipeCJ(int i){
+	public List<String> GetAllInfoForRecipeCJ(int i){
 		List<String> recipeResult = new ArrayList<String>();
 		
-		recipeResult.add("model.addAttribute(\"WhatIsTheLabel\"" + i + "recipesReturned.getHits().get(" +i +").getRecipe().getLabel())");
-		recipeResult.add("model.addAttribute(\"WhatIsTheLabel\"" + i + "recipesReturned.getHits().get(" +i +").getRecipe().getImage())");
-		recipeResult.add("model.addAttribute(\"WhatIsTheLabel\"" + i + "recipesReturned.getHits().get(" +i +").getRecipe().getImage())");
-		recipeResult.add("model.addAttribute(\"WhatIsTheLabel\"" + i + "recipesReturned.getHits().get(" +i +").getRecipe().getImage())");
-		recipeResult.add("model.addAttribute(\"WhatIsTheLabel\"" + i + "recipesReturned.getHits().get(" +i +").getRecipe().getImage())");	
-		
+		recipeResult.add(uri);
+		recipeResult.add(label);
+		recipeResult.add(image);
+		recipeResult.add(source);
+		recipeResult.add(url);
+		recipeResult.add(ingredients);
+				
 		return recipeResult;	
-	}*/
+	}
 
 }
