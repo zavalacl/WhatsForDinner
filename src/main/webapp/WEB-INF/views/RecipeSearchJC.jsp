@@ -12,9 +12,8 @@
 <body>
 	<h1>Welcome to the Dinner Ninja App</h1>
 
-	<form name="ingredients" action="list" method="GET">
-		<br>Enter an ingredient you want to use:<input type="text"
-			name="food"> <br>
+	<form name="ingredients" action="recipeSearchJC" method="GET">
+		<br>Enter an ingredient you want to use:<input type="text" name="food"> <br>
 		<input type="submit" value="Add">
 	</form>
 
