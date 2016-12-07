@@ -146,6 +146,8 @@ public class HomeController {
 			}
 		}
 		if (custo.getFirstName() == null){
+			String retry = "Please Enter a Valid Profile";
+			model.addAttribute("retry", retry);
 			return "signIn";
 		}
 		String name = custo.getFirstName();
