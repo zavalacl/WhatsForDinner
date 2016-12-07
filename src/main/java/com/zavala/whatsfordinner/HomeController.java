@@ -135,5 +135,21 @@ public class HomeController {
 		return "home";
 
 	}
+	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
+	public String findCustomer(Model model, HttpServletRequest request) {
+		List<Customer> customers = DAO.getAllCustomers();
+		Customer custo = new Customer();
+		for(Customer c : customers){
+			if (c.getEmail().equalsIgnoreCase(request.getParameter("eml")) && c.getPassword().equalsIgnoreCase(request.getParameter("pass"))){
+				custo = c;
+			}
+		}
+		if (custo.getFirstName() == null){
+			return "signIn";
+		}
+		String name = custo.getFirstName();
+		model.addAttribute("name", name);
+		return "listtd";
+	}
 
 }

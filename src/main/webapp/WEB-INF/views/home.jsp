@@ -89,30 +89,9 @@
 	<p>
 		Here are the the recipes that match your search:
 
-		<!-- 
-		// use a for loop
-		int numberOfRecipesFound = hits().length();
-		for (int i = 0, i =< numberOfRecipesFound, i++)
-		
-			run the method(i);
-			
-					end the loop
-			
-			//
-		
-		
-		
-		
-		
-		
-		-->
-
-
-
-
-
-		<br> ${WhatIsTheLabel0} <br> ${WhatIsTheLabel1} <br>
-		${WhatIsTheLabel2}
+		<br> ${WhatIsTheLabel0} 
+		<br> ${WhatIsTheLabel1} 
+		<br> ${WhatIsTheLabel2}
 	</p>
 
 
