@@ -45,6 +45,21 @@ public class HomeController {
 		// model.addAttribute("addedIng", DAO.addIngredient(add));
 		return "added";
 	}
+	
+	@RequestMapping(value ="/login", method = RequestMethod.GET)
+	public String addCustomer(Model model, HttpServletRequest request){
+		Customer cust = new Customer();
+		cust.setFirstName(request.getParameter("firstName"));
+		cust.setLastName(request.getParameter("lastName"));
+		cust.setEmail(request.getParameter("email"));
+		cust.setPassword(request.getParameter("pwd1"));
+		int customerID = DAO.addCustomer(cust);
+		
+		List<Customer> customers = DAO.getAllCustomers();
+		model.addAttribute("customers",customers);
+		
+		return "listtd";
+	}
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -112,6 +127,22 @@ public class HomeController {
 		return "home";
 
 	}
+	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
+	public String findCustomer(Model model, HttpServletRequest request) {
+		List<Customer> customers = DAO.getAllCustomers();
+		Customer custo = new Customer();
+		for(Customer c : customers){
+			if (c.getEmail().equalsIgnoreCase(request.getParameter("eml")) && c.getPassword().equalsIgnoreCase(request.getParameter("pass"))){
+				custo = c;
+			}
+		}
+		if (custo.getFirstName() == null){
+			return "signIn";
+		}
+		String name = custo.getFirstName();
+		model.addAttribute("name", name);
+		return "listtd";
+	}
 
 	/*
 	 * @RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
@@ -130,7 +161,7 @@ public class HomeController {
 	 * try { URL urlObj = new URL(url);
 	 * 
 	 * HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
-	 * connect.setRequestMethod("GET"); int connectCode =
+	 * connect.setRequestMethod("GET"); int connectCode 
 	 * connect.getResponseCode(); if (connectCode == 200) { BufferedReader in =
 	 * new BufferedReader(new InputStreamReader(connect.getInputStream()));
 	 * String inputLine; StringBuffer response = new StringBuffer();

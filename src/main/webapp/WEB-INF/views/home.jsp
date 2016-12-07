@@ -21,20 +21,20 @@
 		<input type="submit" value="submit">
 	</form>
 
-	<form name="ingredients" action="list" method="GET">
-		<br>Enter an ingredient you want to use:<input type="text"
-			name="food"> <br>
-		<input type="submit" value="Add">
-	</form>
 
+	<form name="ingredients" action="list" method="GET">
+		<br>Enter an ingredient you want to use:
+		<br><input type="text"
+			name="food"> <br> <input type="submit" value="Add">
+	</form>
 
 	<p>
 		Ingredients:
 		<c:forEach items="${ing.display() }" var="item">
 			<li>${item}</li>
-			
 		</c:forEach>
 	</p>
+
 	<script type="text/javascript">
 		function val() {
 			var email = document.forms["login"]["email"].value;
@@ -86,7 +86,7 @@
 	</script>
 
 	<p>
-		-The label(s) for this recipe search: 
+		Here are the the recipes that match your search: 
 		<br> ${WhatIsTheLabel0} 
 		<br> ${WhatIsTheLabel1} 
 		<br> ${WhatIsTheLabel2}
