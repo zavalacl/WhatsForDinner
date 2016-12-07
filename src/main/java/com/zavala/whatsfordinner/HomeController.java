@@ -70,7 +70,9 @@ public class HomeController {
 		model.addAttribute("ing", ing);
 		userInput += food +",";
 
-		String url = "https://api.edamam.com/search?q=" + userInput + "&app_id=" + id + "&app_key=" + key
+		String cleanUserInput = userInput.replaceAll("[\\s,-]", ","); 
+		
+		String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
 				+ "&from=0&to=10&calories=gte%20591,%20lte%20722&health=alcohol-free";
 
 		try {
