@@ -18,15 +18,15 @@
 	<form name="login" action="login" onSubmit="return val()" method="GET">
 		<br>Email:<input type="text" name="email"> <br>Password:<input
 			type="password" name="pwd1"> <br>Re-Enter Password:<input
-			type="password" name="pwd2"> <br>
-		<input type="submit" value="submit">
+			type="password" name="pwd2"> <br> <input type="submit"
+			value="submit">
 	</form>
 
 
 	<form name="ingredients" action="list" method="GET">
-		<br>Enter an ingredient you want to use:
-		<br><input type="text"
-			name="food"> <br> <input type="submit" value="Add">
+		<br>Enter an ingredient you want to use: <br>
+		<input type="text" name="food"> <br> <input type="submit"
+			value="Add">
 	</form>
 
 	<p>
@@ -36,10 +36,9 @@
 		</c:forEach>
 	</p>
 
-	
-
 	<p>
-		Here are the the recipes that match your search: 
+		Here are the the recipes that match your search:
+
 		<br> ${WhatIsTheLabel0} 
 		<br> ${WhatIsTheLabel1} 
 		<br> ${WhatIsTheLabel2}
