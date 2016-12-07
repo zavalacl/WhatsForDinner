@@ -76,15 +76,6 @@ public class Recipe {
 		return label;
 	}	
 	
-/*	public void setUri(String uri) {
-		this.uri = uri.toString();
-	}
->>>>>>> 591aea63bb83282431f4dec18be349135165b969
-
-	public void setLabel(String label) {
-		this.label = label.toString();
-	}*/
-	
 	public List<String> GetAllInfoForRecipeCJ(int i){
 		List<String> recipeResult = new ArrayList<String>();
 		

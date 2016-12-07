@@ -112,17 +112,19 @@ public class HomeController {
 				Gson gson = new Gson();
 				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
 				
-
-				for (int i = 0; i < recipesReturned.getHits().size(); i++) {
-
-				counterHelper = i; 
-				
-				model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().getLabel());
-				model.addAttribute("WhatIsTheImage"+i, recipesReturned.getHits().get(i).getRecipe().getImage());
-				model.addAttribute("WhatIsTheSource"+i, recipesReturned.getHits().get(i).getRecipe().getSource());
-//				model.addAttribute("WhatIsTheIngs"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
-
+				for (int i = 0; i < recipesReturned.getHits().size(); i++){
+					model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().GetAllInfoForRecipeCJ(i));
+					model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getIngredients().GetRecipeTextnWeight(i));
 				}
+
+				/*for (int i = 0; i < recipesReturned.getHits().size(); i++){
+					counterHelper = i; 
+					
+					model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().getLabel());
+					model.addAttribute("WhatIsTheImage"+i, recipesReturned.getHits().get(i).getRecipe().getImage());
+					model.addAttribute("WhatIsTheSource"+i, recipesReturned.getHits().get(i).getRecipe().getSource());
+	//				model.addAttribute("WhatIsTheIngs"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
+				}*/
 
 
 			} else {
