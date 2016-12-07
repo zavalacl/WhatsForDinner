@@ -7,7 +7,7 @@
 <body>
 
 
-<form name="login" action="../login" method="GET">
+<form name="login" action="../login" onSubmit="return val()" method="GET">
 <br>First Name:<input type="text" name="firstName">
 <br>Last Name:<input type="text" name="lastName">
 <br>Email:<input type="text" name="email">
@@ -15,7 +15,41 @@
 <br>Re-Enter Password:<input type="password" name="pwd2">
 <br><input type="submit" value="submit">
 </form>
+<script type="text/javascript">
+		function val() {
+			var fn = document.forms["login"]["email"].value;
+			var ln = document.forms["login"]["email"].value;
+			var em = document.forms["login"]["email"].value;
+			var pwd1 = document.forms["login"]["pwd1"].value;
+			var pwd2 = document.forms["login"]["pwd2"].value;
+			if (fn === "") {
+				alert("All Fields Must Be Filled");
+				return false;
+			}
+			if (ln === "") {
+				alert("All Fields Must Be Filled");
+				return false;
+			}
+			if (pwd1 === "" || pwd2 === "") {
+				alert("All Fields Must Be Filled");
+				return false;
+			}
+			if (pwd1 !== pwd2) {
+				alert("Passwords Must Match");
+				return false;
+			}
+			if (validateEmail(em) == false) {
+				alert("Invalid Email");
+				return false;
+			}
+			
 
+		}
+		function validateEmail(x) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(x);
+		}
+	</script>
 
 
 
