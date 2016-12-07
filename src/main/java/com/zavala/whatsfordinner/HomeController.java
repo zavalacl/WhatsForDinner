@@ -27,6 +27,8 @@ import com.google.gson.Gson;
 
 @Controller
 public class HomeController {
+	
+	int counterHelper = 0;
 
 	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -110,6 +112,7 @@ public class HomeController {
 				Gson gson = new Gson();
 				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
 				
+<<<<<<< HEAD
 				for(int i = 0; i < recipesReturned.getHits().size(); i++){
 					
 					//model.addAttribute("WhatIsTheLabel0", recipesReturned.getHits().get(i).getRecipe().getLabel());
@@ -117,6 +120,19 @@ public class HomeController {
 					
 				}
 				
+=======
+				for (int i = 0; i < recipesReturned.getHits().size(); i++) {
+
+				counterHelper = i; 
+				
+				model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().getLabel());
+				model.addAttribute("WhatIsTheImage"+i, recipesReturned.getHits().get(i).getRecipe().getImage());
+				model.addAttribute("WhatIsTheSource"+i, recipesReturned.getHits().get(i).getRecipe().getSource());
+//				model.addAttribute("WhatIsTheIngs"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
+
+				}
+
+>>>>>>> 591aea63bb83282431f4dec18be349135165b969
 			} else {
 				System.out.println("error: " + connectCode);
 			}
@@ -140,50 +156,13 @@ public class HomeController {
 			}
 		}
 		if (custo.getFirstName() == null){
+			String retry = "Please Enter a Valid Profile";
+			model.addAttribute("retry", retry);
 			return "signIn";
 		}
 		String name = custo.getFirstName();
 		model.addAttribute("name", name);
 		return "listtd";
 	}
-
-	/*
-	 * @RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
-	 * 
-	 * public String recipeSearchJC(Locale locale, Model model,
-	 * HttpServletRequest request, @RequestParam("food") String food) {
-	 * 
-	 * logger.info("Welcome back, ninja!");
-	 * 
-	 * String url = "https://api.edamam.com/search?q=chicken&app_id=" + id +
-	 * "&app_key=" + key +
-	 * "&from=0&to=10&calories=gte%20591,%20lte%20722&health=alcohol-free";
-	 * 
-	 * ing.addFood(food); model.addAttribute("ing", ing);
-	 * 
-	 * try { URL urlObj = new URL(url);
-	 * 
-	 * HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
-	 * connect.setRequestMethod("GET"); int connectCode 
-	 * connect.getResponseCode(); if (connectCode == 200) { BufferedReader in =
-	 * new BufferedReader(new InputStreamReader(connect.getInputStream()));
-	 * String inputLine; StringBuffer response = new StringBuffer();
-	 * 
-	 * while ((inputLine = in.readLine()) != null) { response.append(inputLine);
-	 * }
-	 * 
-	 * in.close();
-	 * 
-	 * Gson gson = new Gson(); RecipesReturned recipesReturned =
-	 * gson.fromJson(response.toString(), RecipesReturned.class);
-	 * 
-	 * model.addAttribute("WhatIsTheLabel",
-	 * recipesReturned.getHits().get(0).getRecipe().getLabel());
-	 * 
-	 * } else { System.out.println("error: " + connectCode); }
-	 * 
-	 * } catch (MalformedURLException e) { e.printStackTrace(); } catch
-	 * (IOException e) { e.printStackTrace(); } return "recipeSearchJC"; }
-	 */
 
 }
