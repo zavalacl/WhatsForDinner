@@ -112,15 +112,7 @@ public class HomeController {
 				Gson gson = new Gson();
 				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
 				
-<<<<<<< HEAD
-				for(int i = 0; i < recipesReturned.getHits().size(); i++){
-					
-					//model.addAttribute("WhatIsTheLabel0", recipesReturned.getHits().get(i).getRecipe().getLabel());
-					model.addAttribute("WhatIsTheLabel" + i, recipesReturned.getHits().get(i).getRecipe().GetAllInfoForRecipeCJ(i));
-					
-				}
-				
-=======
+
 				for (int i = 0; i < recipesReturned.getHits().size(); i++) {
 
 				counterHelper = i; 
@@ -132,7 +124,7 @@ public class HomeController {
 
 				}
 
->>>>>>> 591aea63bb83282431f4dec18be349135165b969
+
 			} else {
 				System.out.println("error: " + connectCode);
 			}
