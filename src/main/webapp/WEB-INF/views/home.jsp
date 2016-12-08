@@ -12,7 +12,7 @@
 
 <body>
 
-	<h1>Welcome to the Dinner Ninja App</h1>
+	<h1>Welcome to Dinner Ninja</h1>
 	<P>
 		<a href="http://localhost:8080/whatsfordinner/signIn">Log In!</a>
 	</P>
@@ -22,7 +22,7 @@
 			href="http://localhost:8080/whatsfordinner/resources/NewCustomer.html">Sign
 			Up!</a>
 	</P>
-	<form name="login" action="login" onSubmit="return val()" method="GET">
+	<form name="login" action="login" onSubmit="return val()" method="POST">
 		<br>Email:<input type="text" name="email"> <br>Password:<input
 			type="password" name="pwd1"> <br>Re-Enter Password:<input
 			type="password" name="pwd2"> <br> <input type="submit"

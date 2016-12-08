@@ -13,7 +13,7 @@
 <h1>Recipe Ingredients</h1>
 <p>This recipe has these ingredients:</p>
 
-<form name="added" action="added" method="get">
+<form name="added" action="added" method="POST">
 <table border="1">
 	<tr>
 		<th>Ingredient</th>
