@@ -10,8 +10,11 @@
 </head>
 <body>
 
-<h1>Recipe Ingredients</h1>
-<p>This recipe has these ingredients:</p>
+<h1>${recipeLabel}</h1>
+<img src="${recipeImage}">
+<p>${recipeSummary}</p>
+
+<h2>Recipe Ingredients:</h2>
 
 <form name="added" action="added" method="GET">
 <table border="1">

@@ -18,6 +18,6 @@
 	<li>${ai}</li>
 </c:forEach>
 </ul>
-<iframe width="560" height="315" src="https://www.shipt.com/" frameborder="0" allowfullscreen></iframe>
+<iframe width="960" height="915" src="https://www.shipt.com/" frameborder="0" allowfullscreen></iframe>
 </body>
 </html>

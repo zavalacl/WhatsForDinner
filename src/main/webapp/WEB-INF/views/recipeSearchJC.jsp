@@ -53,21 +53,19 @@ The filters are not currently working
 		<th>Image</th>
 		<th>Source</th>
 		<th>Summary</th>
-		<th>Ingredients</th>
-		<th>
-  	
+		<th></th>
 	</tr>
 	
 	<c:forEach items="${recipeList}" var="rec">
 	<tr>
+		<td><img src="${rec.image}" height="100px" width="100px"></td>
 		<td>${rec.label}</td>
-		<td>${rec.image}</td>
 		<td>${rec.source}</td>
 		<td>${rec.summary}</td>
 		<td>
 		<form action="addSelectedRecipe" method="get">
-			<input type="hidden" name="label" value="${rec.label}" />
 			<input type="hidden" name="image" value="${rec.image}" />
+			<input type="hidden" name="label" value="${rec.label}" />
 			<input type="hidden" name="source" value="${rec.source}" />
 			<input type="hidden" name="summary" value="${rec.summary}" />
 			<input type="hidden" name="ingredients" value="${rec.ingredients}" />
