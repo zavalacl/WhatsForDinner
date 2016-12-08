@@ -47,12 +47,12 @@ public class HomeController {
 		return "groceryList";
 	}
 	
-	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<String> recipeIngredients = DAO.buildGroceryList();
 		model.addAttribute("recipeIng", recipeIngredients);
 		return "groceryList";
-	}
+	}*/
 
 	@RequestMapping(value = "/added", method = RequestMethod.GET)
 	public String added(Model model, HttpServletRequest request) {
