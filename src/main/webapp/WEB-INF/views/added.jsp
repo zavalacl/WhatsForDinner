@@ -13,21 +13,11 @@
 <body>
 
 <h1>Your Grocery List:</h1>
-<!-- <table border ="1">
-	<tr>
-		<th>Ingredients</th>
-	<tr>
-	<c:forEach items="${addedIng}" var="added">
-	<tr>
-		<td>${added}</td>
-	</tr>
-</c:forEach>
-</table> -->
-
 <ul>
 <c:forEach var="ai" items="${addedIng}">
 	<li>${ai}</li>
 </c:forEach>
 </ul>
+<iframe width="560" height="315" src="https://www.shipt.com/" frameborder="0" allowfullscreen></iframe>
 </body>
 </html>

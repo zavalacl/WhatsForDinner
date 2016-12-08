@@ -22,12 +22,11 @@
 	<c:forEach items="${recipeIng}" var="ingredient">
 	<tr>
 		<td>${ingredient}</td>
-		<td><input type="checkbox" name="missingIngredient" value="${ingredient}">check me</td>
-		<!--<td><a href="added?add=${ingredient}"><input type="checkbox" name="missingIngredient" value="${ingredient}">I don't have this ingredient</a></td> -->
+		<td><input type="checkbox" name="missingIngredient" value="${ingredient}"></td>
 	</tr>
 </c:forEach>
 </table>
-<input type="submit" value="I don't have these items">
+<input type="submit" value="I don't have this item">
 </form>
 </body>
 </html>

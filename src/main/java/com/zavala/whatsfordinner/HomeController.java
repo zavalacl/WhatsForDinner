@@ -1,5 +1,6 @@
 package com.zavala.whatsfordinner;
 
+import java.util.ArrayList;
 import java.util.List;
 //import java.text.DateFormat;
 //import java.util.Date;
@@ -35,7 +36,13 @@ public class HomeController {
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
 	String userInput = "";
-
+	
+	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
+	public String addSelectedRecipe(Model model, @RequestParam(value="ingredients") String ingredients) {
+		model.addAttribute("recipeIng", ingredients);
+		return "groceryList";
+	}
+	
 	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<String> recipeIngredients = DAO.buildGroceryList();
@@ -44,13 +51,10 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/added", method = RequestMethod.GET)
-	// public String added(Model model, HttpServletRequest request,
-	// @RequestParam(value="add") String add){
 	public String added(Model model, HttpServletRequest request) {
 
 		String[] groceryList = request.getParameterValues("missingIngredient");
 		model.addAttribute("addedIng", groceryList);
-		// model.addAttribute("addedIng", DAO.addIngredient(add));
 		return "added";
 	}
 
@@ -108,17 +112,25 @@ public class HomeController {
 
 				Gson gson = new Gson();
 				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
-
-				for (int i = 0; i < recipesReturned.getHits().size(); i++) {
-
-					counterHelper = i;
-					model.addAttribute("WhatIsTheLabel" + i, recipesReturned.getHits().get(i).getRecipe().getLabel());
-					model.addAttribute("WhatIsTheImage" + i, recipesReturned.getHits().get(i).getRecipe().getImage());
-					model.addAttribute("WhatIsTheSource" + i, recipesReturned.getHits().get(i).getRecipe().getSource());
-					model.addAttribute("WhatIsTheSummary" + i, recipesReturned.getHits().get(i).getRecipe().getSummary());
-					model.addAttribute("WhatIsTheIngredients"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
-
+				List<Hits> hits = recipesReturned.getHits();	
+				
+				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+				for (Hits h: hits) {
+					Recipe r = h.getRecipe();
+					recipeList.add(r);
 				}
+				
+				model.addAttribute("recipeList",recipeList);
+//				for (int i = 0; i < recipesReturned.getHits().size(); i++) {
+//
+//					counterHelper = i;
+//					model.addAttribute("WhatIsTheLabel" + i, recipesReturned.getHits().get(i).getRecipe().getLabel());
+//					model.addAttribute("WhatIsTheImage" + i, recipesReturned.getHits().get(i).getRecipe().getImage());
+//					model.addAttribute("WhatIsTheSource" + i, recipesReturned.getHits().get(i).getRecipe().getSource());
+//					model.addAttribute("WhatIsTheSummary" + i, recipesReturned.getHits().get(i).getRecipe().getSummary());
+//					model.addAttribute("WhatIsTheIngredients"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
+//
+//				}
 
 			} else {
 				System.out.println("error: " + connectCode);

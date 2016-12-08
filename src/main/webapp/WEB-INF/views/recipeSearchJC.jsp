@@ -32,17 +32,39 @@
 	</table>
 
 	<br> Here are the the recipes that match your search:
-	<p>
-		${WhatIsTheLabel0} 
-		<br> -image: ${WhatIsTheImage0} 
-		<br> -source: ${WhatIsTheSource0} 
-		<br> -summary: ${WhatIsTheSummary0}
-		<br> -ingredients: ${WhatIsTheIngredients0}
-	</p>
-	<p>${WhatIsTheLabel1}</p>
-	<p>${WhatIsTheLabel2}</p>
-	<p>${WhatIsTheLabel3}</p>
-	<p>${WhatIsTheLabel4}</p>
+	
+	<table border="1">
+	<tr>
+		<th>Label</th>
+		<th>Image</th>
+		<th>Source</th>
+		<th>Summary</th>
+		<th>Ingredients</th>
+		<th>
+  	
+	</tr>
+	
+	<c:forEach items="${recipeList}" var="rec">
+	<tr>
+		<td>${rec.label}</td>
+		<td>${rec.image}</td>
+		<td>${rec.source}</td>
+		<td>${rec.summary}</td>
+		<td>
+		<form action="addSelectedRecipe" method="get">
+			<input type="hidden" name="label" value="${rec.label}" />
+			<input type="hidden" name="image" value="${rec.image}" />
+			<input type="hidden" name="source" value="${rec.source}" />
+			<input type="hidden" name="summary" value="${rec.summary}" />
+			<input type="hidden" name="ingredients" value="${rec.ingredients}" />
+			<input type="submit" value="See Recipe">
+		</form>
+		</td>
+	</tr>
+	</c:forEach>
+	
+</table>
+	
 
 </body>
 </html>

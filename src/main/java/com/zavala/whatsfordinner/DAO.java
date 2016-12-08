@@ -52,11 +52,6 @@ public class DAO {
 	}
 	public static List<String> buildGroceryList(){
 		List<String> recipeIngredients = new ArrayList<String>();
-		recipeIngredients.add("chicken");
-		recipeIngredients.add("flour");
-		recipeIngredients.add("butter");
-		recipeIngredients.add("seasoning");
-		
 		return recipeIngredients;
 	}
 	
