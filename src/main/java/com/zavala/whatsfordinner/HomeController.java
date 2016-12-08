@@ -137,18 +137,13 @@ public class HomeController {
 	public String findCustomer(Model model, HttpServletRequest request) {
 		List<Customer> customers = DAO.getAllCustomers();
 		Customer custo = new Customer();
-		for (Customer c : customers) {
-			if (c.getEmail().equalsIgnoreCase(request.getParameter("eml"))
-					&& c.getPassword().equalsIgnoreCase(request.getParameter("pass"))) {
-				custo = c;
-			}
-		}
-		if (custo.getFirstName() == null) {
-			String retry = "Please Enter a Valid Profile";
-			model.addAttribute("retry", retry);
-			return "signIn";
-		}
-		String name = custo.getFirstName();
+	custo = DAO.checkLogIn(request.getParameter("eml"), request.getParameter("pass"));
+	if (custo.getFirstName() == null) {
+        String retry = "Please Enter a Valid Profile";
+        model.addAttribute("retry", retry);
+        return "home";
+    }	
+	String name = custo.getFirstName();
 		model.addAttribute("name", name);
 		return "listtd";
 	}
