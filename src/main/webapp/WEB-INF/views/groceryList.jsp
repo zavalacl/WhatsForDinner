@@ -10,8 +10,11 @@
 </head>
 <body>
 
-	<h1>Recipe Ingredients</h1>
-	<p>This recipe has these ingredients:</p>
+<h1>${recipeLabel}</h1>
+<img src="${recipeImage}">
+<p>${recipeSummary}</p>
+
+<h2>Recipe Ingredients:</h2>
 
 	<form name="added" action="added" method="GET">
 		<table border="1">
@@ -22,8 +25,7 @@
 			<c:forEach items="${recipeIng}" var="ingredient">
 				<tr>
 					<td>${ingredient}</td>
-					<td><input type="checkbox" name="missingIngredient"
-						value="${ingredient}"></td>
+					<td><input type="checkbox" name="missingIngredient" value="${ingredient}"></td>
 				</tr>
 			</c:forEach>
 		</table>

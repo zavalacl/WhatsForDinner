@@ -39,18 +39,15 @@ public class HomeController {
 	String userInput = "";
 
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-	public String addSelectedRecipe(Model model, @RequestParam(value = "ingredients") String ingredients) {
+
+	public String addSelectedRecipe(Model model, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="summary") String summary, @RequestParam(value="ingredients") String ingredients){
+		model.addAttribute("recipeLabel", label);
+		model.addAttribute("recipeImage", image);
+		model.addAttribute("recipeSummary", summary);
 		model.addAttribute("recipeIng", ingredients);
 		return "groceryList";
 	}
-
-	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
-	public String list(Model model) {
-		List<String> recipeIngredients = DAO.buildGroceryList();
-		model.addAttribute("recipeIng", recipeIngredients);
-		return "groceryList";
-	}
-
+	
 	@RequestMapping(value = "/added", method = RequestMethod.GET)
 	public String added(Model model, HttpServletRequest request) {
 
