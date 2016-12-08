@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="com.zavala.whatsfordinner.IngredientsToBuy"%>
 <%@ page import="java.util.*"%>
-
+<!DOCTYPE html>
 <html>
 
 <head>
