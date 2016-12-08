@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 
 @Controller
 public class HomeController {
-	
+
 	int counterHelper = 0;
 
 	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
@@ -47,19 +47,19 @@ public class HomeController {
 		// model.addAttribute("addedIng", DAO.addIngredient(add));
 		return "added";
 	}
-	
-	@RequestMapping(value ="/login", method = RequestMethod.GET)
-	public String addCustomer(Model model, HttpServletRequest request){
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String addCustomer(Model model, HttpServletRequest request) {
 		Customer cust = new Customer();
 		cust.setFirstName(request.getParameter("firstName"));
 		cust.setLastName(request.getParameter("lastName"));
 		cust.setEmail(request.getParameter("email"));
 		cust.setPassword(request.getParameter("pwd1"));
 		int customerID = DAO.addCustomer(cust);
-		
+
 		List<Customer> customers = DAO.getAllCustomers();
-		model.addAttribute("customers",customers);
-		
+		model.addAttribute("customers", customers);
+
 		return "listtd";
 	}
 
@@ -67,7 +67,7 @@ public class HomeController {
 
 	SecretInfoForAPI authInfo = new SecretInfoForAPI();
 
-	Ingredients ing = new Ingredients();
+	IngredientsToBuy ing = new IngredientsToBuy();
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
 	String userInput = "";
@@ -85,10 +85,10 @@ public class HomeController {
 
 		ing.addFood(food);
 		model.addAttribute("ing", ing);
-		userInput += food +",";
+		userInput += food + ",";
 
-		String cleanUserInput = userInput.replaceAll("[\\s,-]", ","); 
-		
+		String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
+
 		String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
 				+ "&from=0&to=10&calories=gte%20591,%20lte%20722&health=alcohol-free";
 
@@ -114,7 +114,6 @@ public class HomeController {
 				
 				for (int i = 0; i < recipesReturned.getHits().size(); i++){
 					model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getRecipe().GetAllInfoForRecipeCJ(i));
-					model.addAttribute("WhatIsTheLabel"+i, recipesReturned.getHits().get(i).getIngredients().GetRecipeTextnWeight(i));
 				}
 
 				/*for (int i = 0; i < recipesReturned.getHits().size(); i++){
@@ -126,7 +125,6 @@ public class HomeController {
 	//				model.addAttribute("WhatIsTheIngs"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
 				}*/
 
-
 			} else {
 				System.out.println("error: " + connectCode);
 			}
@@ -137,19 +135,20 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
-		return "home";
-
+		return "recipeSearchJC";
 	}
+
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
 	public String findCustomer(Model model, HttpServletRequest request) {
 		List<Customer> customers = DAO.getAllCustomers();
 		Customer custo = new Customer();
-		for(Customer c : customers){
-			if (c.getEmail().equalsIgnoreCase(request.getParameter("eml")) && c.getPassword().equalsIgnoreCase(request.getParameter("pass"))){
+		for (Customer c : customers) {
+			if (c.getEmail().equalsIgnoreCase(request.getParameter("eml"))
+					&& c.getPassword().equalsIgnoreCase(request.getParameter("pass"))) {
 				custo = c;
 			}
 		}
-		if (custo.getFirstName() == null){
+		if (custo.getFirstName() == null) {
 			String retry = "Please Enter a Valid Profile";
 			model.addAttribute("retry", retry);
 			return "signIn";
@@ -159,4 +158,13 @@ public class HomeController {
 		return "listtd";
 	}
 
+	@RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
+	public String searchNow(Locale locale, Model model, HttpServletRequest request) {
+
+		logger.info("Ready to search?");
+
+		return "recipeSearchJC";
+	}	
+	
+	
 }

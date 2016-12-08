@@ -3,20 +3,19 @@ package com.zavala.whatsfordinner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ingredients {
+public class IngredientsToBuy {
 	List<String> list = new ArrayList<String>();
 	
 	private String text;
 	private String weight;
 
-	
 	public String getText() {
 		return text;
 	}
 	public String getWeight() {
 		return weight;
 	}
-	public Ingredients() {
+	public IngredientsToBuy() {
 		super();
 		
 	}
