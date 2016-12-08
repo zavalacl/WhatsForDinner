@@ -100,10 +100,20 @@ public class HomeController {
 		String filtersSelected = "&" + dietStuff; //request.getParameterValues(diet) + request.getParameterValues(health) ;
 		
 //		model.addAttribute("filterResultsBy", request.getParameterValues("showOnly[]"));
-
-		String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id="+ id + "&app_key=" + key
-				+ "&from=0&to=10";
-		System.out.println(filtersSelected);
+		String url;
+if (request.getParameter("diet") != null){
+		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id="+ id + "&app_key=" + key
+				+ "&from=0&to=10&diet=" + request.getParameter("diet");
+}
+else if (request.getParameter("health") != null) {
+	url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id="+ id + "&app_key=" + key
+			+ "&from=0&to=10&health=" + request.getParameter("health");
+}
+else {
+	url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id="+ id + "&app_key=" + key
+			+ "&from=0&to=10";
+}
+		System.out.println(request.getParameter("health"));
 
 		try {
 			URL urlObj = new URL(url);
