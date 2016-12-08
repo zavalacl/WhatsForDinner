@@ -11,11 +11,15 @@ import org.slf4j.LoggerFactory;
 //import org.springframework.asm.commons.GeneratorAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -55,16 +59,17 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String addCustomer(Model model, HttpServletRequest request) {
+	public String addCustomer(Model model, HttpServletRequest request, HttpServletResponse response) {
 		Customer cust = new Customer();
 		cust.setFirstName(request.getParameter("firstName"));
 		cust.setLastName(request.getParameter("lastName"));
 		cust.setEmail(request.getParameter("email"));
 		cust.setPassword(request.getParameter("pwd1"));
 		int customerID = DAO.addCustomer(cust);
-
+		
 		List<Customer> customers = DAO.getAllCustomers();
 		model.addAttribute("customers", customers);
+		response.addCookie(new Cookie("customerID", "" + customerID));
 
 		return "listtd";
 	}
@@ -134,7 +139,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
-	public String findCustomer(Model model, HttpServletRequest request) {
+	public String findCustomer(Model model, HttpServletRequest request, HttpServletResponse response) {
 		List<Customer> customers = DAO.getAllCustomers();
 		Customer custo = new Customer();
 	custo = DAO.checkLogIn(request.getParameter("eml"), request.getParameter("pass"));
@@ -145,12 +150,14 @@ public class HomeController {
     }	
 	String name = custo.getFirstName();
 		model.addAttribute("name", name);
+		response.addCookie(new Cookie("customerID","" + custo.getCustomerID()));
 		return "listtd";
 	}
+	
 
 	@RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
-	public String searchNow(Locale locale, Model model, HttpServletRequest request) {
-
+	public String searchNow(Locale locale, @CookieValue("customerID") String cid, Model model, HttpServletRequest request) {
+		int custID = Integer.parseInt(cid);
 		logger.info("Ready to search?");
 		return "recipeSearchJC";
 	}	
