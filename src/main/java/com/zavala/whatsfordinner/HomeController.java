@@ -28,7 +28,13 @@ import com.google.gson.Gson;
 @Controller
 public class HomeController {
 
-	int counterHelper = 0;
+	public static int counterHelper = 0;
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	SecretInfoForAPI authInfo = new SecretInfoForAPI();
+	IngredientsToBuy ing = new IngredientsToBuy();
+	String id = authInfo.getAppId();
+	String key = authInfo.getApiKey();
+	String userInput = "";
 
 	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -62,15 +68,6 @@ public class HomeController {
 
 		return "listtd";
 	}
-
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	SecretInfoForAPI authInfo = new SecretInfoForAPI();
-
-	IngredientsToBuy ing = new IngredientsToBuy();
-	String id = authInfo.getAppId();
-	String key = authInfo.getApiKey();
-	String userInput = "";
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
@@ -115,12 +112,11 @@ public class HomeController {
 				for (int i = 0; i < recipesReturned.getHits().size(); i++) {
 
 					counterHelper = i;
-
 					model.addAttribute("WhatIsTheLabel" + i, recipesReturned.getHits().get(i).getRecipe().getLabel());
 					model.addAttribute("WhatIsTheImage" + i, recipesReturned.getHits().get(i).getRecipe().getImage());
 					model.addAttribute("WhatIsTheSource" + i, recipesReturned.getHits().get(i).getRecipe().getSource());
-					// model.addAttribute("WhatIsTheIngs"+i,
-					// recipesReturned.getHits().get(i).getRecipe().getIngredients());
+					model.addAttribute("WhatIsTheSummary" + i, recipesReturned.getHits().get(i).getRecipe().getSummary());
+					model.addAttribute("WhatIsTheIngredients"+i, recipesReturned.getHits().get(i).getRecipe().getIngredients());
 
 				}
 
@@ -161,9 +157,7 @@ public class HomeController {
 	public String searchNow(Locale locale, Model model, HttpServletRequest request) {
 
 		logger.info("Ready to search?");
-
 		return "recipeSearchJC";
 	}	
-	
-	
+
 }

@@ -14,26 +14,35 @@
 
 	<h1>Search now, Ninja!</h1>
 
-	<form name="ingredients" action="list" method="GET">
-		<br>Enter an ingredient you want to use: <br>
-		<input type="text" name="food"> <br> <input type="submit"
+	<form name="ingredientsFromUser" action="list" method="GET">
+		<br>Enter an ingredient you want to use: <br> <input
+			type="text" name="food"> <br> <input type="submit"
 			value="Add">
 	</form>
 
-	<p>
-		Ingredients:
-		<c:forEach items="${ing.display() }" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</p>
+	<br> Ingredients Selected:
+	<table>
+		<tbody>
+			<c:forEach items="${ing.display()}" var="item">
+				<tr>
+					<td>${item}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
+	<br> Here are the the recipes that match your search:
 	<p>
-		Here are the the recipes that match your search:
-
-		<br> ${WhatIsTheLabel0} 
-		<br> ${WhatIsTheLabel1} 
-		<br> ${WhatIsTheLabel2}
+		${WhatIsTheLabel0} 
+		<br> -image: ${WhatIsTheImage0} 
+		<br> -source: ${WhatIsTheSource0} 
+		<br> -summary: ${WhatIsTheSummary0}
+		<br> -ingredients: ${WhatIsTheIngredients0}
 	</p>
+	<p>${WhatIsTheLabel1}</p>
+	<p>${WhatIsTheLabel2}</p>
+	<p>${WhatIsTheLabel3}</p>
+	<p>${WhatIsTheLabel4}</p>
 
 </body>
 </html>
