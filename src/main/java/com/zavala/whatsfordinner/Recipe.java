@@ -1,6 +1,5 @@
 package com.zavala.whatsfordinner;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Recipe {
@@ -32,12 +31,6 @@ public class Recipe {
 		return returnedI;
 	}
 	
-//	public void setIngredientLines(List<IngredientLines> ingredientLines) {
-//		this.ingredientLines = ingredientLines;
-//	}
-//	public void setIngredients(Ingredient[] ingredients) {
-//		this.ingredients = ingredients;
-//	}
 	public String getUri() {
 		return uri;
 	}
@@ -86,12 +79,25 @@ public class Recipe {
 //	public void setTotalDaily(NutritionInfo[] totalDaily) {
 //		this.totalDaily = totalDaily;
 //	}
-/*	@Override
+
+	/*	@Override
 	public String toString() {
 		String s = getIngredientLines().toString();
 		return s;
 	}	*/
 	
-	
-	
+	/*	
+	public List<String> GetAllInfoForRecipeCJ(int i){
+		List<String> recipeResult = new ArrayList<String>();
+		
+		recipeResult.add(uri);
+		recipeResult.add(label);
+		recipeResult.add(image);
+		recipeResult.add(source);
+		recipeResult.add(url);
+		//recipeResult.add(ingredients);
+				
+		return recipeResult;	
+	} 
+	*/
 }
