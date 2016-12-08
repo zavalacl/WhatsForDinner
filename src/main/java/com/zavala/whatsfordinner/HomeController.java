@@ -40,14 +40,14 @@ public class HomeController {
 	String key = authInfo.getApiKey();
 	String userInput = "";
 
-	@RequestMapping(value = "/groceryList", method = RequestMethod.POST)
+	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<String> recipeIngredients = DAO.buildGroceryList();
 		model.addAttribute("recipeIng", recipeIngredients);
 		return "groceryList";
 	}
 
-	@RequestMapping(value = "/added", method = RequestMethod.POST)
+	@RequestMapping(value = "/added", method = RequestMethod.GET)
 	// public String added(Model model, HttpServletRequest request,
 	// @RequestParam(value="add") String add){
 	public String added(Model model, HttpServletRequest request) {
@@ -75,7 +75,7 @@ public class HomeController {
 		return "listtd";
 	}
 
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 
 		logger.info("Welcome back, ninja!");
@@ -83,7 +83,7 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) { // @RequestParam("food") String food) { //, @RequestParam("filtersSelected[]") String[] diet) { //, String health) {
  
 		String food = request.getParameter("food");
@@ -105,7 +105,7 @@ public class HomeController {
 			URL urlObj = new URL(url);
 
 			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
-			connect.setRequestMethod("POST");
+			connect.setRequestMethod("GET");
 			int connectCode = connect.getResponseCode();
 			if (connectCode == 200) {
 				BufferedReader in = new BufferedReader(new InputStreamReader(connect.getInputStream()));

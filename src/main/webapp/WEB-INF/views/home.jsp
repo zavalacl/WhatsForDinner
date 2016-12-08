@@ -12,7 +12,6 @@
 
 <body>
 
-<<<<<<< HEAD
 	<h1>Welcome to Dinner Ninja</h1>
 	<P>
 		<a href="http://localhost:8080/whatsfordinner/signIn">Log In!</a>

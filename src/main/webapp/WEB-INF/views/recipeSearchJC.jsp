@@ -14,12 +14,13 @@
 
 	<h1>Search now, Ninja!</h1>
 
-	<form name="ingredientsFromUser" action="list" method="POST">
+The filters are not currently working 
+	<form name="ingredientsFromUser" action="list" method="GET">
 		<br>Enter an ingredient you want to use: <br> <input
 			type="text" name="food"> <input type="submit" value="Add">
 	</form>
-	<p>
-	<form name="filters" method="POST">
+<!-- 	<p>
+	<form name="filters" method="GET">
 		<p>
 			<strong>Filter results (optional):</strong> <br> 
 			<input type="checkbox" name="diet" value="balanced"> Balanced<br>
@@ -31,11 +32,12 @@
 			<input type="checkbox" name="health" value="sugar-conscious"> Sugar-conscious<br>
 		  	<input type="checkbox" name="health" value="peanut-free"> Peanut-free<br>
 		  	<input type="checkbox" name="health" value="tree-nut-free"> Tree-nut-free<br>
-		  	<input type="checkbox" name="health" value="alcohol-free"> Alcohol-Free<br>   -->
+		  	<input type="checkbox" name="health" value="alcohol-free"> Alcohol-Free<br>
 		</p>
-		<br> <input type="submit" value="Add Filters">
+		<br><input type="submit" value="Add Filters"> 	
 
-	</form>
+	</form> --> 
+
 
 	<br> Ingredients Selected:
 	<table>
