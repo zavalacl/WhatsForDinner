@@ -76,7 +76,7 @@ public class HomeController {
 		model.addAttribute("customers", customers);
 		response.addCookie(new Cookie("customerID", "" + customerID));
 
-		return "listtd";
+		return "recipeSearchJC";
 	}
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
@@ -161,7 +161,7 @@ public class HomeController {
 	String name = custo.getFirstName();
 		model.addAttribute("name", name);
 		response.addCookie(new Cookie("customerID","" + custo.getCustomerID()));
-		return "listtd";
+		return "recipeSearchJC";
 	}
 	
 @RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)

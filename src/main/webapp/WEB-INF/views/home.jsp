@@ -13,9 +13,7 @@
 <body>
 
 	<h1>Welcome to Dinner Ninja</h1>
-	<P>
-		<a href="http://localhost:8080/whatsfordinner/signIn">Log In!</a>
-	</P>
+	
 
 	<form name="signIn" action="signIn" method="GET" >
 	<fieldset>
@@ -32,16 +30,6 @@
 			href="http://localhost:8080/whatsfordinner/resources/NewCustomer.html">Sign
 			Up!</a>
 	</P>
-	<form name="login" action="login" onSubmit="return val()" method="GET">
-		<br>Email:<input type="text" name="email"> <br>Password:<input
-			type="password" name="pwd1"> <br>Re-Enter Password:<input
-			type="password" name="pwd2"> <br> <input type="submit"
-			value="submit">
-	</form>
-
-	<p>
-		<a href="http://localhost:8080/whatsfordinner/recipeSearchJC">Search!</a>
-	</p>
-
+	
 </body>
 </html>
