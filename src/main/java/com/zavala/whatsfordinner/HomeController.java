@@ -96,7 +96,7 @@ public class HomeController {
 
 		String food = request.getParameter("food");
 		ing.addFood(food);
-		model.addAttribute("ing", ing);
+		 model.addAttribute("ing",ing);
 		userInput += food + ",";
 		String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
 		String url;
@@ -186,5 +186,60 @@ public class HomeController {
 		cid.setMaxAge(0);
 		response.addCookie(cid);
 		return "home";
+	}
+	@RequestMapping(value = "/deleteFood", method = RequestMethod.GET)
+	public String deleteFood(Model model, @RequestParam("item") String item){
+		ing.deleteFood(item);
+		model.addAttribute("ing",ing);
+		int start = userInput.indexOf(item);
+		int end = userInput.indexOf(",", start);
+		StringBuffer sb = new StringBuffer(userInput);
+		userInput = sb.delete(start, (end + 1)).toString().trim();
+		System.out.println(userInput);
+		String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
+		String url;
+		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+				+ "&from=0&to=10";
+		try {
+			URL urlObj = new URL(url);
+
+			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
+			connect.setRequestMethod("GET");
+			int connectCode = connect.getResponseCode();
+			if (connectCode == 200) {
+				BufferedReader in = new BufferedReader(new InputStreamReader(connect.getInputStream()));
+				String inputLine;
+				StringBuffer response = new StringBuffer();
+
+				while ((inputLine = in.readLine()) != null) {
+					response.append(inputLine);
+				}
+
+				in.close();
+
+				Gson gson = new Gson();
+				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
+
+				List<Hits> hits = recipesReturned.getHits();
+
+				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+				for (Hits h : hits) {
+					Recipe r = h.getRecipe();
+					recipeList.add(r);
+
+					model.addAttribute("recipeList", recipeList);
+				}
+
+			} else {
+				System.out.println("error: " + connectCode);
+			}
+
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "recipeSearchJC";
 	}
 }
