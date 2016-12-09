@@ -75,6 +75,8 @@
 	</c:forEach>
 	
 </table>
-	
+	<form name="logout" action="logout" method"GET">
+	<br><input type="submit" value="Logout">
+	</form>
 </body>
 </html>

@@ -180,4 +180,11 @@ public class HomeController {
 		logger.info("Ready to search?");
 		return "recipeSearchJC";
 	}
+	@RequestMapping (value="/logout", method = RequestMethod.GET)
+	public String logout(@CookieValue("customerID") Cookie cid, Model model,
+			HttpServletResponse response ){
+		cid.setMaxAge(0);
+		response.addCookie(cid);
+		return "home";
+	}
 }
