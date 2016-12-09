@@ -38,7 +38,7 @@
 		<tbody>
 			<c:forEach items="${ing.display()}" var="item">
 				<tr>
-					<td>${item}</td>
+				<td>${item }	<a href="<c:url value='/deleteFood?item=${item }' />" >Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -75,6 +75,8 @@
 	</c:forEach>
 	
 </table>
-	
+	<form name="logout" action="logout" method"GET">
+	<br><input type="submit" value="Logout">
+	</form>
 </body>
 </html>
