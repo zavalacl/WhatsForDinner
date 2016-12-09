@@ -64,9 +64,19 @@ public class HomeController {
 		cust.setLastName(request.getParameter("lastName"));
 		cust.setEmail(request.getParameter("email"));
 		cust.setPassword(request.getParameter("pwd1"));
+		List<Customer> customers = DAO.getAllCustomers();
+		for (Customer c : customers){
+			if (c.getEmail().equalsIgnoreCase(cust.getEmail())){
+				String retry = "That account already exists";
+				model.addAttribute("retry", retry);
+				return "signIn";
+			}
+				
+		}
+		
 		int customerID = DAO.addCustomer(cust);
 
-		List<Customer> customers = DAO.getAllCustomers();
+		customers = DAO.getAllCustomers();
 		model.addAttribute("customers", customers);
 		response.addCookie(new Cookie("customerID", "" + customerID));
 

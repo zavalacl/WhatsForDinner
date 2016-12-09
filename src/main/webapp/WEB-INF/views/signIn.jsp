@@ -13,6 +13,6 @@
 		<br>Password:<input type="password" name="pass"> 
 		<br> <input type="submit" value="sign in">
 	</form>
-
+<br><a href="home">Back to Home</a>
 </body>
 </html>
