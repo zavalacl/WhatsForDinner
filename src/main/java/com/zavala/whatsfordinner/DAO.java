@@ -3,6 +3,8 @@ package com.zavala.whatsfordinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -65,11 +67,12 @@ public class DAO {
 		 Query<Customer> sql = hibernateSession.createQuery("FROM Customer WHERE email=:email", Customer.class) ;
 		 sql.setParameter("email", email);
 		 Customer cust = null;
-		 if (email.equals("")){
-			 cust = null;
-		 }else
+		try {
 		 cust = sql.getSingleResult();  
-		 
+		} catch(NoResultException e){
+			cust = null;
+			return cust;
+		}
 		 try {
 			 hibernateSession.close();  
 		 } catch (Exception e) {
