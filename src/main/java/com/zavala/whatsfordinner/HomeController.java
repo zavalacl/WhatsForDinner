@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Blob;
 
 import com.google.gson.Gson;
 
@@ -70,13 +71,13 @@ public class HomeController {
 		cust.setEmail(request.getParameter("email"));
 		cust.setPassword(request.getParameter("pwd1"));
 		List<Customer> customers = DAO.getAllCustomers();
+
 		for (Customer c : customers){
 			if (c.getEmail().equalsIgnoreCase(cust.getEmail())){
 				String retry = "That account already exists";
 				model.addAttribute("retry", retry);
 				return "signIn";
-			}
-				
+			}		
 		}
 		
 		int customerID = DAO.addCustomer(cust);
@@ -117,7 +118,7 @@ public class HomeController {
 					+ "&from=0&to=10";
 		}
 		System.out.println(request.getParameter("health"));
-
+		System.out.println(request.getParameter("diet"));
 		try {
 			URL urlObj = new URL(url);
 
