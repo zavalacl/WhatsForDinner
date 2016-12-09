@@ -62,19 +62,29 @@ public class DAO {
 		 
 		 Query<Customer> sql = hibernateSession.createQuery("FROM Customer WHERE email=:email", Customer.class) ;
 		 sql.setParameter("email", email);
-		 Customer cust = sql.getSingleResult();  
+		 Customer cust = null;
+		 if (email.equals("")){
+			 cust = null;
+		 }else
+		 cust = sql.getSingleResult();  
+		 
 		 try {
 			 hibernateSession.close();  
 		 } catch (Exception e) {
 			 System.out.println("DEBUG: Error caught: " + e);
 		 }
-
+		 try {
 		 StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 		 if (passwordEncryptor.checkPassword(password, cust.getPassword())) {
 			 return cust; 
 		 } else {
 			 return null;
 		 }
+		 }
+		 catch (NullPointerException e){
+			 return null;
+		 }
+		 
 	}
 	public static List<String> buildGroceryList(){
 		List<String> recipeIngredients = new ArrayList<String>();

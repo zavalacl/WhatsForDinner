@@ -163,7 +163,7 @@ else {
 		List<Customer> customers = DAO.getAllCustomers();
 		Customer custo = new Customer();
 	custo = DAO.checkLogIn(request.getParameter("eml"), request.getParameter("pass"));
-	if (custo.getFirstName() == null) {
+	if (custo == null) {
         String retry = "Please Enter a Valid Profile";
         model.addAttribute("retry", retry);
         return "home";
