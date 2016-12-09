@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.hibernate.query.Query;
+
 public class DAO {
 	private static SessionFactory factory;
 
@@ -52,12 +53,13 @@ public class DAO {
 		hibernateSession.getTransaction().commit();
 		hibernateSession.close();
 		return customers;
-
 	}
-	public static Customer checkLogIn(String email, String password){
+
+	public static Customer checkLogIn(String email, String password) {
 
 		if (factory == null)
 			setupFactory();
+
 		 Session hibernateSession = factory.openSession();
 		 
 		 Query<Customer> sql = hibernateSession.createQuery("FROM Customer WHERE email=:email", Customer.class) ;
@@ -86,16 +88,17 @@ public class DAO {
 		 }
 		 
 	}
-	public static List<String> buildGroceryList(){
+
+	public static List<String> buildGroceryList() {
 		List<String> recipeIngredients = new ArrayList<String>();
 		return recipeIngredients;
 	}
-	
-	public static List<String> addIngredient(String a){
+
+	public static List<String> addIngredient(String a) {
 		List<String> groceryList = new ArrayList<String>();
 		groceryList.add(a);
-		
+
 		return groceryList;
-				
+
 	}
 }

@@ -12,18 +12,23 @@ public class Ingredient {
 	public String getUri() {
 		return uri;
 	}
+
 	public float getQuantity() {
 		return quantity;
 	}
+
 	public Measure getMeasure() {
 		return measure;
 	}
+
 	public float getWeight() {
 		return weight;
 	}
+
 	public Food getFood() {
 		return food;
 	}
+
 	public String getText() {
 		return text;
 	}
@@ -32,6 +37,5 @@ public class Ingredient {
 	public String toString() {
 		return "\n" + (text != null ? "\n" + text : "");
 	}
-	
-}	
-	
+
+}

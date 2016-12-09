@@ -2,14 +2,11 @@ package com.zavala.whatsfordinner;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.text.DateFormat;
-//import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//import org.springframework.asm.commons.GeneratorAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -40,20 +37,17 @@ public class HomeController {
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
 	String userInput = "";
-	
+
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-	public String addSelectedRecipe(Model model, @RequestParam(value="ingredients") String ingredients) {
+
+	public String addSelectedRecipe(Model model, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="summary") String summary, @RequestParam(value="ingredients") String ingredients){
+		model.addAttribute("recipeLabel", label);
+		model.addAttribute("recipeImage", image);
+		model.addAttribute("recipeSummary", summary);
 		model.addAttribute("recipeIng", ingredients);
 		return "groceryList";
 	}
 	
-	@RequestMapping(value = "/groceryList", method = RequestMethod.GET)
-	public String list(Model model) {
-		List<String> recipeIngredients = DAO.buildGroceryList();
-		model.addAttribute("recipeIng", recipeIngredients);
-		return "groceryList";
-	}
-
 	@RequestMapping(value = "/added", method = RequestMethod.GET)
 	public String added(Model model, HttpServletRequest request) {
 
@@ -71,7 +65,7 @@ public class HomeController {
 		cust.setEmail(request.getParameter("email"));
 		cust.setPassword(request.getParameter("pwd1"));
 		int customerID = DAO.addCustomer(cust);
-		
+
 		List<Customer> customers = DAO.getAllCustomers();
 		model.addAttribute("customers", customers);
 		response.addCookie(new Cookie("customerID", "" + customerID));
@@ -88,31 +82,25 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String home(Model model, HttpServletRequest request) { // @RequestParam("food") String food) { //, @RequestParam("filtersSelected[]") String[] diet) { //, String health) {
- 
+	public String home(Model model, HttpServletRequest request) { // @RequestParam("food")
+
 		String food = request.getParameter("food");
 		ing.addFood(food);
 		model.addAttribute("ing", ing);
 		userInput += food + ",";
-//		request.getParameterValues("showOnly[]");
-		String[] dietStuff = request.getParameterValues("diet"); 
 		String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
-		String filtersSelected = "&" + dietStuff; //request.getParameterValues(diet) + request.getParameterValues(health) ;
-		
-//		model.addAttribute("filterResultsBy", request.getParameterValues("showOnly[]"));
 		String url;
-if (request.getParameter("diet") != null){
-		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id="+ id + "&app_key=" + key
-				+ "&from=0&to=10&diet=" + request.getParameter("diet");
-}
-else if (request.getParameter("health") != null) {
-	url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id="+ id + "&app_key=" + key
-			+ "&from=0&to=10&health=" + request.getParameter("health");
-}
-else {
-	url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id="+ id + "&app_key=" + key
-			+ "&from=0&to=10";
-}
+
+		if (request.getParameter("diet") != null) {
+			url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+					+ "&from=0&to=10&diet=" + request.getParameter("diet");
+		} else if (request.getParameter("health") != null) {
+			url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+					+ "&from=0&to=10&health=" + request.getParameter("health");
+		} else {
+			url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+					+ "&from=0&to=10";
+		}
 		System.out.println(request.getParameter("health"));
 
 		try {
@@ -135,17 +123,17 @@ else {
 				Gson gson = new Gson();
 				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
 
-				List<Hits> hits = recipesReturned.getHits();	
-				
+				List<Hits> hits = recipesReturned.getHits();
+
 				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
-				for (Hits h: hits) {
+				for (Hits h : hits) {
 					Recipe r = h.getRecipe();
 					recipeList.add(r);
-				
-				model.addAttribute("recipeList",recipeList);
 
+					model.addAttribute("recipeList", recipeList);
+				}
 
-			}} else {
+			} else {
 				System.out.println("error: " + connectCode);
 			}
 
@@ -169,15 +157,17 @@ else {
         return "home";
     }	
 	String name = custo.getFirstName();
+
 		model.addAttribute("name", name);
-		response.addCookie(new Cookie("customerID","" + custo.getCustomerID()));
+		response.addCookie(new Cookie("customerID", "" + custo.getCustomerID()));
 		return "recipeSearchJC";
 	}
-	
-@RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
-	public String searchNow(Locale locale, @CookieValue("customerID") String cid, Model model, HttpServletRequest request) {
+
+	@RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
+	public String searchNow(Locale locale, @CookieValue("customerID") String cid, Model model,
+			HttpServletRequest request) {
 		int custID = Integer.parseInt(cid);
 		logger.info("Ready to search?");
 		return "recipeSearchJC";
-	}	
+	}
 }

@@ -1,15 +1,15 @@
 package com.zavala.whatsfordinner;
 
-	public class Hits {
-		
-		private Recipe recipe;
+public class Hits {
 
-		public Recipe getRecipe() {
-			return recipe;
-		}
+	private Recipe recipe;
 
-		public void setRecipe(Recipe recipe) {
-			this.recipe = recipe;
-		}
-	
-	}	
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+
+}
