@@ -40,11 +40,16 @@ public class HomeController {
 
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
 
-	public String addSelectedRecipe(Model model, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="summary") String summary, @RequestParam(value="ingredients") String ingredients){
+	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="summary") String summary, @RequestParam(value="ingredients") String ingredients){
 		model.addAttribute("recipeLabel", label);
 		model.addAttribute("recipeImage", image);
 		model.addAttribute("recipeSummary", summary);
 		model.addAttribute("recipeIng", ingredients);
+		
+		int custID = Integer.parseInt(cid);
+		DAO.addToCookbook(ingredients, custID);
+		
+		logger.info(summary);
 		return "groceryList";
 	}
 	
