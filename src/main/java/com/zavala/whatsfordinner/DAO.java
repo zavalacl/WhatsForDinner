@@ -70,8 +70,7 @@ public class DAO {
 		try {
 		 cust = sql.getSingleResult();  
 		} catch(NoResultException e){
-			cust = null;
-			return cust;
+			return null;
 		}
 		 try {
 			 hibernateSession.close();  
