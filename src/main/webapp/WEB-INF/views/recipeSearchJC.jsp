@@ -8,6 +8,11 @@
 
 <head>
 <title>Dinner Ninja Search</title>
+<style>
+	.hideMe{
+		display: none;
+	}
+</style>	
 </head>
 
 <body>
@@ -48,10 +53,9 @@
 	
 	<table border="1">
 	<tr>
-		<th>Label</th>
 		<th>Image</th>
+		<th>Label</th>
 		<th>Source</th>
-		<th>Summary</th>
 		<th></th>
 	</tr>
 	
@@ -60,23 +64,26 @@
 		<td><img src="${rec.image}" height="100px" width="100px"></td>
 		<td>${rec.label}</td>
 		<td>${rec.source}</td>
-		<td>${rec.summary}</td>
+		
 		<td>
 		<form action="addSelectedRecipe" method="get">
 			<input type="hidden" name="image" value="${rec.image}" />
 			<input type="hidden" name="label" value="${rec.label}" />
 			<input type="hidden" name="source" value="${rec.source}" />
 			<input type="hidden" name="summary" value="${rec.summary}" />
-			<input type="hidden" name="ingredients" value="${rec.ingredients}" />
+			<input type="hidden" name="url" value="${rec.url}" />
+			<c:forEach items="${rec.ingredients}" var="separatedIngredients">
+				<input class="hideMe" name="ingredients" value="${separatedIngredients}" />
+			</c:forEach>
 			<input type="submit" value="See Recipe">
 		</form>
 		</td>
 	</tr>
 	</c:forEach>
-	
 </table>
-	<form name="logout" action="logout" method"GET">
-	<br><input type="submit" value="Logout">
+
+	<form name="logout" action="logout" method="GET">
+		<br><input type="submit" value="Logout">
 	</form>
 </body>
 </html>

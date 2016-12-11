@@ -39,11 +39,10 @@ public class HomeController {
 	String userInput = "";
 
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-
-	public String addSelectedRecipe(Model model, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="summary") String summary, @RequestParam(value="ingredients") String ingredients){
+	public String addSelectedRecipe(Model model, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients){
 		model.addAttribute("recipeLabel", label);
 		model.addAttribute("recipeImage", image);
-		model.addAttribute("recipeSummary", summary);
+		model.addAttribute("recipeURL", url);
 		model.addAttribute("recipeIng", ingredients);
 		return "groceryList";
 	}
@@ -132,7 +131,15 @@ public class HomeController {
 
 				Gson gson = new Gson();
 				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
-
+				
+			/*	for(int i = 0; i < recipesReturned.getHits().size(); i++){
+					model.addAttribute("rIm", recipesReturned.getHits().get(0).getRecipe().getImage());
+					model.addAttribute("rL", recipesReturned.getHits().get(0).getRecipe().getLabel());
+					model.addAttribute("rSo", recipesReturned.getHits().get(0).getRecipe().getSource());
+					model.addAttribute("rSu", recipesReturned.getHits().get(0).getRecipe().getSummary());
+					model.addAttribute("rIn", recipesReturned.getHits().get(0).getRecipe().getIngredients());
+				}*/
+				
 				List<Hits> hits = recipesReturned.getHits();
 
 				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();

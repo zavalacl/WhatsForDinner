@@ -31,12 +31,4 @@ public class IngredientsToBuy {
 		return list;
 	}
 
-	public List<String> GetRecipeTextnWeight(int i) {
-		List<String> ingTextnWeight = new ArrayList<String>();
-
-		ingTextnWeight.add(text);
-		ingTextnWeight.add(weight);
-
-		return ingTextnWeight;
-	}
 }

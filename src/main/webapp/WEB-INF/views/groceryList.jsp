@@ -12,7 +12,7 @@
 
 <h1>${recipeLabel}</h1>
 <img src="${recipeImage}">
-<p>${recipeSummary}</p>
+<h3><a href="${recipeURL}">Recipe Instructions</a></h3>
 
 <h2>Recipe Ingredients:</h2>
 

@@ -33,9 +33,11 @@ public class Ingredient {
 		return text;
 	}
 
-	@Override
 	public String toString() {
-		return "\n" + (text != null ? "\n" + text : "");
+		String letext = text;
+		String newText = letext.replace(",", "");
+	 
+		return newText;
 	}
 
 }

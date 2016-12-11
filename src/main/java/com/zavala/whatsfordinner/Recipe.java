@@ -26,10 +26,11 @@ public class Recipe {
 		return ingredients;
 	}
 	
-	public String getIngredientsOther() {
+	/*public String getIngredientsOther() {
 		String returnedI = getIngredients().toString();
+		System.out.println("world");
 		return returnedI;
-	}
+	}*/
 	
 	public String getUri() {
 		return uri;
