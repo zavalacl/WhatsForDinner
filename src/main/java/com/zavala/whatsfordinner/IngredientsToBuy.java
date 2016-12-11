@@ -26,6 +26,10 @@ public class IngredientsToBuy {
 		list.add(food);
 		this.list = list;
 	}
+	public void deleteFood(String food){
+		list.remove(food);
+		this.list = list;
+	}
 
 	public List<String> display() {
 		return list;

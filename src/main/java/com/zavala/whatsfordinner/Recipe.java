@@ -1,5 +1,6 @@
 package com.zavala.whatsfordinner;
 
+import java.sql.Blob;
 import java.util.List;
 
 public class Recipe {
@@ -13,10 +14,8 @@ public class Recipe {
 	private String summary;
 	private float calories;
 	private float totalWeight;
-//	private List<IngredientLines> ingredientLines;
 	private List<Ingredient> ingredients;
 
-//	private Ingredient[] ingredients;
 //	private NutritionInfo[] totalNutrients;
 //	private NutritionInfo[] totalDaily;
 //	private enum[] dietLabels = new enum[];
@@ -26,12 +25,11 @@ public class Recipe {
 		return ingredients;
 	}
 	
-	/*public String getIngredientsOther() {
+	public String getIngredientsOther() {
 		String returnedI = getIngredients().toString();
-		System.out.println("world");
 		return returnedI;
-	}*/
-	
+	}
+
 	public String getUri() {
 		return uri;
 	}

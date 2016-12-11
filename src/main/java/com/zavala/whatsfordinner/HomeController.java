@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Blob;
 
 import com.google.gson.Gson;
 
@@ -39,11 +40,16 @@ public class HomeController {
 	String userInput = "";
 
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-	public String addSelectedRecipe(Model model, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients){
+	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients){
 		model.addAttribute("recipeLabel", label);
 		model.addAttribute("recipeImage", image);
 		model.addAttribute("recipeURL", url);
 		model.addAttribute("recipeIng", ingredients);
+		
+		int custID = Integer.parseInt(cid);
+		DAO.addToCookbook(ingredients, custID);
+		
+		//logger.info(summary);
 		return "groceryList";
 	}
 	
@@ -64,13 +70,13 @@ public class HomeController {
 		cust.setEmail(request.getParameter("email"));
 		cust.setPassword(request.getParameter("pwd1"));
 		List<Customer> customers = DAO.getAllCustomers();
+
 		for (Customer c : customers){
 			if (c.getEmail().equalsIgnoreCase(cust.getEmail())){
 				String retry = "That account already exists";
 				model.addAttribute("retry", retry);
 				return "signIn";
-			}
-				
+			}		
 		}
 		
 		int customerID = DAO.addCustomer(cust);
@@ -95,7 +101,7 @@ public class HomeController {
 
 		String food = request.getParameter("food");
 		ing.addFood(food);
-		model.addAttribute("ing", ing);
+		 model.addAttribute("ing",ing);
 		userInput += food + ",";
 		String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
 		String url;
@@ -111,7 +117,7 @@ public class HomeController {
 					+ "&from=0&to=10";
 		}
 		System.out.println(request.getParameter("health"));
-
+		System.out.println(request.getParameter("diet"));
 		try {
 			URL urlObj = new URL(url);
 
@@ -194,4 +200,60 @@ public class HomeController {
 		response.addCookie(cid);
 		return "home";
 	}
+	@RequestMapping(value = "/deleteFood", method = RequestMethod.GET)
+	public String deleteFood(Model model, @RequestParam("item") String item){
+		ing.deleteFood(item);
+		model.addAttribute("ing",ing);
+		int start = userInput.indexOf(item);
+		int end = userInput.indexOf(",", start);
+		StringBuffer sb = new StringBuffer(userInput);
+		userInput = sb.delete(start, (end + 1)).toString().trim();
+		System.out.println(userInput);
+		String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
+		String url;
+		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+				+ "&from=0&to=10";
+		try {
+			URL urlObj = new URL(url);
+
+			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
+			connect.setRequestMethod("GET");
+			int connectCode = connect.getResponseCode();
+			if (connectCode == 200) {
+				BufferedReader in = new BufferedReader(new InputStreamReader(connect.getInputStream()));
+				String inputLine;
+				StringBuffer response = new StringBuffer();
+
+				while ((inputLine = in.readLine()) != null) {
+					response.append(inputLine);
+				}
+
+				in.close();
+
+				Gson gson = new Gson();
+				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
+
+				List<Hits> hits = recipesReturned.getHits();
+
+				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+				for (Hits h : hits) {
+					Recipe r = h.getRecipe();
+					recipeList.add(r);
+
+					model.addAttribute("recipeList", recipeList);
+				}
+
+			} else {
+				System.out.println("error: " + connectCode);
+			}
+
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "recipeSearchJC";
+	}
+
 }

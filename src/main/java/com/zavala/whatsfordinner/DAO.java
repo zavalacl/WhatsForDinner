@@ -30,7 +30,7 @@ public class DAO {
 				.applySettings(configuration.getProperties()).build();
 		factory = configuration.buildSessionFactory(serviceRegistry);
 	}
-
+	
 	public static int addCustomer(Customer c) {
 		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 		String encrypted = passwordEncryptor.encryptPassword(c.getPassword());
@@ -44,6 +44,23 @@ public class DAO {
 		hibernateSession.close();
 		return i;
 	}
+	
+	public static void addToCookbook(String cookbook, int customerID){
+		if (factory == null)
+			setupFactory();
+		Session hibernateSession = factory.openSession();
+		hibernateSession.getTransaction().begin();
+		
+		Query<Customer> sql = hibernateSession.createQuery("UPDATE Customer SET cookbook = :cookbook WHERE customerID = :customerID");
+		sql.setParameter("customerID",customerID);
+		sql.setParameter("cookbook", cookbook);
+		sql.executeUpdate();
+		hibernateSession.getTransaction().commit();
+		hibernateSession.close();
+		
+			
+		
+	}
 
 	public static List<Customer> getAllCustomers() {
 		if (factory == null)
@@ -56,7 +73,7 @@ public class DAO {
 		hibernateSession.close();
 		return customers;
 	}
-
+	
 	public static Customer checkLogIn(String email, String password) {
 
 		if (factory == null)

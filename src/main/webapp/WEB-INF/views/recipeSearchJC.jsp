@@ -27,13 +27,13 @@
 		<br> <input type="checkbox" name="diet" value="high-protein"> High protein
 		<br> <input type="checkbox" name="diet" value="low-fat"> Low-fat
 		<br> <input type="checkbox" name="diet" value="low-carb"> Low-carb
-		<br> <input type="checkbox" name="health" value="vegan"> Vegan
+<!-- 	<br> <input type="checkbox" name="health" value="vegan"> Vegan
 		<br> <input type="checkbox" name="health" value="vegetarian"> Vegetarian
 		<br> <input type="checkbox" name="health" value="sugar-conscious"> Sugar-conscious
 		<br> <input type="checkbox" name="health" value="peanut-free"> Peanut-free
 		<br> <input type="checkbox" name="health" value="tree-nut-free"> Tree-nut-free
 		<br> <input type="checkbox" name="health" value="alcohol-free"> Alcohol-Free
-		<br> 
+		<br>  -->
 		<br> <input type="submit" value="Add">
 
 	</form>
@@ -43,7 +43,7 @@
 		<tbody>
 			<c:forEach items="${ing.display()}" var="item">
 				<tr>
-					<td>${item}</td>
+				<td>${item }	<a href="<c:url value='/deleteFood?item=${item }' />" >Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
