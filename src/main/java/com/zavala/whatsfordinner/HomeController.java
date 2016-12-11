@@ -24,14 +24,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Blob;
+//import java.sql.Blob;
 
 import com.google.gson.Gson;
 
 @Controller
 public class HomeController {
 
-	public static int counterHelper = 0;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	SecretInfoForAPI authInfo = new SecretInfoForAPI();
 	IngredientsToBuy ing = new IngredientsToBuy();
@@ -40,19 +39,20 @@ public class HomeController {
 	String userInput = "";
 
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients){
+	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid,
+			@RequestParam(value = "label") String label, @RequestParam(value = "image") String image,
+			@RequestParam(value = "url") String url, @RequestParam(value = "ingredients") String ingredients) {
 		model.addAttribute("recipeLabel", label);
 		model.addAttribute("recipeImage", image);
 		model.addAttribute("recipeURL", url);
 		model.addAttribute("recipeIng", ingredients);
-		
+
 		int custID = Integer.parseInt(cid);
 		DAO.addToCookbook(ingredients, custID);
-		
-		//logger.info(summary);
+
 		return "groceryList";
 	}
-	
+
 	@RequestMapping(value = "/added", method = RequestMethod.GET)
 	public String added(Model model, HttpServletRequest request) {
 
@@ -71,14 +71,14 @@ public class HomeController {
 		cust.setPassword(request.getParameter("pwd1"));
 		List<Customer> customers = DAO.getAllCustomers();
 
-		for (Customer c : customers){
-			if (c.getEmail().equalsIgnoreCase(cust.getEmail())){
+		for (Customer c : customers) {
+			if (c.getEmail().equalsIgnoreCase(cust.getEmail())) {
 				String retry = "That account already exists";
 				model.addAttribute("retry", retry);
 				return "signIn";
-			}		
+			}
 		}
-		
+
 		int customerID = DAO.addCustomer(cust);
 
 		customers = DAO.getAllCustomers();
@@ -96,30 +96,42 @@ public class HomeController {
 		return "home";
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) { // @RequestParam("food")
 
 		String food = request.getParameter("food");
+
 		ing.addFood(food);
-		 model.addAttribute("ing",ing);
+		model.addAttribute("ing", ing);
 		userInput += food + ",";
 		String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
-		String url;
 
-		if (request.getParameter("diet") != null) {
-			url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
-					+ "&from=0&to=10&diet=" + request.getParameter("diet");
-		} else if (request.getParameter("health") != null) {
-			url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
-					+ "&from=0&to=10&health=" + request.getParameter("health");
-		} else {
-			url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
-					+ "&from=0&to=10";
+		String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+				+ "&from=0&to=10";
+
+		StringBuilder urlSB = new StringBuilder(url);	
+
+		/*		String[] diet1 = request.getParameterValues("diet");
+		String[] health1 = request.getParameterValues("health");
+		
+		if (diet1 != null) {
+			for (String diet : diet1) {
+				System.out.println("&diet=" + diet);
+				urlSB.append("&diet=" + diet);
+			}
 		}
-		System.out.println(request.getParameter("health"));
-		System.out.println(request.getParameter("diet"));
+
+		if (health1 != null) {
+			for (String health : health1) {
+				urlSB.append("&health=" + health);
+			}
+		} */
+
 		try {
-			URL urlObj = new URL(url);
+			URL urlObj = new URL(urlSB.toString());
 
 			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
 			connect.setRequestMethod("GET");
@@ -137,15 +149,22 @@ public class HomeController {
 
 				Gson gson = new Gson();
 				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
-				
-			/*	for(int i = 0; i < recipesReturned.getHits().size(); i++){
-					model.addAttribute("rIm", recipesReturned.getHits().get(0).getRecipe().getImage());
-					model.addAttribute("rL", recipesReturned.getHits().get(0).getRecipe().getLabel());
-					model.addAttribute("rSo", recipesReturned.getHits().get(0).getRecipe().getSource());
-					model.addAttribute("rSu", recipesReturned.getHits().get(0).getRecipe().getSummary());
-					model.addAttribute("rIn", recipesReturned.getHits().get(0).getRecipe().getIngredients());
-				}*/
-				
+
+				/*
+				 * for(int i = 0; i < recipesReturned.getHits().size(); i++){
+				 * model.addAttribute("rIm",
+				 * recipesReturned.getHits().get(0).getRecipe().getImage());
+				 * model.addAttribute("rL",
+				 * recipesReturned.getHits().get(0).getRecipe().getLabel());
+				 * model.addAttribute("rSo",
+				 * recipesReturned.getHits().get(0).getRecipe().getSource());
+				 * model.addAttribute("rSu",
+				 * recipesReturned.getHits().get(0).getRecipe().getSummary());
+				 * model.addAttribute("rIn",
+				 * recipesReturned.getHits().get(0).getRecipe().getIngredients()
+				 * ); }
+				 */
+
 				List<Hits> hits = recipesReturned.getHits();
 
 				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
@@ -173,13 +192,13 @@ public class HomeController {
 	public String findCustomer(Model model, HttpServletRequest request, HttpServletResponse response) {
 		List<Customer> customers = DAO.getAllCustomers();
 		Customer custo = new Customer();
-	custo = DAO.checkLogIn(request.getParameter("eml"), request.getParameter("pass"));
-	if (custo == null) {
-        String retry = "Please Enter a Valid Profile";
-        model.addAttribute("retry", retry);
-        return "signIn";
-    }	
-	String name = custo.getFirstName();
+		custo = DAO.checkLogIn(request.getParameter("eml"), request.getParameter("pass"));
+		if (custo == null) {
+			String retry = "Please Enter a Valid Profile";
+			model.addAttribute("retry", retry);
+			return "signIn";
+		}
+		String name = custo.getFirstName();
 
 		model.addAttribute("name", name);
 		response.addCookie(new Cookie("customerID", "" + custo.getCustomerID()));
@@ -193,17 +212,18 @@ public class HomeController {
 		logger.info("Ready to search?");
 		return "recipeSearchJC";
 	}
-	@RequestMapping (value="/logout", method = RequestMethod.GET)
-	public String logout(@CookieValue("customerID") Cookie cid, Model model,
-			HttpServletResponse response ){
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(@CookieValue("customerID") Cookie cid, Model model, HttpServletResponse response) {
 		cid.setMaxAge(0);
 		response.addCookie(cid);
 		return "home";
 	}
+
 	@RequestMapping(value = "/deleteFood", method = RequestMethod.GET)
-	public String deleteFood(Model model, @RequestParam("item") String item){
+	public String deleteFood(Model model, @RequestParam("item") String item) {
 		ing.deleteFood(item);
-		model.addAttribute("ing",ing);
+		model.addAttribute("ing", ing);
 		int start = userInput.indexOf(item);
 		int end = userInput.indexOf(",", start);
 		StringBuffer sb = new StringBuffer(userInput);
