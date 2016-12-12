@@ -27,10 +27,6 @@
 		<p>
 		<strong>Filter results (optional):</strong> <br> 
 
-<!-- 		<input type="checkbox" name="diet" value="high-protein"> High protein <br> 
-			<input type="checkbox" name="diet" value="low-carb"> Low-carb <br>
-			<input type="checkbox" name="diet" value="low-fat"> Low-fat <br> 
- -->
 			<input type="checkbox" name="health" value="alcohol-free"> Alcohol-free <br>  
 			<input type="checkbox" name="health" value="peanut-free"> Peanut-free <br> 
 			<input type="checkbox" name="health" value="sugar-conscious"> Sugar-conscious <br> 
@@ -38,7 +34,7 @@
 			<input type="checkbox" name="health" value="vegan"> Vegan <br> 
 			<input type="checkbox" name="health" value="vegetarian"> Vegetarian <br> 
 			<br> 
-			<input type="submit" name="addFiltersToSearch" value="Add Filters">
+			<input type="submit" name="addFiltersToSearch" value="Set Filters">
 		</p>
 	</form>
 
@@ -69,15 +65,13 @@
 				<td><img src="${rec.image}" height="100px" width="100px"></td>
 				<td>${rec.label}</td>
 				<td>${rec.source}</td>
-<!-- 			<td>${rec.summary}</td>		-->
 
 				<td>
 					<form action="addSelectedRecipe" method="get">
 						<input type="hidden" name="image" value="${rec.image}" /> 
 						<input type="hidden" name="label" value="${rec.label}" /> 
 						<input type="hidden" name="source" value="${rec.source}" /> 
-<!--							<input type="hidden" name="summary" value="${rec.summary}" /> -->
-							<input type="hidden" name="url" value="${rec.url}" />
+						<input type="hidden" name="url" value="${rec.url}" />
 
 						<c:forEach items="${rec.ingredients}" var="separatedIngredients">
 							<input class="hideMe" name="ingredients" value="${separatedIngredients}" />

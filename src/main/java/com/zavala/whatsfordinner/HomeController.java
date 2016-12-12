@@ -102,11 +102,13 @@ public class HomeController {
 
 			String food = request.getParameter("food");
 
-			ing.addFood(food);
+			if (!food.equals("")) {
+				ing.addFood(food);
+				userInput += food + ",";
+				cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
+				}	
+
 			model.addAttribute("ing", ing);
-			userInput += food + ",";
-			cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
-			
 			String[] healthLabelsSelected = request.getParameterValues("health");		
 
 			if (healthLabelsSelected != null) {
@@ -155,7 +157,8 @@ public class HomeController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println(filters);
+		System.out.println(food);
 		return "recipeSearchJC";
 }
 
