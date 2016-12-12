@@ -22,10 +22,10 @@ import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-//import java.sql.Blob;
 
 import com.google.gson.Gson;
 
@@ -33,33 +33,26 @@ import com.google.gson.Gson;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
 	SecretInfoForAPI authInfo = new SecretInfoForAPI();
-	
+
 
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
-	
-	
-	
 
-
-	
-	
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-
-	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients, @RequestParam(value="source") String source){
+	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid,
+			@RequestParam(value = "label") String label, @RequestParam(value = "image") String image,
+			@RequestParam(value = "url") String url, @RequestParam(value = "ingredients") String ingredients,
+			@RequestParam(value = "source") String source) {
 
 		model.addAttribute("recipeLabel", label);
 		model.addAttribute("recipeImage", image);
 		model.addAttribute("recipeURL", url);
 		model.addAttribute("recipeIng", ingredients);
 		model.addAttribute("recipeSource", source);
-		
 
 		int custID = Integer.parseInt(cid);
 
-		
 		Cookbook cb1 = new Cookbook();
 		cb1.setcbID(cb1.getcbID());
 		cb1.setRecImage(image);
@@ -68,11 +61,8 @@ public class HomeController {
 		cb1.setRecURL(url);
 		cb1.setRecSource(source);
 		cb1.setCustomerID(custID);
-		
+
 		DAO.addCookbook(cb1);
-		
-		
-		//logger.info(summary);
 
 		return "groceryList";
 	}
@@ -95,9 +85,8 @@ public class HomeController {
 		cust.setPassword(request.getParameter("pwd1"));
 		List<Customer> customers = DAO.getAllCustomers();
 
-
-		for (Customer c : customers){
-			if (c.getEmail().equalsIgnoreCase(cust.getEmail())){
+		for (Customer c : customers) {
+			if (c.getEmail().equalsIgnoreCase(cust.getEmail())) {
 
 				String retry = "That account already exists";
 				model.addAttribute("retry", retry);
@@ -123,7 +112,7 @@ public class HomeController {
 		logger.info("Welcome, ninja!");
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/displayResultList", method = RequestMethod.GET)
 	public String displayResultList(Model model, HttpServletRequest request, HttpSession session) {
 		IngredientsToBuy ing = (IngredientsToBuy)session.getAttribute("ing");
@@ -150,8 +139,10 @@ public class HomeController {
 			}			
 			session.setAttribute("filters", filters);
 			getSearch(model, session);
+
+	
 		return "recipeSearchJC";
-}
+	}
 
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
 	public String findCustomer(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -194,6 +185,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/deleteFood", method = RequestMethod.GET)
+
 	public String deleteFood(Model model, @RequestParam("item") String item, HttpSession session) {
 		IngredientsToBuy ing = (IngredientsToBuy)session.getAttribute("ing");
 		ing.deleteFood(item);
@@ -203,23 +195,13 @@ public class HomeController {
 		int end = userInput.indexOf(",", start);
 		StringBuffer sb = new StringBuffer(userInput);
 		userInput = sb.delete(start, (end + 1)).toString().trim();
+
 		session.setAttribute("userInput", userInput);
 		getSearch(model, session);
 		return "recipeSearchJC";
 	}		
 	
-//	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
-//	public String deleteFood(Model model){
-//		userInput = "";
-//		filters.setLength(0);
-//	ing.clearFood();
-//	model.addAttribute("ing", ing);
-//recipeList.clear();
-//hits.clear();
-//recipesReturned.clearHits();
-//	model.addAttribute("recipeList", recipeList);
-//	return "recipeSearchJC";
-//	}
+
 	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
 	public String deleteFood(Model model, HttpSession session){
 		session.setAttribute("userInput", "");
@@ -234,6 +216,9 @@ public class HomeController {
 		model.addAttribute("recipeList", recipeList);
 		return "recipeSearchJC";
 	}
+	
+	
+	
 	public void getSearch(Model model, HttpSession session){
 	String userInput = (String)session.getAttribute("userInput");
 	String cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
@@ -277,7 +262,7 @@ public class HomeController {
 		e.printStackTrace();
 	}
 	}
-	
+}	
 /*	@RequestMapping(value = "/addFilters", method = RequestMethod.GET)
 	public String addFilters(Model model, HttpServletRequest request) {
 
@@ -291,4 +276,3 @@ public class HomeController {
 		}
 		return "recipeSearchJC";
 	}*/	
-}
