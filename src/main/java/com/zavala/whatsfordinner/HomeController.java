@@ -44,7 +44,11 @@ public class HomeController {
 	public String addToCookbook(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients, @RequestParam(value="source") String source){
 	
 		int custID = Integer.parseInt(cid);
-
+		model.addAttribute("recipeLabel", label);
+		model.addAttribute("recipeImage", image);
+		model.addAttribute("recipeURL", url);
+		model.addAttribute("recipeIng", ingredients);
+		model.addAttribute("recipeSource", source);
 		Cookbook cb1 = new Cookbook();
 		cb1.setcbID(cb1.getcbID());
 		cb1.setRecImage(image);
