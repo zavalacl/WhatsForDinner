@@ -40,14 +40,27 @@ public class HomeController {
 	String userInput = "";
 
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients){
+	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients, @RequestParam(value="source") String source){
 		model.addAttribute("recipeLabel", label);
 		model.addAttribute("recipeImage", image);
 		model.addAttribute("recipeURL", url);
 		model.addAttribute("recipeIng", ingredients);
+		model.addAttribute("recipeSource", source);
 		
 		int custID = Integer.parseInt(cid);
-		DAO.addToCookbook(ingredients, custID);
+		//DAO.addToCookbook(custID, label, image, url, source, ingredients);
+		
+		Cookbook cb1 = new Cookbook();
+		cb1.setcbID(cb1.getcbID());
+		cb1.setRecImage(image);
+		cb1.setRecLabel(label);
+		cb1.setRecIngredients(ingredients);
+		cb1.setRecURL(url);
+		cb1.setRecSource(source);
+		cb1.setCustomerID(custID);
+		
+		DAO.addCookbook(cb1);
+		
 		
 		//logger.info(summary);
 		return "groceryList";
@@ -70,7 +83,7 @@ public class HomeController {
 		cust.setEmail(request.getParameter("email"));
 		cust.setPassword(request.getParameter("pwd1"));
 		List<Customer> customers = DAO.getAllCustomers();
-
+		
 		for (Customer c : customers){
 			if (c.getEmail().equalsIgnoreCase(cust.getEmail())){
 				String retry = "That account already exists";

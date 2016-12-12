@@ -26,6 +26,7 @@ public class DAO {
 		Configuration configuration = new Configuration();
 		configuration.configure("hibernate.cfg.xml");
 		configuration.addResource("customer.hbm.xml");
+		configuration.addResource("cookbook.hbm.xml");
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties()).build();
 		factory = configuration.buildSessionFactory(serviceRegistry);
@@ -44,23 +45,51 @@ public class DAO {
 		hibernateSession.close();
 		return i;
 	}
+//	public static int addCookbook(Cookbook cb){
+//		if (factory == null)
+//			setupFactory();
+//		Session hibernateSession = factory.openSession();
+//		hibernateSession.getTransaction().begin();
+//		int i = (Integer) hibernateSession.save(cb);
+//		hibernateSession.getTransaction().commit();
+//		hibernateSession.close();
+//		return i;
+//	}
 	
-	public static void addToCookbook(String cookbook, int customerID){
-		if (factory == null)
-			setupFactory();
-		Session hibernateSession = factory.openSession();
-		hibernateSession.getTransaction().begin();
-		
-		Query<Customer> sql = hibernateSession.createQuery("UPDATE Customer SET cookbook = :cookbook WHERE customerID = :customerID");
-		sql.setParameter("customerID",customerID);
-		sql.setParameter("cookbook", cookbook);
-		sql.executeUpdate();
-		hibernateSession.getTransaction().commit();
-		hibernateSession.close();
-		
+//	public static void addToCookbook(int custID, String label, String image, String url, String source, String ingredients) {
+//		if (factory == null)
+//			setupFactory();
+//		Session hibernateSession = factory.openSession();
+//		hibernateSession.getTransaction().begin();
+//		
+////		Query<Customer> sql = hibernateSession.createQuery("UPDATE Customer SET label = :label WHERE customerID = :customerID");
+////		Query<Customer> sql2 = hibernateSession.createQuery("UPDATE Customer SET image = :image WHERE customerID = :customerID");
+////		Query<Customer> sql3 = hibernateSession.createQuery("UPDATE Customer SET url = :url  WHERE customerID = :customerID");
+////		Query<Customer> sql4 = hibernateSession.createQuery("UPDATE Customer SET ingredients = :ingredients WHERE customerID = :customerID");
+////		Query<Customer> sql5 = hibernateSession.createQuery("UPDATE Customer SET source = :source WHERE customerID = :customerID");
+////
+////		
+////		sql.setParameter("customerID",custID);
+////		sql2.setParameter("customerID",custID);
+////		sql3.setParameter("customerID",custID);
+////		sql4.setParameter("customerID",custID);
+////		sql.setParameter("label", label);
+////		sql2.setParameter("image", image);
+////		sql3.setParameter("url", url);
+////		sql4.setParameter("ingredients", ingredients);
+////		sql5.setParameter("source", source);
+////		
+////		sql.executeUpdate();
+////		sql2.executeUpdate();
+////		sql3.executeUpdate();
+////		sql4.executeUpdate();
+////		sql5.executeUpdate();
+//		hibernateSession.getTransaction().commit();
+//		hibernateSession.close();
+//		
 			
 		
-	}
+	//}
 
 	public static List<Customer> getAllCustomers() {
 		if (factory == null)
@@ -120,4 +149,16 @@ public class DAO {
 		return groceryList;
 
 	}
+
+	public static int addCookbook(Cookbook cbID) {
+		if (factory == null)
+			setupFactory();
+		Session hibernateSession = factory.openSession();
+		hibernateSession.getTransaction().begin();
+		int i = (Integer) hibernateSession.save(cbID);
+		hibernateSession.getTransaction().commit();
+		hibernateSession.close();
+		return i;
+	}
+
 }
