@@ -42,6 +42,11 @@ public class HomeController {
 	String cleanUserInput = "";
 	StringBuilder filters = new StringBuilder("");
 	String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key + "&from=0&to=10" + filters;
+	List<Hits> hits = null;
+	ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+	RecipesReturned recipesReturned = null;
+
+	
 	
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
 	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid,
@@ -138,9 +143,9 @@ public class HomeController {
 				in.close();
 
 				Gson gson = new Gson();
-				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
-				List<Hits> hits = recipesReturned.getHits();
-				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+				recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
+				hits = recipesReturned.getHits();
+			
 
 				for (Hits h : hits) {
 					Recipe r = h.getRecipe();
@@ -207,7 +212,7 @@ public class HomeController {
 		userInput = sb.delete(start, (end + 1)).toString().trim();
 		cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
 		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key + "&from=0&to=10" + filters;
-
+		
 		try {
 			URL urlObj = new URL(url);
 			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
@@ -225,11 +230,10 @@ public class HomeController {
 				in.close();
 
 				Gson gson = new Gson();
-				RecipesReturned recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
+				recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
 
-				List<Hits> hits = recipesReturned.getHits();
+				hits = recipesReturned.getHits();
 
-				ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
 				for (Hits h : hits) {
 					Recipe r = h.getRecipe();
 					recipeList.add(r);
@@ -248,6 +252,19 @@ public class HomeController {
 
 		return "recipeSearchJC";
 	}		
+	
+	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
+	public String deleteFood(Model model){
+		userInput = "";
+		filters.setLength(0);
+	ing.clearFood();
+	model.addAttribute("ing", ing);
+recipeList.clear();
+hits.clear();
+recipesReturned.clearHits();
+	model.addAttribute("recipeList", recipeList);
+	return "recipeSearchJC";
+	}
 
 /*	@RequestMapping(value = "/addFilters", method = RequestMethod.GET)
 	public String addFilters(Model model, HttpServletRequest request) {

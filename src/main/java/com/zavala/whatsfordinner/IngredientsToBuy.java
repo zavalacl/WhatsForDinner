@@ -34,5 +34,9 @@ public class IngredientsToBuy {
 	public List<String> display() {
 		return list;
 	}
+	public void clearFood() {
+		list.clear();
+		this.list = list;
+	}
 
 }

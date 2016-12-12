@@ -48,7 +48,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
+<a href="<c:url value='/deleteAll' />">Clear Search Entirely</a>
 	<br> Here are the the recipes that match your search:
 
 	<table border="1">

@@ -16,4 +16,9 @@ public class RecipesReturned {
 	public void sethits(List<Hits> hits) {
 		this.hits = hits;
 	}	 
+	
+	public void clearHits(){
+		hits.clear();
+		this.hits = hits;
+	}
 }
