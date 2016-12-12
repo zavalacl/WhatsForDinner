@@ -49,14 +49,14 @@
 		</tbody>
 	</table>
 <a href="<c:url value='/deleteAll' />">Clear Search Entirely</a>
-	<br> Here are the the recipes that match your search:
+
+	<p> Here are the the recipes that match your search: </p>
 
 	<table border="1">
 		<tr>
 			<th>Image</th>
 			<th>Label</th>
 			<th>Source</th>
-<!-- 		<th>Summary</th>  -->
 			<th></th>
 		</tr>
 
@@ -66,7 +66,7 @@
 				<td>${rec.label}</td>
 				<td>${rec.source}</td>
 
-				<td>
+				<td>	
 					<form action="addSelectedRecipe" method="get">
 						<input type="hidden" name="image" value="${rec.image}" /> 
 						<input type="hidden" name="label" value="${rec.label}" /> 
@@ -85,7 +85,7 @@
 		</c:forEach>
 	</table>
 
-	<form name="logout" action="logout" method="GET">
+	<form name="logout" action="logout"  method="GET">
 		<br>
 		<input type="submit" value="Logout">
 	</form>
