@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,10 +32,8 @@ import com.google.gson.Gson;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
 	SecretInfoForAPI authInfo = new SecretInfoForAPI();
 	IngredientsToBuy ing = new IngredientsToBuy();
-
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
 	String userInput = "";
@@ -42,14 +41,11 @@ public class HomeController {
 	StringBuilder filters = new StringBuilder("");
 	String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
 			+ "&from=0&to=10" + filters;
-
 	List<Hits> hits = null;
-
 	ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
 	RecipesReturned recipesReturned = null;
 
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
-
 	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid,
 			@RequestParam(value = "label") String label, @RequestParam(value = "image") String image,
 			@RequestParam(value = "url") String url, @RequestParam(value = "ingredients") String ingredients,
@@ -138,50 +134,8 @@ public class HomeController {
 				filters.append("&health=" + health);
 			}
 		}
-
-		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
-				+ "&from=0&to=10" + filters;
-
-		try {
-			URL urlObj = new URL(url);
-			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
-			connect.setRequestMethod("GET");
-			int connectCode = connect.getResponseCode();
-
-			if (connectCode == 200) {
-				BufferedReader in = new BufferedReader(new InputStreamReader(connect.getInputStream()));
-				String inputLine;
-				StringBuffer response = new StringBuffer();
-
-				while ((inputLine = in.readLine()) != null) {
-					response.append(inputLine);
-				}
-
-				in.close();
-
-				Gson gson = new Gson();
-				recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
-				hits = recipesReturned.getHits();
-	
-				recipeList.clear();
-	
-				for (Hits h : hits) {
-					Recipe r = h.getRecipe();
-					recipeList.add(r);
-					model.addAttribute("recipeList", recipeList);
-				}
-
-			} else {
-				System.out.println("error: " + connectCode);
-			}
-
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println(filters);
-		System.out.println(food);
+		
+		buildAPIurl(model, request);
 		return "recipeSearchJC";
 	}
 
@@ -220,8 +174,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/deleteFood", method = RequestMethod.GET)
-	public String deleteFood(Model model, @RequestParam("item") String item) {
+	public String deleteFood(Model model, HttpServletRequest request) {
 
+		String item = request.getParameter("item");
 		ing.deleteFood(item);
 		model.addAttribute("ing", ing);
 		int start = userInput.indexOf(item);
@@ -230,6 +185,24 @@ public class HomeController {
 		userInput = sb.delete(start, (end + 1)).toString().trim();
 		cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
 
+		buildAPIurl(model, request);	
+		return "recipeSearchJC";
+	}
+
+	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
+	public String deleteFood(Model model) {
+		userInput = "";
+		filters.setLength(0);
+		ing.clearFood();
+		model.addAttribute("ing", ing);
+		recipeList.clear();
+		hits.clear();
+		recipesReturned.clearHits();
+		model.addAttribute("recipeList", recipeList);
+		return "recipeSearchJC";
+	}
+
+	public void buildAPIurl(Model model, HttpServletRequest request) {
 
 		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
 				+ "&from=0&to=10" + filters;
@@ -239,6 +212,7 @@ public class HomeController {
 			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
 			connect.setRequestMethod("GET");
 			int connectCode = connect.getResponseCode();
+
 			if (connectCode == 200) {
 				BufferedReader in = new BufferedReader(new InputStreamReader(connect.getInputStream()));
 				String inputLine;
@@ -252,8 +226,9 @@ public class HomeController {
 
 				Gson gson = new Gson();
 				recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
-
 				hits = recipesReturned.getHits();
+
+				recipeList.clear();
 
 				for (Hits h : hits) {
 					Recipe r = h.getRecipe();
@@ -270,20 +245,5 @@ public class HomeController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return "recipeSearchJC";
-	}
-
-	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
-	public String deleteFood(Model model) {
-		userInput = "";
-		filters.setLength(0);
-		ing.clearFood();
-		model.addAttribute("ing", ing);
-		recipeList.clear();
-		hits.clear();
-		recipesReturned.clearHits();
-		model.addAttribute("recipeList", recipeList);
-		return "recipeSearchJC";
 	}
 }
