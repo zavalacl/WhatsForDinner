@@ -10,7 +10,7 @@ public class Recipe {
 	private String image;
 	private String source;
 	private String url;
-	private int yield;
+	private double yield;
 	private String summary;
 	private float calories;
 	private float totalWeight;
@@ -45,7 +45,7 @@ public class Recipe {
 	public String getUrl() {
 		return url;
 	}
-	public int getYield() {
+	public double getYield() {
 		return yield;
 	}
 	public String getSummary() {

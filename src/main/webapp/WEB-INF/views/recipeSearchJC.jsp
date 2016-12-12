@@ -19,32 +19,28 @@
 
 	<h1>Search now, Ninja!</h1>
 
-	<!-- 	The filters are not currently working  -->
-
-	<form name="ingredientsFromUser" action="list" method="GET">
+	<form name="inputFromUser" action="displayResultList" method="GET">
 		<br>Enter an ingredient you want to use: <br> 
 		<input type="text" name="food"> <br> 
-		<input type="submit" value="Add Ingredients">
-		
-	</form>
+		<input type="submit" name="addIngredientToSearch" value="Add Ingredients">
 
-<!-- 	<form name="filtersFromUser" action="list" method="GET">
 		<p>
-			<strong>Filter results (optional):</strong> <br> 
-			<input type="checkbox" name="diet" value="balanced"> Balanced <br>
-			<input type="checkbox" name="diet" value="high-protein"> High protein <br> 
+		<strong>Filter results (optional):</strong> <br> 
+
+<!-- 		<input type="checkbox" name="diet" value="high-protein"> High protein <br> 
+			<input type="checkbox" name="diet" value="low-carb"> Low-carb <br>
 			<input type="checkbox" name="diet" value="low-fat"> Low-fat <br> 
-			<input type="checkbox" name="diet" value="low-carb"> Low-carb <br> 
+ -->
+			<input type="checkbox" name="health" value="alcohol-free"> Alcohol-free <br>  
+			<input type="checkbox" name="health" value="peanut-free"> Peanut-free <br> 
+			<input type="checkbox" name="health" value="sugar-conscious"> Sugar-conscious <br> 
+			<input type="checkbox" name="health" value="tree-nut-free"> Tree-nut-free <br> 
 			<input type="checkbox" name="health" value="vegan"> Vegan <br> 
 			<input type="checkbox" name="health" value="vegetarian"> Vegetarian <br> 
-			<input type="checkbox" name="health" value="sugar-conscious"> Sugar-conscious <br> 
-			<input type="checkbox" name="health" value="peanut-free"> Peanut-free <br> 
-			<input type="checkbox" name="health" value="tree-nut-free"> Tree-nut-free <br> 
-			<input type="checkbox" name="health" value="alcohol-free"> Alcohol-Free <br> 
 			<br> 
-			<input type="submit" value="Add Filters">
+			<input type="submit" name="addFiltersToSearch" value="Add Filters">
 		</p>
-	</form>  -->
+	</form>
 
 	<br> Ingredients Selected:
 	<table>
