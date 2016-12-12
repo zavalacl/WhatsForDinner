@@ -24,11 +24,9 @@ public class IngredientsToBuy {
 
 	public void addFood(String food) {
 		list.add(food);
-		this.list = list;
 	}
 	public void deleteFood(String food){
 		list.remove(food);
-		this.list = list;
 	}
 
 	public List<String> display() {
@@ -36,7 +34,6 @@ public class IngredientsToBuy {
 	}
 	public void clearFood() {
 		list.clear();
-		this.list = list;
 	}
 
 }
