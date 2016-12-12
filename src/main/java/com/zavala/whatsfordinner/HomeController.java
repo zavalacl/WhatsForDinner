@@ -229,6 +229,8 @@ public class HomeController {
 		StringBuffer sb = new StringBuffer(userInput);
 		userInput = sb.delete(start, (end + 1)).toString().trim();
 		cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
+
+
 		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
 				+ "&from=0&to=10" + filters;
 
@@ -284,15 +286,4 @@ public class HomeController {
 		model.addAttribute("recipeList", recipeList);
 		return "recipeSearchJC";
 	}
-
-	/*
-	 * @RequestMapping(value = "/addFilters", method = RequestMethod.GET) public
-	 * String addFilters(Model model, HttpServletRequest request) {
-	 * 
-	 * String[] healthLabelsSelected = request.getParameterValues("health");
-	 * 
-	 * if (healthLabelsSelected != null) { filters.setLength(0); for (String
-	 * health : healthLabelsSelected) { filters.append("&health=" + health); } }
-	 * return "recipeSearchJC"; }
-	 */
 }
