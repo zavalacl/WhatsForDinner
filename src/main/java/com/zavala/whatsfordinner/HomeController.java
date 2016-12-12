@@ -24,7 +24,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-//import java.sql.Blob;
 
 import com.google.gson.Gson;
 
@@ -41,27 +40,29 @@ public class HomeController {
 	String userInput = "";
 	String cleanUserInput = "";
 	StringBuilder filters = new StringBuilder("");
-	String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key + "&from=0&to=10" + filters;
+	String url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+			+ "&from=0&to=10" + filters;
+
 	List<Hits> hits = null;
+
 	ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
 	RecipesReturned recipesReturned = null;
 
-	
-	
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)
 
-	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients, @RequestParam(value="source") String source){
+	public String addSelectedRecipe(Model model, @CookieValue("customerID") String cid,
+			@RequestParam(value = "label") String label, @RequestParam(value = "image") String image,
+			@RequestParam(value = "url") String url, @RequestParam(value = "ingredients") String ingredients,
+			@RequestParam(value = "source") String source) {
 
 		model.addAttribute("recipeLabel", label);
 		model.addAttribute("recipeImage", image);
 		model.addAttribute("recipeURL", url);
 		model.addAttribute("recipeIng", ingredients);
 		model.addAttribute("recipeSource", source);
-		
 
 		int custID = Integer.parseInt(cid);
 
-		
 		Cookbook cb1 = new Cookbook();
 		cb1.setcbID(cb1.getcbID());
 		cb1.setRecImage(image);
@@ -70,11 +71,8 @@ public class HomeController {
 		cb1.setRecURL(url);
 		cb1.setRecSource(source);
 		cb1.setCustomerID(custID);
-		
+
 		DAO.addCookbook(cb1);
-		
-		
-		//logger.info(summary);
 
 		return "groceryList";
 	}
@@ -97,9 +95,8 @@ public class HomeController {
 		cust.setPassword(request.getParameter("pwd1"));
 		List<Customer> customers = DAO.getAllCustomers();
 
-
-		for (Customer c : customers){
-			if (c.getEmail().equalsIgnoreCase(cust.getEmail())){
+		for (Customer c : customers) {
+			if (c.getEmail().equalsIgnoreCase(cust.getEmail())) {
 
 				String retry = "That account already exists";
 				model.addAttribute("retry", retry);
@@ -120,29 +117,30 @@ public class HomeController {
 		logger.info("Welcome, ninja!");
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/displayResultList", method = RequestMethod.GET)
 	public String displayResultList(Model model, HttpServletRequest request) {
 
-			String food = request.getParameter("food");
+		String food = request.getParameter("food");
 
-			if (!food.equals("")) {
-				ing.addFood(food);
-				userInput += food + ",";
-				cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
-				}	
+		if (!food.equals("")) {
+			ing.addFood(food);
+			userInput += food + ",";
+			cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
+		}
 
-			model.addAttribute("ing", ing);
-			String[] healthLabelsSelected = request.getParameterValues("health");		
+		model.addAttribute("ing", ing);
+		String[] healthLabelsSelected = request.getParameterValues("health");
 
-			if (healthLabelsSelected != null) {
-				filters.setLength(0);
-				for (String health : healthLabelsSelected) {
-					filters.append("&health=" + health);
-				}	
-			}			
-			
-		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key + "&from=0&to=10" + filters;
+		if (healthLabelsSelected != null) {
+			filters.setLength(0);
+			for (String health : healthLabelsSelected) {
+				filters.append("&health=" + health);
+			}
+		}
+
+		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+				+ "&from=0&to=10" + filters;
 
 		try {
 			URL urlObj = new URL(url);
@@ -164,8 +162,9 @@ public class HomeController {
 				Gson gson = new Gson();
 				recipesReturned = gson.fromJson(response.toString(), RecipesReturned.class);
 				hits = recipesReturned.getHits();
-			
-
+	
+				recipeList.clear();
+	
 				for (Hits h : hits) {
 					Recipe r = h.getRecipe();
 					recipeList.add(r);
@@ -184,7 +183,7 @@ public class HomeController {
 		System.out.println(filters);
 		System.out.println(food);
 		return "recipeSearchJC";
-}
+	}
 
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
 	public String findCustomer(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -230,8 +229,9 @@ public class HomeController {
 		StringBuffer sb = new StringBuffer(userInput);
 		userInput = sb.delete(start, (end + 1)).toString().trim();
 		cleanUserInput = userInput.replaceAll("[\\s,-]", ",");
-		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key + "&from=0&to=10" + filters;
-		
+		url = "https://api.edamam.com/search?q=" + cleanUserInput + "&app_id=" + id + "&app_key=" + key
+				+ "&from=0&to=10" + filters;
+
 		try {
 			URL urlObj = new URL(url);
 			HttpURLConnection connect = (HttpURLConnection) urlObj.openConnection();
@@ -270,32 +270,29 @@ public class HomeController {
 		}
 
 		return "recipeSearchJC";
-	}		
-	
-	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
-	public String deleteFood(Model model){
-		userInput = "";
-		filters.setLength(0);
-	ing.clearFood();
-	model.addAttribute("ing", ing);
-recipeList.clear();
-hits.clear();
-recipesReturned.clearHits();
-	model.addAttribute("recipeList", recipeList);
-	return "recipeSearchJC";
 	}
 
-/*	@RequestMapping(value = "/addFilters", method = RequestMethod.GET)
-	public String addFilters(Model model, HttpServletRequest request) {
-
-		String[] healthLabelsSelected = request.getParameterValues("health");		
-
-		if (healthLabelsSelected != null) {
-			filters.setLength(0);
-			for (String health : healthLabelsSelected) {
-				filters.append("&health=" + health);
-			}	
-		}
+	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
+	public String deleteFood(Model model) {
+		userInput = "";
+		filters.setLength(0);
+		ing.clearFood();
+		model.addAttribute("ing", ing);
+		recipeList.clear();
+		hits.clear();
+		recipesReturned.clearHits();
+		model.addAttribute("recipeList", recipeList);
 		return "recipeSearchJC";
-	}*/	
+	}
+
+	/*
+	 * @RequestMapping(value = "/addFilters", method = RequestMethod.GET) public
+	 * String addFilters(Model model, HttpServletRequest request) {
+	 * 
+	 * String[] healthLabelsSelected = request.getParameterValues("health");
+	 * 
+	 * if (healthLabelsSelected != null) { filters.setLength(0); for (String
+	 * health : healthLabelsSelected) { filters.append("&health=" + health); } }
+	 * return "recipeSearchJC"; }
+	 */
 }
