@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Recipe Ingredients</title>
+<style>
+.hideMe {
+	display: none;
+	}
+</style>
 </head>
 <body>
 
@@ -31,6 +36,21 @@
 			</c:forEach>
 		</table>
 		<input type="submit" value="I don't have this item">
+	</form>
+	
+	<form name="addToCookbook" action="addToCookbook" method="GET">
+
+		<input type="hidden" name="image" value="${recipeImage}" /> 
+		<input type="hidden" name="label" value="${recipeLabel}" /> 
+		<input type="hidden" name="source" value="${recipeSource}" /> 
+		<input type="hidden" name="url" value="${recipeURL}" />
+
+		<c:forEach items="${recipeIng}" var="separatedIngredients">
+			<input class="hideMe" name="ingredients" value="${separatedIngredients}" />
+		</c:forEach>
+
+		<input type="submit" value="Add this recipe to my cookbook!">
+	
 	</form>
 </body>
 </html>
