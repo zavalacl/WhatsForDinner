@@ -21,8 +21,8 @@
 
 <body>
 
-<script> function formSubmit() {
-	document.getElementById("viewSelectedRecipe").submit();
+<script> function formSubmit(which) {
+	document.getElementById(which).submit();
 	}
 </script>
 
@@ -50,7 +50,7 @@
 		<tbody>
 			<c:forEach items="${ing.display()}" var="item">
 				<tr>
-					<td>${item }<a href="<c:url value='/deleteFood?item=${item }' />">Delete</a></td>
+					<td>${item} <a href="<c:url value='/deleteFood?item=${item }' />">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -58,9 +58,13 @@
 
 	<a href="<c:url value='/deleteAll' />">Clear Search Entirely</a>
 
+
+
+
+
 	<div id="content">
-		<c:forEach items="${recipeList}" var="rec">
-			<div class="recipe" onclick="formSubmit()">
+		<c:forEach items="${recipeList}" var="rec" varStatus="count">
+			<div class="recipe" onclick="formSubmit('viewSelectedRecipe${count.index}')">
 			
 				<div class="image">
 					<img src="${rec.image}">
@@ -72,7 +76,7 @@
 	
 				<!-- 		${rec.source}  -->
 
-				<form id=viewSelectedRecipe action="addSelectedRecipe" method="get">
+				<form id="viewSelectedRecipe${count.index}" action="addSelectedRecipe" method="get">
 					<input type="hidden" name="image" value="${rec.image}" /> <input
 						type="hidden" name="label" value="${rec.label}" /> <input
 						type="hidden" name="source" value="${rec.source}" /> <input
@@ -90,6 +94,15 @@
 		</c:forEach>
 
 	</div>
+
+
+
+
+
+
+
+
+
 	<!-- <a href="addSelectedRecipe" class="button"> </div> -->
 
 	<!-- end of results loop -->
