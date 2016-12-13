@@ -28,7 +28,7 @@
 				<td><img src="${cbk.recImage}" height="100px" width="100px"></td>
 				<td>${cbk.recLabel}</td>
 				<td>${cbk.recSource}</td>
-				<td>${cbk.recURL}</td>
+				<td><a href="${cbk.recURL}" target="_blank">View recipe instructions</a></td>
 				<td>${cbk.recIngredients}</td>
 			
 		</tr>

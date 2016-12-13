@@ -23,7 +23,7 @@
 			<td><img src="${recipeImage}" height="100px" width="100px"></td>
 			<td>${recipeLabel}</td>
 			<td>${recipeSource}</td>
-			<td>${recipeURL}</td>
+			<td><a href="${recipeURL}" target="_blank">View recipe instructions</a></td>
 			<td>${recipeIng}</td>
 		</tr>
 	</table>
