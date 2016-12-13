@@ -160,5 +160,16 @@ public class DAO {
 		hibernateSession.close();
 		return i;
 	}
+	
+	public static List<Cookbook> getCookbook() {
+		if (factory == null)
+			setupFactory();
+		Session hibernateSession = factory.openSession();
+		hibernateSession.getTransaction().begin();
 
+		List<Cookbook> cookbook = hibernateSession.createQuery("FROM Cookbook").list();
+		hibernateSession.getTransaction().commit();
+		hibernateSession.close();
+		return cookbook;
+	}
 }

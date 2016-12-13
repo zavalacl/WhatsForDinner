@@ -28,6 +28,8 @@
 		</tr>
 	</table>
 
-<h4><a href="">View my Cookbook</a></h4>
+<form name="getCookbook" action="getCookbook" method="GET">
+<input type ="submit" value="See my cookbook">
+</form>
 </body>
 </html>

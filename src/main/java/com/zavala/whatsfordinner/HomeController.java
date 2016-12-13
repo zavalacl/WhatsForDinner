@@ -39,7 +39,15 @@ public class HomeController {
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
 
-
+	@RequestMapping(value = "/getCookbook", method = RequestMethod.GET)
+	public String list (@CookieValue("customerID") String customerID, Model model){
+		
+		int custID = Integer.parseInt(customerID);
+		List<Cookbook> cookbook = DAO.getCookbook();
+		model.addAttribute("cookbook", cookbook);
+		
+		return "cookbook";
+	}
 	@RequestMapping(value = "/addToCookbook", method = RequestMethod.GET)
 	public String addToCookbook(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients, @RequestParam(value="source") String source){
 	
