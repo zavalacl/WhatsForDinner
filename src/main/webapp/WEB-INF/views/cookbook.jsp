@@ -30,6 +30,7 @@
 				<td>${cbk.recSource}</td>
 				<td><a href="${cbk.recURL}" target="_blank">View recipe instructions</a></td>
 				<td>${cbk.recIngredients}</td>
+				<td><a href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />" >Delete</a></td>
 			
 		</tr>
 		</c:forEach>

@@ -29,6 +29,7 @@ import java.net.URL;
 
 import com.google.gson.Gson;
 
+
 @Controller
 public class HomeController {
 
@@ -69,6 +70,15 @@ public class HomeController {
 		DAO.addCookbook(cb1);
 		
 		return "addToCookbook";
+	}
+	@RequestMapping(value = "/deleteCookBook", method = RequestMethod.GET)
+	public String deleteBook(Model model, @RequestParam("cbID") int cbID, @CookieValue("customerID") String customerID){				
+			DAO.deleteCookBook(cbID);
+			int custID = Integer.parseInt(customerID);
+		List<Cookbook> cookbook = DAO.getCookbook(custID);
+		model.addAttribute("cookbook", cookbook);
+		
+		return "cookbook";
 	}
 	
 	@RequestMapping(value = "/addSelectedRecipe", method = RequestMethod.GET)

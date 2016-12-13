@@ -5,12 +5,16 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.jasypt.util.password.StrongPasswordEncryptor;
+
+
+
 import org.hibernate.query.Query;
 
 public class DAO {
@@ -172,4 +176,22 @@ public class DAO {
 		hibernateSession.close();
 		return cookbook;
 	}
+	public static void deleteCookBook(Integer cbID){
+	     if (factory == null)
+	    	 setupFactory();
+		 Session session = factory.openSession();
+	      org.hibernate.Transaction tx = null;
+	      try{
+	         tx = session.beginTransaction();
+	         Cookbook str = 
+	                   (Cookbook)session.get(Cookbook.class, cbID); 
+	         session.delete(str); 
+	         tx.commit();
+	      }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	   }
 }
