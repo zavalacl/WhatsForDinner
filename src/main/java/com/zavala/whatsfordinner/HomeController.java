@@ -35,10 +35,8 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	SecretInfoForAPI authInfo = new SecretInfoForAPI();
 
-
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
-
 
 	@RequestMapping(value = "/addToCookbook", method = RequestMethod.GET)
 	public String addToCookbook(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients, @RequestParam(value="source") String source){
@@ -128,10 +126,10 @@ public class HomeController {
 			String userInput = (String)session.getAttribute("userInput");
 			StringBuilder filters =  (StringBuilder)session.getAttribute("filters");
 			System.out.println(food);
+
 			if (!food.equals("")) {
 				ing.addFood(food);
-				userInput += food + ",";
-				
+				userInput += food + ",";				
 				}	
 
 			model.addAttribute("ing", ing);
@@ -175,7 +173,7 @@ public class HomeController {
 		session.setAttribute("userInput", "");
 		return "recipeSearchJC";
 	}
-
+	
 	@RequestMapping(value = "/recipeSearchJC", method = RequestMethod.GET)
 	public String searchNow(Locale locale, @CookieValue("customerID") String cid, Model model,
 			HttpServletRequest request) {
@@ -183,7 +181,7 @@ public class HomeController {
 		logger.info("Ready to search?");
 		return "recipeSearchJC";
 	}
-
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(@CookieValue("customerID") Cookie cid, Model model, HttpServletResponse response, HttpSession session) {
 		cid.setMaxAge(0);
@@ -191,9 +189,8 @@ public class HomeController {
 		
 		return "home";
 	}
-
+	
 	@RequestMapping(value = "/deleteFood", method = RequestMethod.GET)
-
 	public String deleteFood(Model model, @RequestParam("item") String item, HttpSession session) {
 		IngredientsToBuy ing = (IngredientsToBuy)session.getAttribute("ing");
 		ing.deleteFood(item);
@@ -209,7 +206,6 @@ public class HomeController {
 		return "recipeSearchJC";
 	}		
 	
-
 	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
 	public String deleteFood(Model model, HttpSession session){
 		session.setAttribute("userInput", "");
@@ -224,8 +220,6 @@ public class HomeController {
 		model.addAttribute("recipeList", recipeList);
 		return "recipeSearchJC";
 	}
-	
-	
 	
 	public void getSearch(Model model, HttpSession session){
 	String userInput = (String)session.getAttribute("userInput");
@@ -262,25 +256,12 @@ public class HomeController {
 
 		} else {
 			System.out.println("error: " + connectCode);
-		}
+			}
 
-	} catch (MalformedURLException e) {
-		e.printStackTrace();
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }	
-/*	@RequestMapping(value = "/addFilters", method = RequestMethod.GET)
-	public String addFilters(Model model, HttpServletRequest request) {
-
-		String[] healthLabelsSelected = request.getParameterValues("health");		
-
-		if (healthLabelsSelected != null) {
-			filters.setLength(0);
-			for (String health : healthLabelsSelected) {
-				filters.append("&health=" + health);
-			}	
-		}
-		return "recipeSearchJC";
-	}*/	

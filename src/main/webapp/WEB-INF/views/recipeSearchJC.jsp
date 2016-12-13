@@ -11,11 +11,20 @@
 <style>
 .hideMe {
 	display: none;
-	}
+}
 </style>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/DinnerNinjaStylin.css" />
+
 </head>
 
 <body>
+
+<script> function formSubmit() {
+	document.getElementById("viewSelectedRecipe").submit();
+	}
+</script>
 
 	<h1>Search now, Ninja!</h1>
 
@@ -25,15 +34,13 @@
 		<input type="submit" name="addIngredientToSearch" value="Add Ingredients">
 
 		<p>
-		<strong>Filter results (optional):</strong> <br> 
-
-			<input type="checkbox" name="health" value="alcohol-free"> Alcohol-free <br>  
+			<strong>Filter results (optional):</strong> <br> 
+			<input type="checkbox" name="health" value="alcohol-free"> Alcohol-free <br> 
 			<input type="checkbox" name="health" value="peanut-free"> Peanut-free <br> 
 			<input type="checkbox" name="health" value="sugar-conscious"> Sugar-conscious <br> 
 			<input type="checkbox" name="health" value="tree-nut-free"> Tree-nut-free <br> 
-			<input type="checkbox" name="health" value="vegan"> Vegan <br> 
+			<input type="checkbox" name="health" value="vegan"> Vegan <br>
 			<input type="checkbox" name="health" value="vegetarian"> Vegetarian <br> 
-			<br> 
 			<input type="submit" name="addFiltersToSearch" value="Set Filters">
 		</p>
 	</form>
@@ -48,46 +55,48 @@
 			</c:forEach>
 		</tbody>
 	</table>
-<a href="<c:url value='/deleteAll' />">Clear Search Entirely</a>
 
-	<p> Here are the the recipes that match your search: </p>
+	<a href="<c:url value='/deleteAll' />">Clear Search Entirely</a>
 
-	<table border="1">
-		<tr>
-			<th>Image</th>
-			<th>Label</th>
-			<th>Source</th>
-			<th></th>
-		</tr>
-
+	<div id="content">
 		<c:forEach items="${recipeList}" var="rec">
-			<tr>
-				<td><img src="${rec.image}" height="100px" width="100px"></td>
-				<td>${rec.label}</td>
-				<td>${rec.source}</td>
+			<div class="recipe" onclick="formSubmit()">
+			
+				<div class="image">
+					<img src="${rec.image}">
+				</div>
 
-				<td>	
-					<form action="addSelectedRecipe" method="get">
-						<input type="hidden" name="image" value="${rec.image}" /> 
-						<input type="hidden" name="label" value="${rec.label}" /> 
-						<input type="hidden" name="source" value="${rec.source}" /> 
-						<input type="hidden" name="url" value="${rec.url}" />
+				<div class="name">
+					<h3>${rec.label}</h3>
+				</div>
+	
+				<!-- 		${rec.source}  -->
 
-						<c:forEach items="${rec.ingredients}" var="separatedIngredients">
-							<input class="hideMe" name="ingredients" value="${separatedIngredients}" />
-						</c:forEach>
+				<form id=viewSelectedRecipe action="addSelectedRecipe" method="get">
+					<input type="hidden" name="image" value="${rec.image}" /> <input
+						type="hidden" name="label" value="${rec.label}" /> <input
+						type="hidden" name="source" value="${rec.source}" /> <input
+						type="hidden" name="url" value="${rec.url}" />
 
-						<input type="submit" value="See Recipe">
+					<!-- this forEach loop lists the ingredients from a recipe -->
+					<c:forEach items="${rec.ingredients}" var="separatedIngredients">
+						<input class="hideMe" name="ingredients"
+							value="${separatedIngredients}" />
+					</c:forEach>
+					<!-- end of ingredients loop -->
 
-					</form>
-				</td>
-			</tr>
+				</form>
+			</div>
 		</c:forEach>
-	</table>
 
-	<form name="logout" action="logout"  method="GET">
-		<br>
-		<input type="submit" value="Logout">
-	</form>
-</body>
+	</div>
+	<!-- <a href="addSelectedRecipe" class="button"> </div> -->
+
+	<!-- end of results loop -->
+
+		<form name="logout" action="logout" method="GET">
+			<br> <input type="submit" value="Logout">
+		</form>
+
+	</body>
 </html>
