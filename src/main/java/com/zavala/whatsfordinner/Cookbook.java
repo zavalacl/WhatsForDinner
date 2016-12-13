@@ -7,6 +7,7 @@ private String recImage;
 private String recIngredients;
 private String recURL;
 private String recSource;
+private int recRating;
 private int customerID;
 
 
@@ -14,7 +15,8 @@ public Cookbook() {
 	super();
 }
 
-public Cookbook(int cbID, String recLabel, String recImage, String recIngredients, String recURL, String recSource, int customerID) {
+public Cookbook(int cbID, String recLabel, String recImage, String recIngredients, String recURL, String recSource,
+		int recRating, int customerID) {
 	super();
 	this.cbID = cbID;
 	this.recLabel = recLabel;
@@ -22,7 +24,17 @@ public Cookbook(int cbID, String recLabel, String recImage, String recIngredient
 	this.recIngredients = recIngredients;
 	this.recURL = recURL;
 	this.recSource = recSource;
+	this.recRating = recRating;
 	this.customerID = customerID;
+}
+
+
+public int getRecRating() {
+	return recRating;
+}
+
+public void setRecRating(int recRating) {
+	this.recRating = recRating;
 }
 
 public int getcbID() {
