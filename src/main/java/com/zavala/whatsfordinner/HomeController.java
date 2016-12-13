@@ -43,7 +43,7 @@ public class HomeController {
 	public String list(@CookieValue("customerID") String customerID, Model model){
 		
 		int custID = Integer.parseInt(customerID);
-		List<Cookbook> cookbook = DAO.getCookbook();
+		List<Cookbook> cookbook = DAO.getCookbook(custID);
 		model.addAttribute("cookbook", cookbook);
 		
 		return "cookbook";
