@@ -1,6 +1,5 @@
 package com.zavala.whatsfordinner;
 
-import java.sql.Blob;
 import java.util.List;
 
 public class Recipe {
