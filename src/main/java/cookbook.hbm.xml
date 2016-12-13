@@ -13,6 +13,7 @@
  		<property name="recIngredients" column="recIngredients" type ="string"></property>
  		<property name="customerID" column="customerID" type ="int"></property>
  		<property name="recSource" column="recSource" type="string"></property>
+ 		<property name="recURL" column="recURL" type="string"></property>
  		
  		</class>
  </hibernate-mapping>
