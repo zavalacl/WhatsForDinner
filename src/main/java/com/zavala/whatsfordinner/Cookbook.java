@@ -1,6 +1,7 @@
 package com.zavala.whatsfordinner;
 
 public class Cookbook {
+
 	private int cbID;
 	private String recLabel;
 	private String recImage;
@@ -8,12 +9,26 @@ public class Cookbook {
 	private String recURL;
 	private String recSource;
 	private int customerID;
+	private int recRating;
 
 	public Cookbook() {
 		super();
 	}
 
-	public Cookbook(int cbID, String recLabel, String recImage, String recIngredients, String recURL, String recSource, int customerID) {
+	/*
+	 * public Cookbook(int cbID, String recLabel, String recImage, String
+	 * recIngredients, String recURL, String recSource, int customerID) {
+	 * super(); this.cbID = cbID; this.recLabel = recLabel; this.recImage =
+	 * recImage; this.recIngredients = recIngredients; this.recURL = recURL;
+	 * this.recSource = recSource; this.customerID = customerID; }
+	 * 
+	 */
+	public int getcbID() {
+		return cbID;
+	}
+
+	public Cookbook(int cbID, String recLabel, String recImage, String recIngredients, String recURL, String recSource,
+			int recRating, int customerID) {
 		super();
 		this.cbID = cbID;
 		this.recLabel = recLabel;
@@ -21,11 +36,8 @@ public class Cookbook {
 		this.recIngredients = recIngredients;
 		this.recURL = recURL;
 		this.recSource = recSource;
+		this.recRating = recRating;
 		this.customerID = customerID;
-	}
-
-	public int getcbID() {
-		return cbID;
 	}
 
 	public void setcbID(int cbID) {
@@ -70,6 +82,14 @@ public class Cookbook {
 
 	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
+	}
+
+	public int getRecRating() {
+		return recRating;
+	}
+
+	public void setRecRating(int recRating) {
+		this.recRating = recRating;
 	}
 
 	public String getRecSource() {

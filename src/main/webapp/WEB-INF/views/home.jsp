@@ -25,7 +25,7 @@
 
 	<br>
 	<P>
-		<a href="http://localhost:8080/whatsfordinner/resources/NewCustomer.html">Sign Up!</a>
+		<a href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign Up!</a>
 	</P>
 
 </body>

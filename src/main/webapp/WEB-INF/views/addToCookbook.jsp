@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>My Cookbook</title>
+<title>Recipe Saved</title>
 </head>
 <body>
 
@@ -23,11 +23,14 @@
 			<td><img src="${recipeImage}" height="100px" width="100px"></td>
 			<td>${recipeLabel}</td>
 			<td>${recipeSource}</td>
-			<td>${recipeURL}</td>
+			<td><a href="${recipeURL}" target="_blank">View recipe instructions</a></td>
 			<td>${recipeIng}</td>
 		</tr>
 	</table>
 
-<h4><a href="">View my Cookbook</a></h4>
+<form name="cookbook" action="cookbook" method="GET">
+	<input type ="submit" value="See my cookbook">
+</form>
+
 </body>
 </html>
