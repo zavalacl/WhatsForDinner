@@ -39,8 +39,8 @@ public class HomeController {
 	String id = authInfo.getAppId();
 	String key = authInfo.getApiKey();
 
-	@RequestMapping(value = "/getCookbook", method = RequestMethod.GET)
-	public String list (@CookieValue("customerID") String customerID, Model model){
+	@RequestMapping(value = "/cookbook", method = RequestMethod.GET)
+	public String list(@CookieValue("customerID") String customerID, Model model){
 		
 		int custID = Integer.parseInt(customerID);
 		List<Cookbook> cookbook = DAO.getCookbook();

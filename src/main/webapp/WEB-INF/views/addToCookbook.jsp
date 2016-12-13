@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>My Cookbook</title>
+<title>Recipe Saved</title>
 </head>
 <body>
 
@@ -28,8 +28,9 @@
 		</tr>
 	</table>
 
-<form name="getCookbook" action="getCookbook" method="GET">
-<input type ="submit" value="See my cookbook">
+<form name="cookbook" action="cookbook" method="GET">
+	<input type ="submit" value="See my cookbook">
 </form>
+
 </body>
 </html>
