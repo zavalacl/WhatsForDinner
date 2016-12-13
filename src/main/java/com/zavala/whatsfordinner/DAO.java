@@ -49,17 +49,20 @@ public class DAO {
 		hibernateSession.close();
 		return i;
 	}
-//	public static int addCookbook(Cookbook cb){
-//		if (factory == null)
-//			setupFactory();
-//		Session hibernateSession = factory.openSession();
-//		hibernateSession.getTransaction().begin();
-//		int i = (Integer) hibernateSession.save(cb);
-//		hibernateSession.getTransaction().commit();
-//		hibernateSession.close();
-//		return i;
-//	}
-	
+
+	public static void updateRecRating (int recRating, int cbID){
+		if (factory == null)
+			setupFactory();
+		Session hibernateSession = factory.openSession();
+		hibernateSession.getTransaction().begin();
+		
+		Query<Cookbook> sql = hibernateSession.createQuery("UPDATE Cookbook SET recRating = :recRating WHERE cbID = :cbID");
+		sql.setParameter("cbID", cbID);
+		sql.setParameter("recRating",recRating);
+		sql.executeUpdate();
+		hibernateSession.getTransaction().commit();
+		hibernateSession.close();
+	}
 //	public static void addToCookbook(int custID, String label, String image, String url, String source, String ingredients) {
 //		if (factory == null)
 //			setupFactory();

@@ -31,8 +31,11 @@
 				<td>${cbk.recSource}</td>
 				<td><a href="${cbk.recURL}" target="_blank">View recipe
 						instructions</a></td>
-				<td>${cbk.recIngredients}</td> <
-				<td><form action="recRating"></form>
+				<td>${cbk.recIngredients}</td> 
+				<td>Your rating: ${cbk.recRating}<c:if test="${cbk.recRating == 0}">
+				<p>Not yet rated.</p></c:if>
+				<form action="recRating" method="GET">
+				<input type="hidden" name="cbID" value="${cbk.cbID}" />
 					<select name="rating">
 						<option value="5">5</option>
 						<option value="4">4</option>

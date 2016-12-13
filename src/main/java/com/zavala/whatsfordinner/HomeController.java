@@ -49,6 +49,15 @@ public class HomeController {
 		
 		return "cookbook";
 	}
+	@RequestMapping(value = "/recRating", method = RequestMethod.GET)
+	public String recRating(@CookieValue("customerID") String customerID, Model model, @RequestParam(value="cbID") int cbID, @RequestParam(value="rating") int recRating ){
+			
+		DAO.updateRecRating(recRating, cbID);
+		int custID = Integer.parseInt(customerID);
+		List<Cookbook> cookbook = DAO.getCookbook(custID);
+		model.addAttribute("cookbook", cookbook);
+		return "cookbook";
+	}
 	@RequestMapping(value = "/addToCookbook", method = RequestMethod.GET)
 	public String addToCookbook(Model model, @CookieValue("customerID") String cid, @RequestParam(value="label") String label, @RequestParam(value="image") String image, @RequestParam(value="url") String url, @RequestParam(value="ingredients") String ingredients, @RequestParam(value="source") String source){
 	
