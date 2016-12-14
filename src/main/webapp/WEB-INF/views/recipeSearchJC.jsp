@@ -15,7 +15,7 @@
 </style>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/DinnerNinjaStylin.css" />
+	href="${pageContext.request.contextPath}/resources/css/DinnerNinjaStylin.css" />
 
 </head>
 
