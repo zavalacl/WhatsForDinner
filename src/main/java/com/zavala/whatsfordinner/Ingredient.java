@@ -4,7 +4,6 @@ public class Ingredient {
 
 	private String uri;
 	private float quantity;
-	private Measure measure;
 	private float weight;
 	private Food food;
 	private String text;
@@ -15,10 +14,6 @@ public class Ingredient {
 
 	public float getQuantity() {
 		return quantity;
-	}
-
-	public Measure getMeasure() {
-		return measure;
 	}
 
 	public float getWeight() {
