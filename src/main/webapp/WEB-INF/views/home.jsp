@@ -17,15 +17,17 @@
 	<form name="signIn" action="signIn" method="GET">
 		<fieldset>
 			<legend>Log In!</legend>
-			<br>Email:<input type="text" name="eml"> 
-			<br>Password:<input type="password" name="pass"> 
-			<br> <input type="submit" value="sign in">
+			<br>Email:<input type="text" name="eml"> <br>Password:<input
+				type="password" name="pass"> <br> <input type="submit"
+				value="sign in">
 		</fieldset>
 	</form>
 
 	<br>
 	<P>
-		<a href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign Up!</a>
+		<a
+			href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign
+			Up!</a>
 	</P>
 
 </body>
