@@ -16,7 +16,10 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/DinnerNinjaStylin.css" />
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/list.css" />
+	<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -50,16 +53,12 @@
 	</form>
 
 	<br> Ingredients Selected:
-	<table>
-		<tbody>
 			<c:forEach items="${ing.display()}" var="item">
-				<tr>
-					<td>${item}<a
-						href="<c:url value='/deleteFood?item=${item }' />">Delete</a></td>
-				</tr>
+				<ul>
+					<li>${item}<a
+						href="<c:url value='/deleteFood?item=${item }' />">   X</a></li>
+				</ul>
 			</c:forEach>
-		</tbody>
-	</table>
 
 	<a href="<c:url value='/deleteAll' />">Clear Search Entirely</a>
 
