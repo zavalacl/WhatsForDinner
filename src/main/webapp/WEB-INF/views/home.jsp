@@ -8,6 +8,7 @@
 
 <head>
 <title>Dinner Ninja</title>
+<<<<<<< HEAD
 
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -120,6 +121,13 @@
 		
     </style>
    
+=======
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/forms.css" />
+	<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="${pageContext.request.contextPath}/resources/js/forms.js"></script>
+>>>>>>> c2a2c933c994d27584b88488ea57a2c660a2329e
 </head>
 
 <body id="page-top">
@@ -423,12 +431,47 @@
 				src="${pageContext.request.contextPath}/resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     
 
+<<<<<<< HEAD
     <!-- Theme JavaScript 
     <script src="js/creative.min.js"></script>
     -->
     <script
 				src="${pageContext.request.contextPath}/resources/js/creative.min.js"></script>
 
+=======
+	<form class="login" action="signIn" method="GET">
+  
+  <fieldset>
+    
+  	<legend class="legend">Login</legend>
+    
+    <div class="input">
+    	<input type="email" placeholder="Email" required name="eml"/>
+      <span><i class="fa fa-envelope-o"></i></span>
+    </div>
+    
+    <div class="input">
+    	<input type="password" placeholder="Password" required name="pass"/>
+      <span><i class="fa fa-lock"></i></span>
+    </div>
+    
+    <button type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
+    
+  </fieldset>
+  
+  <div class="feedback">
+  	login successful <br />
+    redirecting...
+  </div>
+  
+</form>
+
+	<br>
+	<P>
+		<a
+			href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign Up!</a>
+	</P>
+>>>>>>> c2a2c933c994d27584b88488ea57a2c660a2329e
 
 		</body>
 </html>
