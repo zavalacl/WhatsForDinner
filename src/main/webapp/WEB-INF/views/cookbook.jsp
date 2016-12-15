@@ -15,12 +15,34 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/cookbook.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dinnerNinjaStylin.css" />
+
+<link href="http://fonts.googleapis.com/css?family=Raleway"
+		rel="stylesheet" type="text/css">
+
 
 </head>
+
 <body>
+
+	<div class="header"></div>
+
+	<div class="buttons">
+		<a href="recipeSearchJC"> SEARCH </a> <a
+			class="active" href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
+			href="logout"> LOGOUT </a>
+	</div>
+
+	<div class="backgroundImage">
+		<img src='<c:url value="resources/images/parchment.jpg"/>' />
+	</div>
+
+<body>
+
 <div class="imageContainer">MY COOKBOOK</div>
 	
-
+	<h1>My cookbook:</h1>
 	<%-- <table id = "cookbook" border="1">
 		<tr>
 			<th>Image</th>
