@@ -18,7 +18,13 @@
 	href="${pageContext.request.contextPath}/resources/css/dinnerNinjaStylin.css" />
 
 <link href="http://fonts.googleapis.com/css?family=Raleway"
-		rel="stylesheet" type="text/css">
+	rel="stylesheet" type="text/css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/list.css" />
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -66,16 +72,12 @@
 		</form>
 
 		<br> Ingredients Selected:
-		<table>
-			<tbody>
-				<c:forEach items="${ing.display()}" var="item">
-					<tr>
-						<td>${item}<a
-							href="<c:url value='/deleteFood?item=${item }' />">Delete</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<c:forEach items="${ing.display()}" var="item">
+			<ul>
+				<li>${item}<a
+					href="<c:url value='/deleteFood?item=${item }' />"> X</a></li>
+			</ul>
+		</c:forEach>
 
 		<a href="<c:url value='/deleteAll' />">Clear Search Entirely</a>
 
