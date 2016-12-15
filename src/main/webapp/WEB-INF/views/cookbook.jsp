@@ -19,8 +19,7 @@
 	href="${pageContext.request.contextPath}/resources/css/dinnerNinjaStylin.css" />
 
 <link href="http://fonts.googleapis.com/css?family=Raleway"
-		rel="stylesheet" type="text/css">
-
+	rel="stylesheet" type="text/css">
 
 </head>
 
@@ -29,8 +28,8 @@
 	<div class="header"></div>
 
 	<div class="buttons">
-		<a href="recipeSearchJC"> SEARCH </a> <a
-			class="active" href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
+		<a href="recipeSearchJC"> SEARCH </a> <a class="active"
+			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
 			href="logout"> LOGOUT </a>
 	</div>
 
@@ -38,12 +37,12 @@
 		<img src='<c:url value="resources/images/parchment.jpg"/>' />
 	</div>
 
-<body>
+	<div class="mainBody">
+		<div class="imageContainer">MY COOKBOOK</div>
 
-<div class="imageContainer">MY COOKBOOK</div>
-	
-	<h1>My cookbook:</h1>
-	<%-- <table id = "cookbook" border="1">
+		<h1>My cookbook:</h1>
+
+		<%-- <table id = "cookbook" border="1">
 		<tr>
 			<th>Image</th>
 			<th>Label</th>
@@ -83,35 +82,39 @@
           <span class="glyphicon glyphicon-remove"></span> Remove 
         </a>
 	</table> --%>
-	<div class="wrapper">
-	<c:forEach items="${cookbook}" var="cbk">
+		<div class="wrapper">
+			<c:forEach items="${cookbook}" var="cbk">
 
-		<div class="floating-box">
- 			 <div class="box">
-    			<div class="product">
-			      <a href="${cbk.recURL}"><img src="${cbk.recImage}" alt="${cbk.recLabel}" border="0"></a>
-			      <span class="name"><a href="${cbk.recURL}" class="name">${cbk.recLabel}</a>
-			      Your rating: ${cbk.recRating}
-			      <c:if test="${cbk.recRating == 0}">
-				<p>Not yet rated.</p></c:if></span>
-  					<form name="rate"action="recRating" method="GET">
-				<input type="hidden" name="cbID" value="${cbk.cbID}" />
-					<select name="rating">
-						<option value="5">5</option>
-						<option value="4">4</option>
-						<option value="3">3</option>
-						<option value="2">2</option>
-						<option value="1">1</option>
-				</select> <input type="submit" class="ratingButton"  value="Submit Rating">
-								</form>
+				<div class="floating-box">
+					<div class="box">
+						<div class="product">
+							<a href="${cbk.recURL}"><img src="${cbk.recImage}"
+								alt="${cbk.recLabel}" border="0"></a> <span class="name"><a
+								href="${cbk.recURL}" class="name">${cbk.recLabel}</a> Your
+								rating: ${cbk.recRating} <c:if test="${cbk.recRating == 0}">
+									<p>Not yet rated.</p>
+								</c:if></span>
+							<form name="rate" action="recRating" method="GET">
+								<input type="hidden" name="cbID" value="${cbk.cbID}" /> <select
+									name="rating">
+									<option value="5">5</option>
+									<option value="4">4</option>
+									<option value="3">3</option>
+									<option value="2">2</option>
+									<option value="1">1</option>
+								</select> <input type="submit" class="ratingButton" value="Submit Rating">
+							</form>
 
-			      <a class="button1" href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />">Delete Recipe</a>
-			      
-    </div>
+							<a class="button1"
+								href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />">Delete
+								Recipe</a>
 
-  </div>
-</div>
-</c:forEach>
-</div>
+						</div>
+
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 </body>
 </html>
