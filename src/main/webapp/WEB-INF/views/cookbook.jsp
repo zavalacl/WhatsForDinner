@@ -5,16 +5,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="com.zavala.whatsfordinner.IngredientsToBuy"%>
 <%@ page import="java.util.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>My Cookbook</title>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/cookbook.css" />
+
 </head>
 <body>
-	<h1>My cookbook:</h1>
+<div class="imageContainer">MY COOKBOOK</div>
+	
 
-	<table border="1">
+	<%-- <table id = "cookbook" border="1">
 		<tr>
 			<th>Image</th>
 			<th>Label</th>
@@ -49,9 +56,40 @@
 
 			</tr>
 		</c:forEach>
+<a href="myfile.htm"><img src="rainbow.gif" border="0"></a> 
+ <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-remove"></span> Remove 
+        </a>
+	</table> --%>
+	<div class="wrapper">
+	<c:forEach items="${cookbook}" var="cbk">
 
-	</table>
+		<div class="floating-box">
+ 			 <div class="box">
+    			<div class="product">
+			      <a href="${cbk.recURL}"><img src="${cbk.recImage}" alt="${cbk.recLabel}" border="0"></a>
+			      <span class="name"><a href="${cbk.recURL}" class="name">${cbk.recLabel}</a>
+			      Your rating: ${cbk.recRating}
+			      <c:if test="${cbk.recRating == 0}">
+				<p>Not yet rated.</p></c:if></span>
+  					<form name="rate"action="recRating" method="GET">
+				<input type="hidden" name="cbID" value="${cbk.cbID}" />
+					<select name="rating">
+						<option value="5">5</option>
+						<option value="4">4</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
+				</select> <input type="submit" class="ratingButton"  value="Submit Rating">
+								</form>
 
+			      <a class="button1" href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />">Delete Recipe</a>
+			      
+    </div>
 
+  </div>
+</div>
+</c:forEach>
+</div>
 </body>
 </html>
