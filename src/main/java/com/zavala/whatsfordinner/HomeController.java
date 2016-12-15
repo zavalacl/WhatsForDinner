@@ -46,7 +46,10 @@ public class HomeController {
 		model.addAttribute("cookbook", cookbook);
 		return "cookbook";
 	}
-
+	@RequestMapping(value = "/aboutUs", method = RequestMethod.GET)
+public String ninjas(){
+		return "Ninjas";
+	}
 	@RequestMapping(value = "/recRating", method = RequestMethod.GET)
 	public String recRating(@CookieValue("customerID") String customerID, Model model, @RequestParam(value="cbID") int cbID, @RequestParam(value="rating") int recRating ){
 			
