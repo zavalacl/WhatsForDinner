@@ -45,9 +45,11 @@
   </div>
   
 </form>
+
 	<br>
 	<P>
-		<a href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign Up!</a>
+		<a
+			href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign Up!</a>
 	</P>
 
 </body>
