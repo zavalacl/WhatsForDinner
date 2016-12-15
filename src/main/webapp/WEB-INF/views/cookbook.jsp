@@ -10,8 +10,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>My Cookbook</title>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dinnerNinjaStylin.css" />
+
+<link href="http://fonts.googleapis.com/css?family=Raleway"
+		rel="stylesheet" type="text/css">
+
 </head>
+
 <body>
+
+	<div class="header"></div>
+
+	<div class="buttons">
+		<a href="recipeSearchJC"> SEARCH </a> <a
+			class="active" href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
+			href="logout"> LOGOUT </a>
+	</div>
+
+	<div class="backgroundImage">
+		<img src='<c:url value="resources/images/parchment.jpg"/>' />
+	</div>
+
+<body>
+
 	<h1>My cookbook:</h1>
 
 	<table border="1">
