@@ -19,8 +19,7 @@
 
 
 <link href="http://fonts.googleapis.com/css?family=Raleway"
-		rel="stylesheet" type="text/css">
-
+	rel="stylesheet" type="text/css">
 
 </head>
 
@@ -29,8 +28,8 @@
 	<div class="header"></div>
 
 	<div class="buttons">
-		<a href="recipeSearchJC"> SEARCH </a> <a
-			class="active" href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
+		<a href="recipeSearchJC"> SEARCH </a> <a class="active"
+			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
 			href="logout"> LOGOUT </a>
 	</div>
 
@@ -38,12 +37,12 @@
 		<img src='<c:url value="resources/images/parchment.jpg"/>' />
 	</div>
 
-<body>
+	<div class="mainBody">
+		<div class="imageContainer">MY COOKBOOK</div>
 
-<div class="imageContainer">MY COOKBOOK</div>
-	
-	<h1>My cookbook:</h1>
-	<%-- <table id = "cookbook" border="1">
+		<h1>My cookbook:</h1>
+
+		<%-- <table id = "cookbook" border="1">
 		<tr>
 			<th>Image</th>
 			<th>Label</th>
@@ -84,6 +83,7 @@
           <span class="glyphicon glyphicon-remove"></span> Remove 
         </a>
 	</table> --%>
+
 	<div class="wrapper">
 	<c:forEach items="${cookbook}" var="cbk" varStatus="cbkstat">
 
@@ -120,5 +120,6 @@
 </div>
 </c:forEach>
 </div>
+
 </body>
 </html>
