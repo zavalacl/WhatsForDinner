@@ -14,18 +14,13 @@
 }
 </style>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dinnerNinjaStylin.css" />
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dinnerNinjaStylin.css" />
+<link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
-<link href="http://fonts.googleapis.com/css?family=Raleway"
-	rel="stylesheet" type="text/css">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/list.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/list.css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 
 </head>
 

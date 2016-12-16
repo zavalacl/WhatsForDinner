@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+h2 {
+    font-size: 25px;
+  }
+  .box {
+    background-color: #DCDCDC;
+    padding: 30px;
+    margin: 45px 100px 45px 100px;
+    border-radius: 5px;
+  }
+  .white-box {
+    background-color: white;
+    padding: 5px 3px 5px 3px;
+    margin: 10px;
+    border-radius: 3px;
+  }

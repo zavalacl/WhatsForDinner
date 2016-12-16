@@ -9,15 +9,15 @@
 <head>
 <title>Dinner Ninja</title>
 
- <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>Dinner Ninja</title>
+<title>Dinner Ninja</title>
 
-    <!-- Bootstrap Core CSS -->
+	<!-- Bootstrap Core CSS -->
     		
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" />
     
@@ -46,7 +46,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Mirza" rel="stylesheet">
-	
+
 </head>
 
 <body id="page-top">
@@ -76,16 +76,15 @@
     </nav>
 
     <header>
-        <div class="header-content">
+		<div class="header-content">
 
 			<video autoplay loop id="video-background" muted>
 				<source
 					src="${pageContext.request.contextPath}/resources/cooking.mp4"
 					type="video/mp4">
 			</video>
-			
+
 			<div class="header-content-inner">
-       
                 <h1 id="homeHeading">Welcome to Dinner Ninja</h1>
                 <hr>
                 <p style="font-style: italic;">Slicing through your dinner dilemmas!</p>
@@ -97,43 +96,42 @@
 					<br><input class="btn btn-primary btn-xl" type="submit" value="Log In">
 							
 				</form>
-                                
-                <p>Don't have an account?<a href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign Up!</a></p>
-            </div>
-        </div>
-    </header>
+
+				<p>
+					Don't have an account?<a
+						href="${pageContext.request.contextPath}/resources/NewCustomer.html">Sign
+						Up!</a>
+				</p>
+			</div>
+		</div>
+	</header>
 
 
-    <!-- jQuery 
     <script src="vendor/jquery/jquery.min.js"></script> -->
-    
-    <script
-				src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-    
 
-    <!-- Bootstrap Core JavaScript 
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+
+
+	<!-- Bootstrap Core JavaScript 
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>-->
-    
-    <script
-				src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    
 
-    <!-- Plugin JavaScript 
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+
+	<!-- Plugin JavaScript 
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script> 
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     -->
-    <script
-				src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script
-				src="${pageContext.request.contextPath}/resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script
-				src="${pageContext.request.contextPath}/resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     
 
-    <!-- Theme JavaScript 
-    <script src="js/creative.min.js"></script>
-    -->
+    <!-- Theme JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/js/creative.min.js"></script>
 
-		</body>
+</body>
 </html>

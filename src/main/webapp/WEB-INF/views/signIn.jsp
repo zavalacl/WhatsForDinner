@@ -32,7 +32,7 @@
 	<div class="backgroundImage">
 		<img src='<c:url value="resources/images/parchment.jpg"/>' />
 	</div>
-
+<div class="mainBody">
 	<h1>${retry}</h1>
 
 	<form class="login" action="signIn" method="GET">
@@ -64,6 +64,6 @@
 	</form>
 	<br>
 	<a href="home">Back to Home</a>
-
+</div>
 </body>
 </html>
