@@ -21,49 +21,48 @@
 
 <body>
 
-	<div class="header"></div>
+ <div class="header"></div>
+ 
+ <div class="logo">
+   <img src='<c:url value="resources/images/DinnerNinjaLogo.png"/>' />
+ </div>
 
-	<div class="buttons">
-		<a href="recipeSearchJC"> SEARCH </a> <a
-			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
-			href="logout"> LOGOUT </a>
+	<div class="navButtons">
+		<a href="recipeSearchJC"> SEARCH </a> <a href="cookbook"> COOKBOOK
+		</a> <a href="aboutUs"> NINJAS </a> <a href="logout"> LOGOUT </a>
 	</div>
 
-	<div class="backgroundImage">
-		<img src='<c:url value="resources/images/parchment.jpg"/>' />
+	<div class="mainBody">
+		<h1>${retry}</h1>
+
+		<form class="login" action="signIn" method="GET">
+
+			<fieldset>
+
+				<legend class="legend">Login</legend>
+
+				<div class="input">
+					<input type="email" placeholder="Email" required name="eml" /> <span><i
+						class="fa fa-envelope-o"></i></span>
+				</div>
+
+				<div class="input">
+					<input type="password" placeholder="Password" required name="pass" />
+					<span><i class="fa fa-lock"></i></span>
+				</div>
+
+				<button type="submit" class="submit">
+					<i class="fa fa-long-arrow-right"></i>
+				</button>
+
+			</fieldset>
+
+			<div class="feedback">
+				login successful <br /> redirecting...
+			</div>
+
+		</form>
+		<br> <a href="home">Back to Home</a>
 	</div>
-<div class="mainBody">
-	<h1>${retry}</h1>
-
-	<form class="login" action="signIn" method="GET">
-
-		<fieldset>
-
-			<legend class="legend">Login</legend>
-
-			<div class="input">
-				<input type="email" placeholder="Email" required name="eml" /> <span><i
-					class="fa fa-envelope-o"></i></span>
-			</div>
-
-			<div class="input">
-				<input type="password" placeholder="Password" required name="pass" />
-				<span><i class="fa fa-lock"></i></span>
-			</div>
-
-			<button type="submit" class="submit">
-				<i class="fa fa-long-arrow-right"></i>
-			</button>
-
-		</fieldset>
-
-		<div class="feedback">
-			login successful <br /> redirecting...
-		</div>
-
-	</form>
-	<br>
-	<a href="home">Back to Home</a>
-</div>
 </body>
 </html>
