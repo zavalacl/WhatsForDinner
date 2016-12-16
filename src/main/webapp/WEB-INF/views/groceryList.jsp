@@ -34,11 +34,11 @@
 			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
 			href="logout"> LOGOUT </a>
 	</div>
-
+<div class="mainBody">
 		<h1>${recipeLabel}</h1>
 		<img src="${recipeImage}">
 		<h3>
-			<a href="${recipeURL}">Recipe Instructions</a>
+			<a href="${recipeURL}" target="_blank">Recipe Instructions</a>
 		</h3>
 		<p>Source: ${recipeSource}</p>
 
@@ -76,6 +76,7 @@
 			<input type="submit" value="Add this recipe to my cookbook!">
 
 		</form>
+	</div>
 	</div>
 </body>
 </html>

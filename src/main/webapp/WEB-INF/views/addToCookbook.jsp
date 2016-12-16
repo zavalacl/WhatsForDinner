@@ -32,7 +32,7 @@
 
 	<div class="mainBody">
 
-		<h1>You just added the following recipe to your cookbook:</h1>
+		<h1>You just added the following <br>recipe to your cookbook:</h1>
 
 		<table border="1">
 			<tr>

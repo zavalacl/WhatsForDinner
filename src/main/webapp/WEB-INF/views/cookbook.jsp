@@ -48,8 +48,7 @@
 	
 <body>
 	<div class="mainBody">
-		<div class="imageContainer">MY COOKBOOK</div>
-
+	<h1>My Cookbook</h1>
 		<%-- <table id = "cookbook" border="1">
 		<tr>
 			<th>Image</th>
