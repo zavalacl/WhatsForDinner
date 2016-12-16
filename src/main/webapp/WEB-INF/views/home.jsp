@@ -66,7 +66,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="Ninjas.jsp">Meet The Ninjas</a>
+                        <a class="page-scroll" href="aboutUs">Meet The Ninjas</a>
                     </li>
                 </ul>
             </div>
