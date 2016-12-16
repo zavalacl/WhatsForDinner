@@ -63,7 +63,7 @@ h1 {
 }
 
 p, span {
-	font-family: monospace;
+	font-family: arial;
 	font-weight: 300;
 	text-align: center;
 	color: rgba(0, 0, 0, 0.5);
@@ -120,12 +120,13 @@ h1, h1+p {
 	font-size: 16px;
 	padding: 5px;
 	border-radius: 8px;
-	width: 80%;
+	width: 85%;
 	position: absolute;
 	bottom: .5rem;
 	display: block;
 	padding: 0 1.5rem;
 	border: 1px solid #555555;
+	left:15px
 }
 
 .product {
@@ -165,8 +166,7 @@ a:visited {
 	font-family: Monaco, Consolas, "Lucida Console", monospace;
 	-webkit-text-stroke: 1px black;
 	color: white;
-	text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px
-		0 #000, 1px 1px 0 #000;
+	
 }
 
 .scroll {
