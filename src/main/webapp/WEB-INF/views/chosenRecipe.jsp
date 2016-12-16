@@ -17,7 +17,7 @@
 
 	<div class="header"></div>
 
-	<div class="buttons">
+	<div class="navButtons">
 		<a href="recipeSearchJC"> SEARCH </a> <a href="cookbook"> COOKBOOK
 		</a> <a href="aboutUs"> NINJAS </a> <a href="logout"> LOGOUT </a>
 	</div>

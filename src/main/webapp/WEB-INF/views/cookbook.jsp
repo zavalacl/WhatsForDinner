@@ -11,11 +11,7 @@
 
 <%@ page import="java.util.*"%>
 
-
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 <html>
 
@@ -23,11 +19,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-
-
 <title>My Cookbook</title>
-
-
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/cookbook.css" />
@@ -55,7 +47,7 @@
 
 
 
-	<div class="buttons">
+	<div class="navButtons">
 
 		<a href="recipeSearchJC"> SEARCH </a> <a class="active"
 			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
