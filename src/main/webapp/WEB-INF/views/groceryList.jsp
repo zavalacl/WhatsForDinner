@@ -30,11 +30,10 @@
  </div>
 
 	<div class="navButtons">
-		<a href="recipeSearchJC"> SEARCH </a> <a href="cookbook"> COOKBOOK
-		</a> <a href="aboutUs"> NINJAS </a> <a href="logout"> LOGOUT </a>
+		<a href="recipeSearchJC"> SEARCH </a> <a
+			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
+			href="logout"> LOGOUT </a>
 	</div>
-
-	<div class="mainBody">
 
 		<h1>${recipeLabel}</h1>
 		<img src="${recipeImage}">

@@ -16,8 +16,6 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);	
 	position: fixed;
 	top: 0px;
-    background-repeat: no-repeat;
-    background-position: left top;
     color: rgba(255,255,255,0.6);
     padding: 10px;
     height: 212px;
@@ -26,11 +24,11 @@
 }
 
 .logo img{
+	
 	position: fixed;
-	top: 5px;
-	left: 5px;
+	margin: auto;
 	min-height: 200px;
-	width: 100%;
+	max-width: 100%;
 	z-index: 100;
 }
 
@@ -186,4 +184,9 @@ a:active {text-decoration:underline;}
 .mainBody {
 	  position: relative;
 	  top: 212px;
+}
+
+body {
+    background: rgba(245,245,245,1);
+    color: rgba(50,50,50,1);
 }

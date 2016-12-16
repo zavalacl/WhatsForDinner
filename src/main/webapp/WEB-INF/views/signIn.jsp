@@ -21,11 +21,11 @@
 
 <body>
 
- <div class="header"></div>
- 
- <div class="logo">
-   <img src='<c:url value="resources/images/DinnerNinjaLogo.png"/>' />
- </div>
+	<div class="header"></div>
+
+	<div class="logo">
+		<img src='<c:url value="resources/images/DinnerNinjaLogo.png"/>' />
+	</div>
 
 	<div class="navButtons">
 		<a href="recipeSearchJC"> SEARCH </a> <a href="cookbook"> COOKBOOK

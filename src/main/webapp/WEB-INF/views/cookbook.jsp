@@ -45,15 +45,10 @@
 			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
 			href="logout"> LOGOUT </a>
 	</div>
-
-	<%-- 	<div class="backgroundImage">
-		<img src='<c:url value="resources/images/parchment.jpg"/>' />
-	</div> --%>
+	
 <body>
 	<div class="mainBody">
 		<div class="imageContainer">MY COOKBOOK</div>
-
-		<h1>My cookbook:</h1>
 
 		<%-- <table id = "cookbook" border="1">
 		<tr>
@@ -97,22 +92,13 @@
 	</table> --%>
 
 		<div class="wrapper">
-
 			<c:forEach items="${cookbook}" var="cbk" varStatus="cbkstat">
-
-
-
 				<div class="floating-box">
-
 					<div class="box">
-
 						<div class="product">
-
 							<a href="${cbk.recURL}"><img src="${cbk.recImage}"
 								alt="${cbk.recLabel}" border="0"></a> <span class="nameCard"><a
 								href="${cbk.recURL}" class="nameCard">${cbk.recLabel}</a>
-
-
 								<div class="stars">
 									<c:choose>
 										<c:when test="${cbk.recRating == 5}">
@@ -230,6 +216,7 @@
 
 											</form>
 										</c:when>
+
 										<c:otherwise>
 											<form action="recRating" method="GET">
 
@@ -254,6 +241,7 @@
 											</form>
 										</c:otherwise>
 									</c:choose>
+
 								</div> <a class="button1"
 								href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />">Delete
 									Recipe</a>
