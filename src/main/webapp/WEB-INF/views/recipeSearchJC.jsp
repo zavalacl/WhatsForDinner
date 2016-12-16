@@ -38,9 +38,9 @@
 			href="logout"> LOGOUT </a>
 	</div>
 
-	<div class="backgroundImage"> -->
- 		<img src='<c:url value="resources/images/parchment.jpg"/>' />
- 	</div>
+	<div class="backgroundImage">
+		--> <img src='<c:url value="resources/images/parchment.jpg"/>' />
+	</div>
 
 	<script>
 		function formSubmit(which) {
@@ -95,7 +95,7 @@
 			</c:forEach>
 
 			<!-- Recipe Start -->
-<!-- 			<div class="recipe">
+			<!-- 			<div class="recipe">
 				<div class="image">
 					<img src="http://data3.whicdn.com/images/60675612/large.jpg">
 					<div class="likes">

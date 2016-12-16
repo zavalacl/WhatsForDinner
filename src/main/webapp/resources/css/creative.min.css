@@ -115,16 +115,21 @@ aside {
 @media (min-width:768px) {
 .navbar-default {
 	background-color: transparent;
-	border-color: rgba(255,255,255,.3)
+	border-color: #38b449;
 }
 .navbar-default .navbar-header .navbar-brand {
-	color: rgba(255,255,255,.7)
+	color: #fff;
+	text-shadow: 1px 1px 1px #F05F40, 1px 1px 4px #F05F40;
+	font-family: 'Mirza', cursive !important;
 }
 .navbar-default .navbar-header .navbar-brand:focus, .navbar-default .navbar-header .navbar-brand:hover {
 	color: #fff
 }
 .navbar-default .nav>li>a, .navbar-default .nav>li>a:focus {
-	color: rgba(255,255,255,.7)
+	color: #fff;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #F05F40, 1px 1px 4px #F05F40;
+    font-family: 'Mirza', cursive !important;
 }
 .navbar-default .nav>li>a:focus:hover, .navbar-default .nav>li>a:hover {
 	color: #fff
@@ -172,9 +177,8 @@ header .header-content .header-content-inner hr {
 }
 header .header-content .header-content-inner p {
 	font-weight: 300;
-	color: rgba(255,255,255,.7);
+	color: #ffffff;
 	font-size: 16px;
-	margin-bottom: 50px
 }
 
 @media (min-width:768px) {
@@ -191,14 +195,13 @@ header .header-content {
 }
 header .header-content .header-content-inner {
 	max-width: 1000px;
-	margin-left: auto;
-	margin-right: auto
+	margin:100px auto 0 auto;
 }
 header .header-content .header-content-inner h1 {
-	font-size: 50px
+	font-size: 60px
 }
 header .header-content .header-content-inner p {
-	font-size: 18px;
+	font-size: 22px;
 	max-width: 80%;
 	margin-left: auto;
 	margin-right: auto
@@ -329,7 +332,8 @@ header .header-content .header-content-inner p {
 	border: none;
 	border-radius: 300px;
 	font-weight: 700;
-	text-transform: uppercase
+	text-transform: uppercase;
+	margin: 15px;
 }
 .btn-xl {
 	padding: 15px 30px
@@ -342,7 +346,7 @@ background:#222
 ::selection {
 	color: #fff;
 	text-shadow: none;
-	background: #222
+	/*background: #222*/
 }
 img::selection {
 	color: #fff;
