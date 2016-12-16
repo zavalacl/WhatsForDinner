@@ -14,9 +14,7 @@
 }
 </style>
 
-<<<<<<< HEAD
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/DinnerNinjaStylin.css" />
-=======
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dinnerNinjaStylin.css" />
 
@@ -26,9 +24,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/list.css" />
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
->>>>>>> c2a2c933c994d27584b88488ea57a2c660a2329e
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 
