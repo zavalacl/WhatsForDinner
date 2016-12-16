@@ -10,12 +10,20 @@ body{
 
 }
 
-div.stars {
+div.stars, form {
 
-  width: 270px;
+  width: 275px;
 
-  display: inline-block;
+  display: block;
+  
+  text-align: center;
+ position: absolute;
 
+  bottom: 2.7rem;
+
+  right: 5px;
+
+  left: 5px;
 }
 
 
@@ -189,10 +197,10 @@ h1 + p {
 }
 
 .button1 {
-
+font:Comic Sans MS !important;
     background-color: white; 
 
-    color: black; 
+    color: red; 
 
    font-size: 16px;
 
@@ -200,16 +208,15 @@ h1 + p {
 
    border-radius: 8px;
 
-    
+    width:80%;
 
       position: absolute;
 
   bottom: .5rem;
 
-  left: 160px;
+  
 
-  right: 5px;
-
+ 
   display: block;
 
   padding: 0 1.5rem;
