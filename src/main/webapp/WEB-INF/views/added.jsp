@@ -20,16 +20,16 @@
 
 <body>
 
-	<div class="header"></div>
+ <div class="header"></div>
+ 
+ <div class="logo">
+   <img src='<c:url value="resources/images/DinnerNinjaLogo.png"/>' />
+ </div>
 
 	<div class="navButtons">
 		<a href="recipeSearchJC"> SEARCH </a> <a
 			href="cookbook"> COOKBOOK </a> <a href="aboutUs"> NINJAS </a> <a
 			href="logout"> LOGOUT </a>
-	</div>
-
-	<div class="backgroundImage">
-		<img src='<c:url value="resources/images/parchment.jpg"/>' />
 	</div>
 
 <body>

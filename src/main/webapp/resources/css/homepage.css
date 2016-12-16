@@ -64,3 +64,7 @@ button:hover {
 #homeHeading { 
 	font-family: 'Mirza', cursive !important; 
 }
+
+.bgVid {
+	opacity: 0.5;
+}

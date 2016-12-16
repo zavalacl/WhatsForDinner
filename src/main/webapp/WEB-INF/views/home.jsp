@@ -77,13 +77,13 @@
 
     <header>
 		<div class="header-content">
-
+			<div class="bgVid">
 			<video autoplay loop id="video-background" muted>
 				<source
 					src="${pageContext.request.contextPath}/resources/cooking.mp4"
 					type="video/mp4">
 			</video>
-
+			</div>
 			<div class="header-content-inner">
                 <h1 id="homeHeading">Welcome to Dinner Ninja</h1>
                 <hr>

@@ -29,12 +29,16 @@
 
 <link href="http://fonts.googleapis.com/css?family=Raleway"
 	rel="stylesheet" type="text/css">
-	
+
 </head>
 
 <body>
 
-	<div class="header"></div>
+ <div class="header"></div>
+ 
+ <div class="logo">
+   <img src='<c:url value="resources/images/DinnerNinjaLogo.png"/>' />
+ </div>
 
 	<div class="navButtons">
 		<a href="recipeSearchJC"> SEARCH </a> <a class="active"
@@ -42,16 +46,16 @@
 			href="logout"> LOGOUT </a>
 	</div>
 
-<%-- 	<div class="backgroundImage">
+	<%-- 	<div class="backgroundImage">
 		<img src='<c:url value="resources/images/parchment.jpg"/>' />
 	</div> --%>
 <body>
 	<div class="mainBody">
-	<div class="imageContainer">MY COOKBOOK</div>
+		<div class="imageContainer">MY COOKBOOK</div>
 
-	<h1>My cookbook:</h1>
+		<h1>My cookbook:</h1>
 
-	<%-- <table id = "cookbook" border="1">
+		<%-- <table id = "cookbook" border="1">
 		<tr>
 			<th>Image</th>
 			<th>Label</th>
@@ -92,186 +96,173 @@
         </a>
 	</table> --%>
 
-	<div class="wrapper">
+		<div class="wrapper">
 
-		<c:forEach items="${cookbook}" var="cbk" varStatus="cbkstat">
+			<c:forEach items="${cookbook}" var="cbk" varStatus="cbkstat">
 
 
 
-			<div class="floating-box">
+				<div class="floating-box">
 
-				<div class="box">
+					<div class="box">
 
-					<div class="product">
+						<div class="product">
 
-						<a href="${cbk.recURL}"><img src="${cbk.recImage}"
-							alt="${cbk.recLabel}" border="0"></a> <span class="nameCard"><a
-							href="${cbk.recURL}" class="nameCard">${cbk.recLabel}</a>
-							
-	
-						<div class="stars">
-					<c:choose>
-						<c:when test="${cbk.recRating == 5}">
-							<form action="recRating" method="GET">
+							<a href="${cbk.recURL}"><img src="${cbk.recImage}"
+								alt="${cbk.recLabel}" border="0"></a> <span class="nameCard"><a
+								href="${cbk.recURL}" class="nameCard">${cbk.recLabel}</a>
 
-								<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
-									class="star star-5" id="star-5-${cbkstat.index}" value="5"
-									type="radio" name="rating" checked="checked"/> <label class="star star-5"
-									for="star-5-${cbkstat.index}"></label> <input
-									class="star star-4" id="star-4-${cbkstat.index}" value="4"
-									type="radio" name="rating" /> <label class="star star-4"
-									for="star-4-${cbkstat.index}"></label> <input
-									class="star star-3" id="star-3-${cbkstat.index}" value="3"
-									type="radio" name="rating" /> <label class="star star-3"
-									for="star-3-${cbkstat.index}"></label> <input
-									class="star star-2" id="star-2-${cbkstat.index}" value="2"
-									type="radio" name="rating" /> <label class="star star-2"
-									for="star-2-${cbkstat.index}"></label> <input
-									class="star star-1" id="star-1-${cbkstat.index}" value="1"
-									type="radio" name="rating" /> <label class="star star-1"
-									for="star-1-${cbkstat.index}"></label> <input type="submit"
-									class="button" value="Rate!">
 
-							</form>
-							</c:when>
-							<c:when test="${cbk.recRating == 4}">
-							<form action="recRating" method="GET">
+								<div class="stars">
+									<c:choose>
+										<c:when test="${cbk.recRating == 5}">
+											<form action="recRating" method="GET">
 
-								<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
-									class="star star-5" id="star-5-${cbkstat.index}" value="5"
-									type="radio" name="rating"/> <label class="star star-5"
-									for="star-5-${cbkstat.index}"></label> <input
-									class="star star-4" id="star-4-${cbkstat.index}" value="4"
-									type="radio" name="rating" checked="checked" /> <label class="star star-4"
-									for="star-4-${cbkstat.index}"></label> <input
-									class="star star-3" id="star-3-${cbkstat.index}" value="3"
-									type="radio" name="rating" /> <label class="star star-3"
-									for="star-3-${cbkstat.index}"></label> <input
-									class="star star-2" id="star-2-${cbkstat.index}" value="2"
-									type="radio" name="rating" /> <label class="star star-2"
-									for="star-2-${cbkstat.index}"></label> <input
-									class="star star-1" id="star-1-${cbkstat.index}" value="1"
-									type="radio" name="rating" /> <label class="star star-1"
-									for="star-1-${cbkstat.index}"></label> <input type="submit"
-									class="button" value="Rate!">
+												<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
+													class="star star-5" id="star-5-${cbkstat.index}" value="5"
+													type="radio" name="rating" checked="checked" /> <label
+													class="star star-5" for="star-5-${cbkstat.index}"></label>
+												<input class="star star-4" id="star-4-${cbkstat.index}"
+													value="4" type="radio" name="rating" /> <label
+													class="star star-4" for="star-4-${cbkstat.index}"></label>
+												<input class="star star-3" id="star-3-${cbkstat.index}"
+													value="3" type="radio" name="rating" /> <label
+													class="star star-3" for="star-3-${cbkstat.index}"></label>
+												<input class="star star-2" id="star-2-${cbkstat.index}"
+													value="2" type="radio" name="rating" /> <label
+													class="star star-2" for="star-2-${cbkstat.index}"></label>
+												<input class="star star-1" id="star-1-${cbkstat.index}"
+													value="1" type="radio" name="rating" /> <label
+													class="star star-1" for="star-1-${cbkstat.index}"></label>
+												<input type="submit" class="button" value="Rate!">
 
-							</form>
-							</c:when>
-							<c:when test="${cbk.recRating == 3}">
-							<form action="recRating" method="GET">
+											</form>
+										</c:when>
+										<c:when test="${cbk.recRating == 4}">
+											<form action="recRating" method="GET">
 
-								<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
-									class="star star-5" id="star-5-${cbkstat.index}" value="5"
-									type="radio" name="rating"/> <label class="star star-5"
-									for="star-5-${cbkstat.index}"></label> <input
-									class="star star-4" id="star-4-${cbkstat.index}" value="4"
-									type="radio" name="rating" /> <label class="star star-4"
-									for="star-4-${cbkstat.index}"></label> <input
-									class="star star-3" id="star-3-${cbkstat.index}" value="3"
-									type="radio" name="rating"  checked="checked"/> <label class="star star-3"
-									for="star-3-${cbkstat.index}"></label> <input
-									class="star star-2" id="star-2-${cbkstat.index}" value="2"
-									type="radio" name="rating" /> <label class="star star-2"
-									for="star-2-${cbkstat.index}"></label> <input
-									class="star star-1" id="star-1-${cbkstat.index}" value="1"
-									type="radio" name="rating" /> <label class="star star-1"
-									for="star-1-${cbkstat.index}"></label> <input type="submit"
-									class="button" value="Rate!">
+												<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
+													class="star star-5" id="star-5-${cbkstat.index}" value="5"
+													type="radio" name="rating" /> <label class="star star-5"
+													for="star-5-${cbkstat.index}"></label> <input
+													class="star star-4" id="star-4-${cbkstat.index}" value="4"
+													type="radio" name="rating" checked="checked" /> <label
+													class="star star-4" for="star-4-${cbkstat.index}"></label>
+												<input class="star star-3" id="star-3-${cbkstat.index}"
+													value="3" type="radio" name="rating" /> <label
+													class="star star-3" for="star-3-${cbkstat.index}"></label>
+												<input class="star star-2" id="star-2-${cbkstat.index}"
+													value="2" type="radio" name="rating" /> <label
+													class="star star-2" for="star-2-${cbkstat.index}"></label>
+												<input class="star star-1" id="star-1-${cbkstat.index}"
+													value="1" type="radio" name="rating" /> <label
+													class="star star-1" for="star-1-${cbkstat.index}"></label>
+												<input type="submit" class="button" value="Rate!">
 
-							</form>
-							</c:when>
-							<c:when test="${cbk.recRating == 2}">
-							<form action="recRating" method="GET">
+											</form>
+										</c:when>
+										<c:when test="${cbk.recRating == 3}">
+											<form action="recRating" method="GET">
 
-								<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
-									class="star star-5" id="star-5-${cbkstat.index}" value="5"
-									type="radio" name="rating"/> <label class="star star-5"
-									for="star-5-${cbkstat.index}"></label> <input
-									class="star star-4" id="star-4-${cbkstat.index}" value="4"
-									type="radio" name="rating"  /> <label class="star star-4"
-									for="star-4-${cbkstat.index}"></label> <input
-									class="star star-3" id="star-3-${cbkstat.index}" value="3"
-									type="radio" name="rating" /> <label class="star star-3"
-									for="star-3-${cbkstat.index}"></label> <input
-									class="star star-2" id="star-2-${cbkstat.index}" value="2"
-									type="radio" name="rating" checked="checked"/> <label class="star star-2"
-									for="star-2-${cbkstat.index}"></label> <input
-									class="star star-1" id="star-1-${cbkstat.index}" value="1"
-									type="radio" name="rating" /> <label class="star star-1"
-									for="star-1-${cbkstat.index}"></label> <input type="submit"
-									class="button" value="Rate!">
+												<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
+													class="star star-5" id="star-5-${cbkstat.index}" value="5"
+													type="radio" name="rating" /> <label class="star star-5"
+													for="star-5-${cbkstat.index}"></label> <input
+													class="star star-4" id="star-4-${cbkstat.index}" value="4"
+													type="radio" name="rating" /> <label class="star star-4"
+													for="star-4-${cbkstat.index}"></label> <input
+													class="star star-3" id="star-3-${cbkstat.index}" value="3"
+													type="radio" name="rating" checked="checked" /> <label
+													class="star star-3" for="star-3-${cbkstat.index}"></label>
+												<input class="star star-2" id="star-2-${cbkstat.index}"
+													value="2" type="radio" name="rating" /> <label
+													class="star star-2" for="star-2-${cbkstat.index}"></label>
+												<input class="star star-1" id="star-1-${cbkstat.index}"
+													value="1" type="radio" name="rating" /> <label
+													class="star star-1" for="star-1-${cbkstat.index}"></label>
+												<input type="submit" class="button" value="Rate!">
 
-							</form>
-							</c:when>
-							<c:when test="${cbk.recRating == 1}">
-							<form action="recRating" method="GET">
+											</form>
+										</c:when>
+										<c:when test="${cbk.recRating == 2}">
+											<form action="recRating" method="GET">
 
-								<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
-									class="star star-5" id="star-5-${cbkstat.index}" value="5"
-									type="radio" name="rating"/> <label class="star star-5"
-									for="star-5-${cbkstat.index}"></label> <input
-									class="star star-4" id="star-4-${cbkstat.index}" value="4"
-									type="radio" name="rating"/> <label class="star star-4"
-									for="star-4-${cbkstat.index}"></label> <input
-									class="star star-3" id="star-3-${cbkstat.index}" value="3"
-									type="radio" name="rating" /> <label class="star star-3"
-									for="star-3-${cbkstat.index}"></label> <input
-									class="star star-2" id="star-2-${cbkstat.index}" value="2"
-									type="radio" name="rating" /> <label class="star star-2"
-									for="star-2-${cbkstat.index}"></label> <input
-									class="star star-1" id="star-1-${cbkstat.index}" value="1"
-									type="radio" name="rating"  checked="checked"  /> <label class="star star-1"
-									for="star-1-${cbkstat.index}"></label> <input type="submit"
-									class="button" value="Rate!">
+												<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
+													class="star star-5" id="star-5-${cbkstat.index}" value="5"
+													type="radio" name="rating" /> <label class="star star-5"
+													for="star-5-${cbkstat.index}"></label> <input
+													class="star star-4" id="star-4-${cbkstat.index}" value="4"
+													type="radio" name="rating" /> <label class="star star-4"
+													for="star-4-${cbkstat.index}"></label> <input
+													class="star star-3" id="star-3-${cbkstat.index}" value="3"
+													type="radio" name="rating" /> <label class="star star-3"
+													for="star-3-${cbkstat.index}"></label> <input
+													class="star star-2" id="star-2-${cbkstat.index}" value="2"
+													type="radio" name="rating" checked="checked" /> <label
+													class="star star-2" for="star-2-${cbkstat.index}"></label>
+												<input class="star star-1" id="star-1-${cbkstat.index}"
+													value="1" type="radio" name="rating" /> <label
+													class="star star-1" for="star-1-${cbkstat.index}"></label>
+												<input type="submit" class="button" value="Rate!">
 
-							</form>
-							</c:when>
-							<c:otherwise>
-        					<form action="recRating" method="GET">
+											</form>
+										</c:when>
+										<c:when test="${cbk.recRating == 1}">
+											<form action="recRating" method="GET">
 
-								<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
-									class="star star-5" id="star-5-${cbkstat.index}" value="5"
-									type="radio" name="rating"/> <label class="star star-5"
-									for="star-5-${cbkstat.index}"></label> <input
-									class="star star-4" id="star-4-${cbkstat.index}" value="4"
-									type="radio" name="rating"/> <label class="star star-4"
-									for="star-4-${cbkstat.index}"></label> <input
-									class="star star-3" id="star-3-${cbkstat.index}" value="3"
-									type="radio" name="rating" /> <label class="star star-3"
-									for="star-3-${cbkstat.index}"></label> <input
-									class="star star-2" id="star-2-${cbkstat.index}" value="2"
-									type="radio" name="rating" /> <label class="star star-2"
-									for="star-2-${cbkstat.index}"></label> <input
-									class="star star-1" id="star-1-${cbkstat.index}" value="1"
-									type="radio" name="rating" /> <label class="star star-1"
-									for="star-1-${cbkstat.index}"></label> <input type="submit"
-									class="button" value="Rate!">
+												<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
+													class="star star-5" id="star-5-${cbkstat.index}" value="5"
+													type="radio" name="rating" /> <label class="star star-5"
+													for="star-5-${cbkstat.index}"></label> <input
+													class="star star-4" id="star-4-${cbkstat.index}" value="4"
+													type="radio" name="rating" /> <label class="star star-4"
+													for="star-4-${cbkstat.index}"></label> <input
+													class="star star-3" id="star-3-${cbkstat.index}" value="3"
+													type="radio" name="rating" /> <label class="star star-3"
+													for="star-3-${cbkstat.index}"></label> <input
+													class="star star-2" id="star-2-${cbkstat.index}" value="2"
+													type="radio" name="rating" /> <label class="star star-2"
+													for="star-2-${cbkstat.index}"></label> <input
+													class="star star-1" id="star-1-${cbkstat.index}" value="1"
+													type="radio" name="rating" checked="checked" /> <label
+													class="star star-1" for="star-1-${cbkstat.index}"></label>
+												<input type="submit" class="button" value="Rate!">
 
-							</form>
-  						    </c:otherwise>
-							</c:choose>
+											</form>
+										</c:when>
+										<c:otherwise>
+											<form action="recRating" method="GET">
+
+												<input type="hidden" name="cbID" value="${cbk.cbID}" /> <input
+													class="star star-5" id="star-5-${cbkstat.index}" value="5"
+													type="radio" name="rating" /> <label class="star star-5"
+													for="star-5-${cbkstat.index}"></label> <input
+													class="star star-4" id="star-4-${cbkstat.index}" value="4"
+													type="radio" name="rating" /> <label class="star star-4"
+													for="star-4-${cbkstat.index}"></label> <input
+													class="star star-3" id="star-3-${cbkstat.index}" value="3"
+													type="radio" name="rating" /> <label class="star star-3"
+													for="star-3-${cbkstat.index}"></label> <input
+													class="star star-2" id="star-2-${cbkstat.index}" value="2"
+													type="radio" name="rating" /> <label class="star star-2"
+													for="star-2-${cbkstat.index}"></label> <input
+													class="star star-1" id="star-1-${cbkstat.index}" value="1"
+													type="radio" name="rating" /> <label class="star star-1"
+													for="star-1-${cbkstat.index}"></label> <input type="submit"
+													class="button" value="Rate!">
+
+											</form>
+										</c:otherwise>
+									</c:choose>
+								</div> <a class="button1"
+								href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />">Delete
+									Recipe</a>
 						</div>
-
-
-						
-						<a class="button1"
-							href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />">Delete
-							Recipe</a>
-
-
-
 					</div>
-
-
-
 				</div>
-
-			</div>
-
-		</c:forEach>
-
+			</c:forEach>
+		</div>
 	</div>
-</div>
 </body>
 
 </html>

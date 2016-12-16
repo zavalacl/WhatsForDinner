@@ -9,18 +9,29 @@
 }
 
 .header {
-	background-image: url("../images/dinnerNinjaHeaderDraft.png");
-	height: 256px;
+
+	background-color: black;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666666), to(#000000));
+	background-image: linear-gradient(left, #666666, #000000);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);	
 	position: fixed;
 	top: 0px;
-	width: 100%;
-	z-index: 9;
-	background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-position: left top;
+    color: rgba(255,255,255,0.6);
+    padding: 10px;
+    height: 212px;
+    width: 100%;
+    	z-index: 11;
 }
 
-body {
-  color:#FFF;
-  background:url('http://subtlepatterns.com/patterns/gplaypattern.png');
+.logo img{
+	position: fixed;
+	top: 5px;
+	left: 5px;
+	min-height: 200px;
+	width: 100%;
+	z-index: 100;
 }
 
 h3 {
@@ -172,25 +183,7 @@ a:active {text-decoration:underline;}
   right: 300px;
 }
 
-.backgroundImage {
-    overflow: hidden;
-}
-
-.backgroundImage img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    opacity: 0.3;   
-}	
-
 .mainBody {
 	  position: relative;
 	  top: 212px;
 }
-
-
