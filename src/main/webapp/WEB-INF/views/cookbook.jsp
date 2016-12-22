@@ -49,46 +49,6 @@
 <body>
 	<div class="mainBody">
 	<h1>My Cookbook</h1>
-		<%-- <table id = "cookbook" border="1">
-		<tr>
-			<th>Image</th>
-			<th>Label</th>
-			<th>Source</th>
-			<th>Recipe Url</th>
-			<th>Ingredients</th>
-			<th>Rating</th>
-		</tr>
-		<c:forEach items="${cookbook}" var="cbk">
-			<tr>
-				<td><img src="${cbk.recImage}" height="100px" width="100px"></td>
-				<td>${cbk.recLabel}</td>
-				<td>${cbk.recSource}</td>
-				<td><a href="${cbk.recURL}" target="_blank">View recipe
-						instructions</a></td>
-				<td>${cbk.recIngredients}</td> 
-				<td>Your rating: ${cbk.recRating}<c:if test="${cbk.recRating == 0}">
-				<p>Not yet rated.</p></c:if>
-				<form name = "rate" action="recRating" method="GET">
-				<input type="hidden" name="cbID" value="${cbk.cbID}" />
-					<select name="rating">
-						<option value="5">5</option>
-						<option value="4">4</option>
-						<option value="3">3</option>
-						<option value="2">2</option>
-						<option value="1">1</option>
-				</select> <input type="submit" class ="ratingButton" value="Submit Rating">
-				</form>
-				</td>
-				<td><a
-					href="<c:url value='/deleteCookBook?cbID=${cbk.cbID}' />">Delete</a></td>
-			</tr>
-		</c:forEach>
-
-<a href="myfile.htm"><img src="rainbow.gif" border="0"></a> 
- <a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-remove"></span> Remove 
-        </a>
-	</table> --%>
 
 		<div class="wrapper">
 			<c:forEach items="${cookbook}" var="cbk" varStatus="cbkstat">
